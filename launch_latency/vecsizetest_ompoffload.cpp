@@ -26,8 +26,11 @@ int main(int argc, const char** argv)
 
     auto start = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds = start-start0;
+    std::cout << elapsed_seconds.count() << "\n";
+#ifdef VERBOSE
     std::cout << "Size "<< imax*4 <<" Time: " << elapsed_seconds.count() << "s\n";
     std::cout << "Achieved bandwidth " << (double)((imax) * sizeof(float) * 2 * (iters-1) / elapsed_seconds.count()) / 1000000000.0 <<"\n";
+#endif
   }
   free(A);
   return 0;
