@@ -1,0 +1,23 @@
+[submodule "apps/BabelStream"]
+	path = apps/BabelStream
+	url = https://github.com/UoB-HPC/BabelStream.git
+
+[submodule "apps/volna"]
+	path = apps/volna
+	url = https://github.com/reguly/volna.git
+	branch = istvan_sycl
+[submodule "apps/MG-CFD-app-OP2"]
+	path = apps/MG-CFD-app-OP2
+	url = https://github.com/warwick-hpsc/MG-CFD-app-OP2.git
+	branch = istvan_test
+[submodule "OPS"]
+	path = OPS
+	url = https://github.com/OP-DSL/OPS.git
+	branch = feature/restructure
+[submodule "OP2-Common"]
+	path = OP2-Common
+	url = https://github.com/OP-DSL/OP2-Common.git
+[submodule "OP2-Common-sycl"]
+	path = OP2-Common-sycl
+	url = https://github.com/OP-DSL/OP2-Common.git
+	branch = feature/sycl

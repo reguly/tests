@@ -1,0 +1,2721 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel032(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel032(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [1] ./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp(11,30)
+  -> INLINE: (134,93) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (135,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (136,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (137,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (138,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (160,77) std::pow<double, int>(double, int)
+     {{ Inlining of routines from system headers is omitted. Use -qopt-report=3 to view full report. }}
+  -> INLINE: (162,8) std::pow<double, int>(double, int)
+     {{ Inlining of routines from system headers is omitted. Use -qopt-report=3 to view full report. }}
+  -> INLINE: (164,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (166,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (168,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (170,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (172,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (172,43) std::pow<double, int>(double, int)
+     {{ Inlining of routines from system headers is omitted. Use -qopt-report=3 to view full report. }}
+  -> INLINE: (172,56) std::pow<double, int>(double, int)
+     {{ Inlining of routines from system headers is omitted. Use -qopt-report=3 to view full report. }}
+  -> INLINE: (172,69) std::pow<double, int>(double, int)
+     {{ Inlining of routines from system headers is omitted. Use -qopt-report=3 to view full report. }}
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp(119,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp(120,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp(132,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp(132,7)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp(28,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp(28,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp(28,35):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp(28,41):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp(28,47):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp(28,53):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp(11,30):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel032PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel032_cpu_kernel.cpp:11
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   42[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm27]
+        
+    Routine temporaries
+        Total         :     616
+            Global    :     151
+            Local     :     465
+        Regenerable   :     150
+        Spilled       :      75
+        
+    Routine stack
+        Variables     :     532 bytes*
+            Reads     :      26 [3.21e-04 ~ 0.0%]
+            Writes    :      41 [8.65e-04 ~ 0.0%]
+        Spills        :     872 bytes*
+            Reads     :     131 [2.08e+01 ~ 20.8%]
+            Writes    :      92 [1.35e+01 ~ 13.5%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel026(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel026(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [2] ./MPI_OpenMP/opensbliblock00Kernel026_cpu_kernel.cpp(11,16)
+  -> INLINE: (117,93) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (118,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (119,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (120,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (121,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (123,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (123,27) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (125,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (125,36) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (127,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (127,31) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (129,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (129,31) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (131,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (131,29) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (133,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (133,27) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (135,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (135,36) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (137,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (137,31) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (139,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (139,31) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (141,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (141,29) ACC<double>::operator()(ACC<double> *, int, int, int)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel026_cpu_kernel.cpp(103,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel026_cpu_kernel.cpp(104,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel026_cpu_kernel.cpp(116,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel026_cpu_kernel.cpp(116,7)
+   <Remainder loop for vectorization>
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel026_cpu_kernel.cpp(27,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel026_cpu_kernel.cpp(27,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel026_cpu_kernel.cpp(27,35):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel026_cpu_kernel.cpp(27,41):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel026_cpu_kernel.cpp(27,47):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel026_cpu_kernel.cpp(11,16):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel026PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel026_cpu_kernel.cpp:11
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   26[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm11]
+        
+    Routine temporaries
+        Total         :     461
+            Global    :      95
+            Local     :     366
+        Regenerable   :     141
+        Spilled       :      35
+        
+    Routine stack
+        Variables     :     476 bytes*
+            Reads     :      20 [7.31e-04 ~ 0.0%]
+            Writes    :      35 [2.58e-03 ~ 0.0%]
+        Spills        :     320 bytes*
+            Reads     :      72 [1.35e-02 ~ 0.0%]
+            Writes    :      49 [8.76e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel027(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel027(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [3] ./MPI_OpenMP/opensbliblock00Kernel027_cpu_kernel.cpp(11,16)
+  -> INLINE: (117,93) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (118,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (119,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (120,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (121,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (123,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (123,26) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (125,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (125,35) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (127,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (127,30) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (129,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (129,30) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (131,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (131,28) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (133,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (133,26) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (135,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (135,35) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (137,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (137,30) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (139,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (139,30) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (141,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (141,28) ACC<double>::operator()(ACC<double> *, int, int, int)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel027_cpu_kernel.cpp(103,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel027_cpu_kernel.cpp(104,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel027_cpu_kernel.cpp(116,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel027_cpu_kernel.cpp(116,7)
+   <Remainder loop for vectorization>
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel027_cpu_kernel.cpp(27,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel027_cpu_kernel.cpp(27,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel027_cpu_kernel.cpp(27,35):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel027_cpu_kernel.cpp(27,41):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel027_cpu_kernel.cpp(27,47):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel027_cpu_kernel.cpp(11,16):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel027PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel027_cpu_kernel.cpp:11
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   26[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm11]
+        
+    Routine temporaries
+        Total         :     461
+            Global    :      95
+            Local     :     366
+        Regenerable   :     141
+        Spilled       :      35
+        
+    Routine stack
+        Variables     :     476 bytes*
+            Reads     :      20 [7.31e-04 ~ 0.0%]
+            Writes    :      35 [2.58e-03 ~ 0.0%]
+        Spills        :     320 bytes*
+            Reads     :      72 [1.35e-02 ~ 0.0%]
+            Writes    :      49 [8.76e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel028(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel028(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [4] ./MPI_OpenMP/opensbliblock00Kernel028_cpu_kernel.cpp(11,16)
+  -> INLINE: (117,93) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (118,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (119,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (120,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (121,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (123,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (123,27) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (125,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (125,31) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (127,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (127,36) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (129,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (129,31) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (131,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (131,29) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (133,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (133,27) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (135,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (135,31) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (137,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (137,36) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (139,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (139,31) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (141,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (141,29) ACC<double>::operator()(ACC<double> *, int, int, int)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel028_cpu_kernel.cpp(103,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel028_cpu_kernel.cpp(104,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel028_cpu_kernel.cpp(116,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel028_cpu_kernel.cpp(116,7)
+   <Remainder loop for vectorization>
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel028_cpu_kernel.cpp(27,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel028_cpu_kernel.cpp(27,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel028_cpu_kernel.cpp(27,35):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel028_cpu_kernel.cpp(27,41):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel028_cpu_kernel.cpp(27,47):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel028_cpu_kernel.cpp(11,16):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel028PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel028_cpu_kernel.cpp:11
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   26[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm11]
+        
+    Routine temporaries
+        Total         :     506
+            Global    :     115
+            Local     :     391
+        Regenerable   :     141
+        Spilled       :      62
+        
+    Routine stack
+        Variables     :     476 bytes*
+            Reads     :      20 [3.87e-04 ~ 0.0%]
+            Writes    :      35 [1.37e-03 ~ 0.0%]
+        Spills        :     536 bytes*
+            Reads     :     127 [3.94e+01 ~ 39.4%]
+            Writes    :      79 [9.12e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel029(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel029(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [5] ./MPI_OpenMP/opensbliblock00Kernel029_cpu_kernel.cpp(11,16)
+  -> INLINE: (117,93) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (118,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (119,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (120,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (121,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (123,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (123,26) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (125,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (125,30) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (127,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (127,35) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (129,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (129,30) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (131,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (131,28) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (133,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (133,26) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (135,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (135,30) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (137,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (137,35) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (139,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (139,30) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (141,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (141,28) ACC<double>::operator()(ACC<double> *, int, int, int)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel029_cpu_kernel.cpp(103,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel029_cpu_kernel.cpp(104,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel029_cpu_kernel.cpp(116,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel029_cpu_kernel.cpp(116,7)
+   <Remainder loop for vectorization>
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel029_cpu_kernel.cpp(27,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel029_cpu_kernel.cpp(27,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel029_cpu_kernel.cpp(27,35):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel029_cpu_kernel.cpp(27,41):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel029_cpu_kernel.cpp(27,47):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel029_cpu_kernel.cpp(11,16):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel029PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel029_cpu_kernel.cpp:11
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   26[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm11]
+        
+    Routine temporaries
+        Total         :     506
+            Global    :     115
+            Local     :     391
+        Regenerable   :     141
+        Spilled       :      62
+        
+    Routine stack
+        Variables     :     476 bytes*
+            Reads     :      20 [3.87e-04 ~ 0.0%]
+            Writes    :      35 [1.37e-03 ~ 0.0%]
+        Spills        :     536 bytes*
+            Reads     :     127 [3.94e+01 ~ 39.4%]
+            Writes    :      79 [9.12e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel030(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel030(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [6] ./MPI_OpenMP/opensbliblock00Kernel030_cpu_kernel.cpp(11,16)
+  -> INLINE: (117,93) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (118,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (119,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (120,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (121,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (123,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (123,27) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (125,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (125,31) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (127,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (127,31) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (129,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (129,36) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (131,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (131,29) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (133,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (133,27) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (135,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (135,31) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (137,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (137,31) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (139,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (139,36) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (141,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (141,29) ACC<double>::operator()(ACC<double> *, int, int, int)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel030_cpu_kernel.cpp(103,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel030_cpu_kernel.cpp(104,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel030_cpu_kernel.cpp(116,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel030_cpu_kernel.cpp(116,7)
+   <Remainder loop for vectorization>
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel030_cpu_kernel.cpp(27,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel030_cpu_kernel.cpp(27,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel030_cpu_kernel.cpp(27,35):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel030_cpu_kernel.cpp(27,41):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel030_cpu_kernel.cpp(27,47):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel030_cpu_kernel.cpp(11,16):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel030PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel030_cpu_kernel.cpp:11
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   26[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm11]
+        
+    Routine temporaries
+        Total         :     516
+            Global    :     115
+            Local     :     401
+        Regenerable   :     141
+        Spilled       :      65
+        
+    Routine stack
+        Variables     :     476 bytes*
+            Reads     :      20 [3.87e-04 ~ 0.0%]
+            Writes    :      35 [1.37e-03 ~ 0.0%]
+        Spills        :     560 bytes*
+            Reads     :     127 [3.94e+01 ~ 39.4%]
+            Writes    :      77 [9.07e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel031(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel031(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [7] ./MPI_OpenMP/opensbliblock00Kernel031_cpu_kernel.cpp(11,16)
+  -> INLINE: (117,93) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (118,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (119,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (120,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (121,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (123,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (123,26) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (125,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (125,30) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (127,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (127,30) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (129,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (129,35) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (131,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (131,28) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (133,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (133,26) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (135,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (135,30) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (137,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (137,30) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (139,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (139,35) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (141,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (141,28) ACC<double>::operator()(ACC<double> *, int, int, int)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel031_cpu_kernel.cpp(103,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel031_cpu_kernel.cpp(104,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel031_cpu_kernel.cpp(116,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel031_cpu_kernel.cpp(116,7)
+   <Remainder loop for vectorization>
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel031_cpu_kernel.cpp(27,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel031_cpu_kernel.cpp(27,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel031_cpu_kernel.cpp(27,35):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel031_cpu_kernel.cpp(27,41):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel031_cpu_kernel.cpp(27,47):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel031_cpu_kernel.cpp(11,16):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel031PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel031_cpu_kernel.cpp:11
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   26[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm11]
+        
+    Routine temporaries
+        Total         :     516
+            Global    :     115
+            Local     :     401
+        Regenerable   :     141
+        Spilled       :      65
+        
+    Routine stack
+        Variables     :     476 bytes*
+            Reads     :      20 [3.87e-04 ~ 0.0%]
+            Writes    :      35 [1.37e-03 ~ 0.0%]
+        Spills        :     560 bytes*
+            Reads     :     125 [3.94e+01 ~ 39.4%]
+            Writes    :      77 [9.08e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel033(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel033(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [8] ./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(12,30)
+  -> INLINE: (148,99) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (149,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (150,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (151,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (152,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (153,99) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (154,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (155,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (156,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (157,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (159,16) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (159,32) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (161,18) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (161,36) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (163,18) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (163,36) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (165,18) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (165,36) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (167,17) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (167,34) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(134,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(135,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(147,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(147,7)
+   <Remainder loop for vectorization>
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(33,24):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(33,30):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(33,36):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(33,42):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(33,48):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(33,54):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(33,60):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(33,66):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(33,72):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(33,78):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp(12,30):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel033PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_S4_S4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel033_cpu_kernel.cpp:12
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   34[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm19]
+        
+    Routine temporaries
+        Total         :     678
+            Global    :     144
+            Local     :     534
+        Regenerable   :     191
+        Spilled       :      76
+        
+    Routine stack
+        Variables     :     836 bytes*
+            Reads     :      30 [2.70e-03 ~ 0.0%]
+            Writes    :      65 [9.36e-03 ~ 0.0%]
+        Spills        :     648 bytes*
+            Reads     :     130 [5.14e-02 ~ 0.1%]
+            Writes    :      87 [3.26e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel001(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel001(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg)) [9] ./MPI_OpenMP/opensbliblock00Kernel001_cpu_kernel.cpp(10,44)
+  -> INLINE: (104,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (105,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (106,91) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (108,9) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (108,27) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (108,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel001_cpu_kernel.cpp(90,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel001_cpu_kernel.cpp(91,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel001_cpu_kernel.cpp(103,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel001_cpu_kernel.cpp(103,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel001_cpu_kernel.cpp(24,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel001_cpu_kernel.cpp(24,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel001_cpu_kernel.cpp(24,35):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel001_cpu_kernel.cpp(10,44):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel001PKcP14ops_block_coreiPi7ops_argS4_S4_] ./MPI_OpenMP/opensbliblock00Kernel001_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   24[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm8 k1]
+        
+    Routine temporaries
+        Total         :     362
+            Global    :      81
+            Local     :     281
+        Regenerable   :     115
+        Spilled       :      26
+        
+    Routine stack
+        Variables     :     332 bytes*
+            Reads     :      16 [1.04e-03 ~ 0.0%]
+            Writes    :      23 [3.75e-03 ~ 0.0%]
+        Spills        :     248 bytes*
+            Reads     :      54 [2.03e-02 ~ 0.0%]
+            Writes    :      36 [1.32e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel005(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel005(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg)) [10] ./MPI_OpenMP/opensbliblock00Kernel005_cpu_kernel.cpp(10,44)
+  -> INLINE: (104,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (105,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (106,91) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (108,9) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (108,27) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (108,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel005_cpu_kernel.cpp(90,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel005_cpu_kernel.cpp(91,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel005_cpu_kernel.cpp(103,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel005_cpu_kernel.cpp(103,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel005_cpu_kernel.cpp(24,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel005_cpu_kernel.cpp(24,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel005_cpu_kernel.cpp(24,35):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel005_cpu_kernel.cpp(10,44):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel005PKcP14ops_block_coreiPi7ops_argS4_S4_] ./MPI_OpenMP/opensbliblock00Kernel005_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   24[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm8 k1]
+        
+    Routine temporaries
+        Total         :     362
+            Global    :      81
+            Local     :     281
+        Regenerable   :     115
+        Spilled       :      26
+        
+    Routine stack
+        Variables     :     332 bytes*
+            Reads     :      16 [1.04e-03 ~ 0.0%]
+            Writes    :      23 [3.75e-03 ~ 0.0%]
+        Spills        :     248 bytes*
+            Reads     :      54 [2.03e-02 ~ 0.0%]
+            Writes    :      36 [1.32e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel009(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel009(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg)) [11] ./MPI_OpenMP/opensbliblock00Kernel009_cpu_kernel.cpp(10,44)
+  -> INLINE: (104,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (105,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (106,91) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (108,9) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (108,27) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (108,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel009_cpu_kernel.cpp(90,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel009_cpu_kernel.cpp(91,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel009_cpu_kernel.cpp(103,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel009_cpu_kernel.cpp(103,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel009_cpu_kernel.cpp(24,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel009_cpu_kernel.cpp(24,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel009_cpu_kernel.cpp(24,35):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel009_cpu_kernel.cpp(10,44):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel009PKcP14ops_block_coreiPi7ops_argS4_S4_] ./MPI_OpenMP/opensbliblock00Kernel009_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   24[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm8 k1]
+        
+    Routine temporaries
+        Total         :     362
+            Global    :      81
+            Local     :     281
+        Regenerable   :     115
+        Spilled       :      26
+        
+    Routine stack
+        Variables     :     332 bytes*
+            Reads     :      16 [1.04e-03 ~ 0.0%]
+            Writes    :      23 [3.75e-03 ~ 0.0%]
+        Spills        :     248 bytes*
+            Reads     :      54 [2.03e-02 ~ 0.0%]
+            Writes    :      36 [1.32e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel017(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel017(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [12] ./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp(11,30)
+  -> INLINE: (123,99) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (124,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (125,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (126,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (127,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (128,90) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (130,9) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (130,38) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (131,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (131,25) std::pow<double, int>(double, int)
+     {{ Inlining of routines from system headers is omitted. Use -qopt-report=3 to view full report. }}
+  -> INLINE: (131,34) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (132,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (132,25) std::pow<double, int>(double, int)
+     {{ Inlining of routines from system headers is omitted. Use -qopt-report=3 to view full report. }}
+  -> INLINE: (132,34) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (133,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (133,25) std::pow<double, int>(double, int)
+     {{ Inlining of routines from system headers is omitted. Use -qopt-report=3 to view full report. }}
+  -> INLINE: (133,34) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp(109,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp(110,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp(122,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp(122,7)
+   <Remainder loop for vectorization>
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp(28,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp(28,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp(28,35):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp(28,41):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp(28,47):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp(28,53):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp(11,30):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel017PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel017_cpu_kernel.cpp:11
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   26[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm11]
+        
+    Routine temporaries
+        Total         :     502
+            Global    :     105
+            Local     :     397
+        Regenerable   :     144
+        Spilled       :      45
+        
+    Routine stack
+        Variables     :     548 bytes*
+            Reads     :      22 [1.35e-03 ~ 0.0%]
+            Writes    :      41 [4.74e-03 ~ 0.0%]
+        Spills        :     400 bytes*
+            Reads     :      82 [2.41e-02 ~ 0.0%]
+            Writes    :      55 [1.57e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel018(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel018(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg)) [13] ./MPI_OpenMP/opensbliblock00Kernel018_cpu_kernel.cpp(10,44)
+  -> INLINE: (104,96) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (105,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (106,90) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (108,8) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (108,18) std::pow<double, int>(double, int)
+     {{ Inlining of routines from system headers is omitted. Use -qopt-report=3 to view full report. }}
+  -> INLINE: (108,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (108,54) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel018_cpu_kernel.cpp(90,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel018_cpu_kernel.cpp(91,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel018_cpu_kernel.cpp(103,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel018_cpu_kernel.cpp(103,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel018_cpu_kernel.cpp(24,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel018_cpu_kernel.cpp(24,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel018_cpu_kernel.cpp(24,35):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel018_cpu_kernel.cpp(10,44):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel018PKcP14ops_block_coreiPi7ops_argS4_S4_] ./MPI_OpenMP/opensbliblock00Kernel018_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   40[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm24 k1]
+        
+    Routine temporaries
+        Total         :     382
+            Global    :      81
+            Local     :     301
+        Regenerable   :     115
+        Spilled       :      26
+        
+    Routine stack
+        Variables     :     332 bytes*
+            Reads     :      16 [5.78e-04 ~ 0.0%]
+            Writes    :      23 [2.08e-03 ~ 0.0%]
+        Spills        :     248 bytes*
+            Reads     :      54 [1.13e-02 ~ 0.0%]
+            Writes    :      36 [7.35e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel000(const char *, ops_block, int, int *, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel000(const char *, ops_block, int, int *, ops_arg, ops_arg)) [14] ./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp(10,30)
+  -> INLINE: (98,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (99,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (101,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (101,39) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,57) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,14) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp(84,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp(85,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp(97,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp(97,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp(101,39):remark #34060: alignment of adjacent dense (unit-strided stencil) loads is (alignment, offset): (1, 0)
+./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp(101,39):remark #34050: adjacent dense (unit-strided stencil) loads seem unprofitable to optimize.
+./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp(102,14):remark #34060: alignment of adjacent dense (unit-strided stencil) loads is (alignment, offset): (1, 0)
+./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp(102,14):remark #34050: adjacent dense (unit-strided stencil) loads seem unprofitable to optimize.
+./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp(23,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp(23,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp(10,30):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel000PKcP14ops_block_coreiPi7ops_argS4_] ./MPI_OpenMP/opensbliblock00Kernel000_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   27[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm11 k1]
+        
+    Routine temporaries
+        Total         :     333
+            Global    :      73
+            Local     :     260
+        Regenerable   :     106
+        Spilled       :      21
+        
+    Routine stack
+        Variables     :     260 bytes*
+            Reads     :      14 [4.40e-04 ~ 0.0%]
+            Writes    :      17 [1.62e-03 ~ 0.0%]
+        Spills        :     208 bytes*
+            Reads     :      49 [9.86e-03 ~ 0.0%]
+            Writes    :      34 [7.28e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel002(const char *, ops_block, int, int *, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel002(const char *, ops_block, int, int *, ops_arg, ops_arg)) [15] ./MPI_OpenMP/opensbliblock00Kernel002_cpu_kernel.cpp(10,30)
+  -> INLINE: (98,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (99,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (101,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (101,42) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,58) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,74) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,16) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel002_cpu_kernel.cpp(84,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel002_cpu_kernel.cpp(85,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel002_cpu_kernel.cpp(97,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel002_cpu_kernel.cpp(97,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel002_cpu_kernel.cpp(23,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel002_cpu_kernel.cpp(23,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel002_cpu_kernel.cpp(10,30):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel002PKcP14ops_block_coreiPi7ops_argS4_] ./MPI_OpenMP/opensbliblock00Kernel002_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   28[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm12 k1]
+        
+    Routine temporaries
+        Total         :     340
+            Global    :      75
+            Local     :     265
+        Regenerable   :     107
+        Spilled       :      24
+        
+    Routine stack
+        Variables     :     260 bytes*
+            Reads     :      14 [4.73e-04 ~ 0.0%]
+            Writes    :      17 [1.74e-03 ~ 0.0%]
+        Spills        :     232 bytes*
+            Reads     :      59 [1.29e-02 ~ 0.0%]
+            Writes    :      42 [1.05e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel003(const char *, ops_block, int, int *, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel003(const char *, ops_block, int, int *, ops_arg, ops_arg)) [16] ./MPI_OpenMP/opensbliblock00Kernel003_cpu_kernel.cpp(10,30)
+  -> INLINE: (98,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (99,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (101,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (101,39) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,57) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,14) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel003_cpu_kernel.cpp(84,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel003_cpu_kernel.cpp(85,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel003_cpu_kernel.cpp(97,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel003_cpu_kernel.cpp(97,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel003_cpu_kernel.cpp(23,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel003_cpu_kernel.cpp(23,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel003_cpu_kernel.cpp(10,30):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel003PKcP14ops_block_coreiPi7ops_argS4_] ./MPI_OpenMP/opensbliblock00Kernel003_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   27[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm11 k1]
+        
+    Routine temporaries
+        Total         :     337
+            Global    :      74
+            Local     :     263
+        Regenerable   :     106
+        Spilled       :      23
+        
+    Routine stack
+        Variables     :     260 bytes*
+            Reads     :      14 [4.73e-04 ~ 0.0%]
+            Writes    :      17 [1.74e-03 ~ 0.0%]
+        Spills        :     224 bytes*
+            Reads     :      58 [1.28e-02 ~ 0.0%]
+            Writes    :      43 [1.05e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel004(const char *, ops_block, int, int *, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel004(const char *, ops_block, int, int *, ops_arg, ops_arg)) [17] ./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp(10,30)
+  -> INLINE: (98,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (99,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (101,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (101,42) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,58) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,14) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp(84,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp(85,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp(97,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp(97,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp(101,42):remark #34060: alignment of adjacent dense (unit-strided stencil) loads is (alignment, offset): (1, 0)
+./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp(101,42):remark #34050: adjacent dense (unit-strided stencil) loads seem unprofitable to optimize.
+./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp(102,14):remark #34060: alignment of adjacent dense (unit-strided stencil) loads is (alignment, offset): (1, 0)
+./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp(102,14):remark #34050: adjacent dense (unit-strided stencil) loads seem unprofitable to optimize.
+./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp(23,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp(23,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp(10,30):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel004PKcP14ops_block_coreiPi7ops_argS4_] ./MPI_OpenMP/opensbliblock00Kernel004_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   28[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm12 k1]
+        
+    Routine temporaries
+        Total         :     334
+            Global    :      74
+            Local     :     260
+        Regenerable   :     107
+        Spilled       :      21
+        
+    Routine stack
+        Variables     :     260 bytes*
+            Reads     :      14 [4.40e-04 ~ 0.0%]
+            Writes    :      17 [1.62e-03 ~ 0.0%]
+        Spills        :     208 bytes*
+            Reads     :      49 [9.86e-03 ~ 0.0%]
+            Writes    :      34 [7.28e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel006(const char *, ops_block, int, int *, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel006(const char *, ops_block, int, int *, ops_arg, ops_arg)) [18] ./MPI_OpenMP/opensbliblock00Kernel006_cpu_kernel.cpp(10,30)
+  -> INLINE: (98,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (99,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (101,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (101,42) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,58) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,74) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,16) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel006_cpu_kernel.cpp(84,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel006_cpu_kernel.cpp(85,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel006_cpu_kernel.cpp(97,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel006_cpu_kernel.cpp(97,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel006_cpu_kernel.cpp(23,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel006_cpu_kernel.cpp(23,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel006_cpu_kernel.cpp(10,30):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel006PKcP14ops_block_coreiPi7ops_argS4_] ./MPI_OpenMP/opensbliblock00Kernel006_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   28[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm12 k1]
+        
+    Routine temporaries
+        Total         :     340
+            Global    :      75
+            Local     :     265
+        Regenerable   :     107
+        Spilled       :      24
+        
+    Routine stack
+        Variables     :     260 bytes*
+            Reads     :      14 [4.73e-04 ~ 0.0%]
+            Writes    :      17 [1.74e-03 ~ 0.0%]
+        Spills        :     232 bytes*
+            Reads     :      59 [1.29e-02 ~ 0.0%]
+            Writes    :      42 [1.05e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel007(const char *, ops_block, int, int *, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel007(const char *, ops_block, int, int *, ops_arg, ops_arg)) [19] ./MPI_OpenMP/opensbliblock00Kernel007_cpu_kernel.cpp(10,30)
+  -> INLINE: (98,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (99,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (101,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (101,42) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,58) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,14) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel007_cpu_kernel.cpp(84,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel007_cpu_kernel.cpp(85,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel007_cpu_kernel.cpp(97,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel007_cpu_kernel.cpp(97,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel007_cpu_kernel.cpp(23,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel007_cpu_kernel.cpp(23,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel007_cpu_kernel.cpp(10,30):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel007PKcP14ops_block_coreiPi7ops_argS4_] ./MPI_OpenMP/opensbliblock00Kernel007_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   28[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm12 k1]
+        
+    Routine temporaries
+        Total         :     338
+            Global    :      75
+            Local     :     263
+        Regenerable   :     107
+        Spilled       :      23
+        
+    Routine stack
+        Variables     :     260 bytes*
+            Reads     :      14 [4.73e-04 ~ 0.0%]
+            Writes    :      17 [1.74e-03 ~ 0.0%]
+        Spills        :     224 bytes*
+            Reads     :      58 [1.28e-02 ~ 0.0%]
+            Writes    :      41 [9.98e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel008(const char *, ops_block, int, int *, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel008(const char *, ops_block, int, int *, ops_arg, ops_arg)) [20] ./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp(10,30)
+  -> INLINE: (98,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (99,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (101,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (101,39) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,72) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,14) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp(84,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp(85,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp(97,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp(97,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp(101,39):remark #34060: alignment of adjacent dense (unit-strided stencil) loads is (alignment, offset): (1, 0)
+./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp(101,39):remark #34050: adjacent dense (unit-strided stencil) loads seem unprofitable to optimize.
+./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp(101,55):remark #34060: alignment of adjacent dense (unit-strided stencil) loads is (alignment, offset): (1, 0)
+./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp(101,55):remark #34050: adjacent dense (unit-strided stencil) loads seem unprofitable to optimize.
+./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp(23,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp(23,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp(10,30):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel008PKcP14ops_block_coreiPi7ops_argS4_] ./MPI_OpenMP/opensbliblock00Kernel008_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   27[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm11 k1]
+        
+    Routine temporaries
+        Total         :     332
+            Global    :      73
+            Local     :     259
+        Regenerable   :     106
+        Spilled       :      21
+        
+    Routine stack
+        Variables     :     260 bytes*
+            Reads     :      14 [4.50e-04 ~ 0.0%]
+            Writes    :      17 [1.66e-03 ~ 0.0%]
+        Spills        :     208 bytes*
+            Reads     :      49 [1.01e-02 ~ 0.0%]
+            Writes    :      34 [7.45e-03 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel010(const char *, ops_block, int, int *, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel010(const char *, ops_block, int, int *, ops_arg, ops_arg)) [21] ./MPI_OpenMP/opensbliblock00Kernel010_cpu_kernel.cpp(10,30)
+  -> INLINE: (98,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (99,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (101,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (101,39) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,57) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,72) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,14) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel010_cpu_kernel.cpp(84,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel010_cpu_kernel.cpp(85,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel010_cpu_kernel.cpp(97,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel010_cpu_kernel.cpp(97,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel010_cpu_kernel.cpp(23,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel010_cpu_kernel.cpp(23,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel010_cpu_kernel.cpp(10,30):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel010PKcP14ops_block_coreiPi7ops_argS4_] ./MPI_OpenMP/opensbliblock00Kernel010_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   27[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm11 k1]
+        
+    Routine temporaries
+        Total         :     339
+            Global    :      74
+            Local     :     265
+        Regenerable   :     106
+        Spilled       :      24
+        
+    Routine stack
+        Variables     :     260 bytes*
+            Reads     :      14 [4.73e-04 ~ 0.0%]
+            Writes    :      17 [1.74e-03 ~ 0.0%]
+        Spills        :     232 bytes*
+            Reads     :      59 [1.29e-02 ~ 0.0%]
+            Writes    :      44 [1.10e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel011(const char *, ops_block, int, int *, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel011(const char *, ops_block, int, int *, ops_arg, ops_arg)) [22] ./MPI_OpenMP/opensbliblock00Kernel011_cpu_kernel.cpp(10,30)
+  -> INLINE: (98,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (99,92) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (101,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (101,39) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (101,72) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (102,14) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel011_cpu_kernel.cpp(84,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel011_cpu_kernel.cpp(85,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel011_cpu_kernel.cpp(97,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel011_cpu_kernel.cpp(97,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel011_cpu_kernel.cpp(23,23):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel011_cpu_kernel.cpp(23,29):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel011_cpu_kernel.cpp(10,30):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel011PKcP14ops_block_coreiPi7ops_argS4_] ./MPI_OpenMP/opensbliblock00Kernel011_cpu_kernel.cpp:10
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   27[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm11 k1]
+        
+    Routine temporaries
+        Total         :     337
+            Global    :      74
+            Local     :     263
+        Regenerable   :     106
+        Spilled       :      23
+        
+    Routine stack
+        Variables     :     260 bytes*
+            Reads     :      14 [4.73e-04 ~ 0.0%]
+            Writes    :      17 [1.74e-03 ~ 0.0%]
+        Spills        :     224 bytes*
+            Reads     :      58 [1.28e-02 ~ 0.0%]
+            Writes    :      43 [1.05e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel024(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel024(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [23] ./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(14,17)
+  -> INLINE: (192,99) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (193,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (194,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (195,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (196,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (197,96) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (198,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (199,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (200,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (201,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (202,102) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (203,102) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (204,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (205,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (206,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (207,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (208,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (246,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (246,54) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (247,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (247,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (247,50) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (247,64) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (248,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (248,30) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (250,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (250,54) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (251,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (251,31) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (251,50) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (251,63) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (252,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (252,30) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (254,42) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (254,60) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (255,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (255,36) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (257,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (257,57) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (257,77) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (258,16) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (260,38) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (260,52) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (261,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (261,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (261,46) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (261,59) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (262,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (262,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (264,42) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (264,62) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (264,81) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (265,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (267,36) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (267,50) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (268,13) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (268,27) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (268,44) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (268,57) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (269,11) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (269,24) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (271,43) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (271,62) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (272,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (272,35) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (274,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (274,53) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (275,14) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (275,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (275,48) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (275,62) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (276,16) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (276,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (278,39) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (278,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (278,74) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (279,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (281,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (281,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (282,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (282,31) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (282,52) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (282,65) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (283,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (283,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (285,38) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (285,54) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (285,70) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (286,11) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (288,37) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (288,51) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (289,13) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (289,27) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (289,44) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (289,57) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (290,11) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (290,24) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (292,39) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (292,53) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (293,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (293,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (293,46) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (293,59) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (294,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (294,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (296,42) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (296,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (297,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (297,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (297,50) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (297,64) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (298,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (298,30) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (300,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (300,54) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (301,14) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (301,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (301,48) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (301,62) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (302,16) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (302,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (304,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (304,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (305,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (305,31) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (305,50) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (305,63) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (306,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (306,30) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (308,44) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (308,63) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (309,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (309,35) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (311,43) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (311,61) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (312,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (312,36) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (314,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (314,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (314,75) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (315,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (317,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (317,58) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (317,78) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (318,16) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (320,38) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (320,54) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (320,70) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (321,11) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (323,43) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (323,63) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (323,82) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (324,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (326,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (326,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (327,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (327,31) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (327,52) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (327,65) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (328,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (328,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (330,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (330,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (331,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (331,31) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (331,52) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (331,65) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (332,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (332,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (334,38) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (334,51) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (335,11) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (335,25) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (335,42) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (335,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (336,13) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (336,26) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (338,44) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (338,63) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (339,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (339,35) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (341,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (341,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (341,75) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (342,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (344,39) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (344,53) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (344,69) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (345,11) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (347,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (347,54) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (348,16) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (348,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (348,46) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (348,60) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (349,16) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (349,30) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (351,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (351,53) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (352,13) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (352,27) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (352,46) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (352,60) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (353,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (353,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (355,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (355,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (356,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (356,31) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (356,50) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (356,63) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (357,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (357,30) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (359,44) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (359,65) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (360,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (360,34) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (362,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (362,60) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (362,79) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (363,14) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (365,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (365,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (366,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (366,31) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (366,52) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (366,65) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (367,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (367,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (369,44) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (369,63) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (369,84) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (370,17) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (372,17) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (372,69) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (373,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (374,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (374,49) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (374,65) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (375,13) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (375,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (377,17) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (377,84) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (378,67) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (379,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (379,49) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (379,65) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (380,13) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (380,30) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (382,17) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (382,87) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (383,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (383,94) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (384,20) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (384,36) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (384,52) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (384,69) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (386,17) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (386,87) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (387,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (387,94) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (388,20) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (388,36) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (388,52) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (388,69) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (390,17) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (390,84) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (391,62) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (391,94) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (392,52) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (392,68) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (393,13) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (393,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(178,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(179,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(191,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(191,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(261,46):remark #34060: alignment of adjacent dense (unit-strided stencil) loads is (alignment, offset): (1, 0)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(261,46):remark #34050: adjacent dense (unit-strided stencil) loads seem unprofitable to optimize.
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(268,44):remark #34060: alignment of adjacent dense (unit-strided stencil) loads is (alignment, offset): (1, 0)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(268,44):remark #34050: adjacent dense (unit-strided stencil) loads seem unprofitable to optimize.
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,24):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,30):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,36):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,42):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,48):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,54):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,60):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,66):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,72):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,78):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,84):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,91):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,98):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,105):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,112):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,119):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(42,126):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp(14,17):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel024PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel024_cpu_kernel.cpp:14
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   47[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm31 k1]
+        
+    Routine temporaries
+        Total         :    1897
+            Global    :     337
+            Local     :    1560
+        Regenerable   :     264
+        Spilled       :     237
+        
+    Routine stack
+        Variables     :    1340 bytes*
+            Reads     :      44 [1.07e-04 ~ 0.0%]
+            Writes    :     107 [3.69e-04 ~ 0.0%]
+        Spills        :    2728 bytes*
+            Reads     :     391 [1.99e+01 ~ 19.9%]
+            Writes    :     258 [3.93e+00 ~ 3.9%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel025(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel025(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [24] ./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(14,17)
+  -> INLINE: (192,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (193,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (194,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (195,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (196,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (197,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (198,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (199,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (200,96) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (201,97) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (202,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (203,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (204,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (205,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (206,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (207,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (208,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (228,39) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (228,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (228,70) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (229,11) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (229,29) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (231,39) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (231,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (231,70) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (232,11) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (232,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (234,37) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (234,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (234,73) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (235,11) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (235,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (237,38) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (237,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (237,74) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (238,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (238,31) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (240,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (240,58) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (240,76) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (241,12) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (241,28) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (243,38) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (243,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (243,74) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (244,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (244,31) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (246,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (246,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (246,70) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (247,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (247,34) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (249,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (249,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (249,70) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (250,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (250,34) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (252,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (252,55) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (252,70) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (253,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (253,34) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (255,38) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (255,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (255,72) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (256,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (256,33) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (258,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (258,57) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (258,76) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (259,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (259,30) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (261,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (261,57) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (261,76) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (262,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (262,30) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (264,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (264,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (264,75) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (265,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (267,39) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (267,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (267,74) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (268,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (270,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (270,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (270,75) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (271,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (273,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (273,57) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (273,73) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (274,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (276,42) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (276,59) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (276,75) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (277,15) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (279,40) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (279,58) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (279,76) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (280,13) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (282,17) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (283,41) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (285,17) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (286,48) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (288,17) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (289,41) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (291,17) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (292,25) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (292,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (292,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (293,25) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (293,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (293,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (294,25) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (294,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (294,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (295,25) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (295,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (295,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (296,25) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (296,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (296,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (297,25) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (297,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (297,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (298,31) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (298,52) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (299,20) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (299,35) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (299,69) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (300,20) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (300,41) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (300,56) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (301,32) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (301,53) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (302,18) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (302,33) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (303,74) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (305,25) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (306,46) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (306,68) ACC<double>::operator()(ACC<double> *, int, int, int)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(178,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(179,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(191,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(191,7)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(228,56):remark #34060: alignment of adjacent dense (unit-strided stencil) loads is (alignment, offset): (1, 0)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(228,56):remark #34050: adjacent dense (unit-strided stencil) loads seem unprofitable to optimize.
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,24):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,30):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,36):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,42):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,48):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,54):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,60):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,66):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,72):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,78):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,84):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,91):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,98):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,105):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,112):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,119):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(42,126):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp(14,17):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel025PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel025_cpu_kernel.cpp:14
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   47[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm31 k1]
+        
+    Routine temporaries
+        Total         :    1597
+            Global    :     282
+            Local     :    1315
+        Regenerable   :     264
+        Spilled       :     195
+        
+    Routine stack
+        Variables     :    1340 bytes*
+            Reads     :      44 [1.54e-04 ~ 0.0%]
+            Writes    :     107 [5.29e-04 ~ 0.0%]
+        Spills        :    1648 bytes*
+            Reads     :     351 [2.33e+01 ~ 23.3%]
+            Writes    :     214 [6.16e-01 ~ 0.6%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel035(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel035(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [25] ./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(13,62)
+  -> INLINE: (183,105) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (184,104) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (185,104) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (186,104) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (187,106) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (188,104) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (189,104) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (190,106) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (191,106) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (192,104) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (193,95) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (194,94) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (195,96) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (196,96) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (197,96) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (199,10) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (199,44) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (199,66) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (201,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (201,46) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (201,70) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (203,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (203,46) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (203,70) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (205,12) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (205,46) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (205,70) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (207,11) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (207,45) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (207,68) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(169,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(170,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(182,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(182,7)
+   <Remainder loop for vectorization>
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,24):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,30):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,36):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,42):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,48):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,54):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,60):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,66):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,72):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,78):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,84):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,91):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,98):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,105):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,112):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(40,119):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp(13,62):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel035PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel035_cpu_kernel.cpp:13
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   46[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm31]
+        
+    Routine temporaries
+        Total         :     934
+            Global    :     198
+            Local     :     736
+        Regenerable   :     243
+        Spilled       :     122
+        
+    Routine stack
+        Variables     :    1260 bytes*
+            Reads     :      41 [2.13e-03 ~ 0.0%]
+            Writes    :      99 [7.40e-03 ~ 0.0%]
+        Spills        :    1016 bytes*
+            Reads     :     198 [1.48e+01 ~ 14.8%]
+            Writes    :     135 [2.62e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_par_loop_opensbliblock00Kernel034(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_par_loop_opensbliblock00Kernel034(const char *, ops_block, int, int *, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg, ops_arg)) [26] ./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(12,45)
+  -> INLINE: (152,104) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (153,104) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (154,104) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (155,104) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (156,104) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (157,99) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (158,98) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (159,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (160,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (161,100) ACC<double>::ACC(ACC<double> *, int, int, double *)
+  -> INLINE: (163,16) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (163,50) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (163,72) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (165,18) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (165,52) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (165,76) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (167,18) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (167,52) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (167,76) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (169,18) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (169,52) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (169,76) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (171,17) ACC<double>::operator()(ACC<double> *, int, int, int)
+  -> INLINE: (171,51) ACC<double>::operator()(const ACC<double> *, int, int, int) const
+  -> INLINE: (171,74) ACC<double>::operator()(ACC<double> *, int, int, int)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at ./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(138,3)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(139,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(151,7)
+      remark #25236: Loop with pragma of trip count = 10000 ignored for large value
+      remark #15301: SIMD LOOP WAS VECTORIZED
+      remark #26013: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+   LOOP END
+
+   LOOP BEGIN at ./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(151,7)
+   <Remainder loop for vectorization>
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(34,24):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(34,30):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(34,36):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(34,42):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(34,48):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(34,54):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(34,60):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(34,66):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 8)
+./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(34,72):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(34,78):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 24)
+./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(34,84):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 16)
+./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp(12,45):remark #34051: REGISTER ALLOCATION : [_Z37ops_par_loop_opensbliblock00Kernel034PKcP14ops_block_coreiPi7ops_argS4_S4_S4_S4_S4_S4_S4_S4_S4_S4_] ./MPI_OpenMP/opensbliblock00Kernel034_cpu_kernel.cpp:12
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   36[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm21]
+        
+    Routine temporaries
+        Total         :     709
+            Global    :     150
+            Local     :     559
+        Regenerable   :     194
+        Spilled       :      78
+        
+    Routine stack
+        Variables     :     900 bytes*
+            Reads     :      31 [1.50e-03 ~ 0.0%]
+            Writes    :      69 [5.27e-03 ~ 0.0%]
+        Spills        :     664 bytes*
+            Reads     :     139 [3.80e+00 ~ 3.8%]
+            Writes    :      95 [1.85e-02 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ACC<double>::ACC(ACC<double> *, int, int, double *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (ACC<double>::ACC(ACC<double> *, int, int, double *)) /home/reguly/OPS/ops/c/include/ops_lib_core.h(1361,82)
+
+===========================================================================
+
+Begin optimization report for: ACC<double>::operator()(const ACC<double> *, int, int, int) const
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (ACC<double>::operator()(const ACC<double> *, int, int, int) const) /home/reguly/OPS/ops/c/include/ops_lib_core.h(1372,59)
+
+===========================================================================
+
+Begin optimization report for: ACC<double>::operator()(ACC<double> *, int, int, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (ACC<double>::operator()(ACC<double> *, int, int, int)) /home/reguly/OPS/ops/c/include/ops_lib_core.h(1374,47)
+
+===========================================================================
+
+Begin optimization report for: std::pow<double, int>(double, int)
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/c++/8/cmath(416,5):remark #34051: REGISTER ALLOCATION : [_ZSt3powIdiEN9__gnu_cxx11__promote_2IT_T0_NS0_9__promoteIS2_Xsr3std12__is_integerIS2_EE7__valueEE6__typeENS4_IS3_Xsr3std12__is_integerIS3_EE7__valueEE6__typeEE6__typeES2_S3_] /usr/include/c++/8/cmath:416
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    3[ rdi zmm0-zmm1]
+        
+    Routine temporaries
+        Total         :      16
+            Global    :       7
+            Local     :       9
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: __sti__$E()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (__sti__$E()) [53] <compiler generated>
+
+
+    Report from: Code generation optimizations [cg]
+
+<compiler generated>:remark #34051: REGISTER ALLOCATION : [__sti__$E] (null):0
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    3[ rdx rsi rdi]
+        
+    Routine temporaries
+        Total         :      13
+            Global    :       7
+            Local     :       6
+        Regenerable   :       7
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: ops_init_backend()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ops_init_backend()) [54] ./MPI_OpenMP/opensbli_cpu_kernels.cpp(41,25)
+
+
+    Report from: Code generation optimizations [cg]
+
+./MPI_OpenMP/opensbli_cpu_kernels.cpp(41,25):remark #34051: REGISTER ALLOCATION : [_Z16ops_init_backendv] ./MPI_OpenMP/opensbli_cpu_kernels.cpp:41
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    0[ reg_null]
+        
+    Routine temporaries
+        Total         :       6
+            Global    :       0
+            Local     :       6
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
