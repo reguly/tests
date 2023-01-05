@@ -39,6 +39,10 @@
 #include <string.h>
 #include <math.h>
 
+#ifdef PROFILE_ITT
+#include <ittnotify.h>
+#endif
+
 float dx,dy,dz,invdx,invdy,invdz;
 float* cx;
 float* cy;
@@ -308,7 +312,9 @@ int main(int argc, char **argv)
 	       );
 
   //printf(" DONE populate\n");
-
+#ifdef PROFILE_ITT
+  __itt_resume();
+#endif
   ops_timers(&ct0, &et0);
   double it0, it1, it2, it3;
   ops_timers(&ct0, &it0);
@@ -393,6 +399,9 @@ int main(int argc, char **argv)
   //exit(0);
 
   ops_timers(&ct1, &et1);
+#ifdef PROFILE_ITT
+  __itt_pause();
+#endif
   ops_timing_output(std::cout);
   ops_printf("\nTotal Wall time %lf\n",et1-et0);
   //ops_fetch_block_hdf5_file(blocks, "multidim.h5");
