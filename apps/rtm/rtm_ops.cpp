@@ -10,6 +10,10 @@ void ops_init_backend();
 #include <string.h>
 #include <math.h>
 
+#ifdef PROFILE_ITT
+#include <ittnotify.h>
+#endif
+
 float dx,dy,dz,invdx,invdy,invdz;
 float* cx;
 float* cy;
@@ -174,35 +178,35 @@ int main(int argc, char **argv)
   xpmlend=xend-pml_width;
   ypmlend=yend-pml_width;
   zpmlend=zend-pml_width;
-  ops_decl_const2( "dx",1, "float",&dx);
-  ops_decl_const2( "dz",1, "float",&dz);
-  ops_decl_const2( "invdx",1, "float",&invdx);
-  ops_decl_const2( "invdy",1, "float",&invdy);
-  ops_decl_const2( "invdz",1, "float",&invdz);
-  ops_decl_const2( "nx",1, "int",&nx);
-  ops_decl_const2( "ny",1, "int",&ny);
-  ops_decl_const2( "nz",1, "int",&nz);
-  ops_decl_const2( "pml_width",1, "int",&pml_width);
-  ops_decl_const2( "xbeg",1, "int",&xbeg);
-  ops_decl_const2( "ybeg",1, "int",&ybeg);
-  ops_decl_const2( "zbeg",1, "int",&zbeg);
-  ops_decl_const2( "xend",1, "int",&xend);
-  ops_decl_const2( "yend",1, "int",&yend);
-  ops_decl_const2( "zend",1, "int",&zend);
-  ops_decl_const2( "xpmlbeg",1, "int",&xpmlbeg);
-  ops_decl_const2( "ypmlbeg",1, "int",&ypmlbeg);
-  ops_decl_const2( "zpmlbeg",1, "int",&zpmlbeg);
-  ops_decl_const2( "xpmlend",1, "int",&xpmlend);
-  ops_decl_const2( "ypmlend",1, "int",&ypmlend);
-  ops_decl_const2( "zpmlend",1, "int",&zpmlend);
+  ops_decl_const("dx",1,"float",&dx);
+  ops_decl_const("dz",1,"float",&dz);
+  ops_decl_const("invdx",1,"float",&invdx);
+  ops_decl_const("invdy",1,"float",&invdy);
+  ops_decl_const("invdz",1,"float",&invdz);
+  ops_decl_const("nx",1,"int",&nx);
+  ops_decl_const("ny",1,"int",&ny);
+  ops_decl_const("nz",1,"int",&nz);
+  ops_decl_const("pml_width",1,"int",&pml_width);
+  ops_decl_const("xbeg",1,"int",&xbeg);
+  ops_decl_const("ybeg",1,"int",&ybeg);
+  ops_decl_const("zbeg",1,"int",&zbeg);
+  ops_decl_const("xend",1,"int",&xend);
+  ops_decl_const("yend",1,"int",&yend);
+  ops_decl_const("zend",1,"int",&zend);
+  ops_decl_const("xpmlbeg",1,"int",&xpmlbeg);
+  ops_decl_const("ypmlbeg",1,"int",&ypmlbeg);
+  ops_decl_const("zpmlbeg",1,"int",&zpmlbeg);
+  ops_decl_const("xpmlend",1,"int",&xpmlend);
+  ops_decl_const("ypmlend",1,"int",&ypmlend);
+  ops_decl_const("zpmlend",1,"int",&zpmlend);
   int ncoeffs = (ORDER+1)*(ORDER+1);
-  ops_decl_const2( "coeffs",ncoeffs, "float",&coeffs[0][0]);
+  ops_decl_const("coeffs",ncoeffs,"float",&coeffs[0][0]);
   halff = HALF;
-  ops_decl_const2( "halff",1, "int",&halff);
+  ops_decl_const("halff",1,"int",&halff);
   order = ORDER;
-  ops_decl_const2( "order",1, "int",&order);
+  ops_decl_const("order",1,"int",&order);
   c = &coeffs[halff][halff];
-  ops_decl_const2( "c",order+1, "float",c);
+  ops_decl_const("c",order+1,"float",c);
   cx = (float *)malloc((order+1)*sizeof(float));
   cy = (float *)malloc((order+1)*sizeof(float));
   cz = (float *)malloc((order+1)*sizeof(float));
@@ -211,9 +215,9 @@ int main(int argc, char **argv)
     cy[i+halff] = c[i]*invdy;
     cz[i+halff] = c[i]*invdz;
   }
-  ops_decl_const2( "cx",order+1, "float",cx);
-  ops_decl_const2( "cy",order+1, "float",cy);
-  ops_decl_const2( "cz",order+1, "float",cz);
+  ops_decl_const("cx",order+1,"float",cx);
+  ops_decl_const("cy",order+1,"float",cy);
+  ops_decl_const("cz",order+1,"float",cz);
 
   char buf[50];
   sprintf(buf,"block");
@@ -316,7 +320,9 @@ int main(int argc, char **argv)
                ops_arg_dat(mu, 1, S3D_000, "float", OPS_WRITE),
                ops_arg_dat(yy, 6, S3D_000, "float", OPS_WRITE));
 
-
+#ifdef PROFILE_ITT
+  __itt_resume();
+#endif
   ops_timers(&ct0, &et0);
   double it0, it1, it2, it3;
   ops_timers(&ct0, &it0);
@@ -373,6 +379,9 @@ int main(int argc, char **argv)
 
 
   ops_timers(&ct1, &et1);
+#ifdef PROFILE_ITT
+  __itt_pause();
+#endif
   ops_timing_output(std::cout);
   ops_printf("\nTotal Wall time %lf\n",et1-et0);
 

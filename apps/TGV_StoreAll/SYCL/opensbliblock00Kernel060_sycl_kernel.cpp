@@ -95,11 +95,11 @@ void ops_par_loop_opensbliblock00Kernel060_execute(ops_kernel_descriptor *desc) 
       cgh.parallel_for<class opensbliblock00Kernel060_kernel>(cl::sycl::nd_range<3>(cl::sycl::range<3>(
            ((end[2]-start[2]-1)/block->instance->OPS_block_size_z+1)*block->instance->OPS_block_size_z,
            ((end[1]-start[1]-1)/block->instance->OPS_block_size_y+1)*block->instance->OPS_block_size_y,
-            ((end[0]-start[0]-1)/block->instance->OPS_block_size_x+1)*block->instance->OPS_block_size_x
+            end[0]-start[0]
              ),cl::sycl::range<3>(
              block->instance->OPS_block_size_z,
              block->instance->OPS_block_size_y,
-      block->instance->OPS_block_size_x
+            end[0]-start[0]
              ))
       , [=](cl::sycl::nd_item<3> item
       ) [[intel::kernel_args_restrict]] {

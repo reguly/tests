@@ -52,11 +52,11 @@ int size2 ){
   int idx_y = blockDim.y * blockIdx.y + threadIdx.y;
   int idx_x = blockDim.x * blockIdx.x + threadIdx.x;
 
-  arg0 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel081[0][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel081[0][0] * (size_t)dims_opensbliblock00Kernel081[0][1];
-  arg1 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel081[1][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel081[1][0] * (size_t)dims_opensbliblock00Kernel081[1][1];
-  arg2 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel081[2][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel081[2][0] * (size_t)dims_opensbliblock00Kernel081[2][1];
-  arg3 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel081[3][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel081[3][0] * (size_t)dims_opensbliblock00Kernel081[3][1];
-  arg4 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel081[4][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel081[4][0] * (size_t)dims_opensbliblock00Kernel081[4][1];
+  arg0 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel081[0][0] + idx_z * 1*1 * dims_opensbliblock00Kernel081[0][0] * dims_opensbliblock00Kernel081[0][1];
+  arg1 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel081[1][0] + idx_z * 1*1 * dims_opensbliblock00Kernel081[1][0] * dims_opensbliblock00Kernel081[1][1];
+  arg2 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel081[2][0] + idx_z * 1*1 * dims_opensbliblock00Kernel081[2][0] * dims_opensbliblock00Kernel081[2][1];
+  arg3 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel081[3][0] + idx_z * 1*1 * dims_opensbliblock00Kernel081[3][0] * dims_opensbliblock00Kernel081[3][1];
+  arg4 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel081[4][0] + idx_z * 1*1 * dims_opensbliblock00Kernel081[4][0] * dims_opensbliblock00Kernel081[4][1];
 
   if (idx_x < size0 && idx_y < size1 && idx_z < size2) {
     ACC<double> argp0(dims_opensbliblock00Kernel081[0][0], dims_opensbliblock00Kernel081[0][1], arg0);
@@ -171,55 +171,55 @@ void ops_par_loop_opensbliblock00Kernel081_execute(ops_kernel_descriptor *desc) 
   long long int base0 = args[0].dat->base_offset + 
            dat0 * 1 * (start[0] * args[0].stencil->stride[0]);
   base0 = base0+ dat0 *
-    (size_t)args[0].dat->size[0] *
+    args[0].dat->size[0] *
     (start[1] * args[0].stencil->stride[1]);
   base0 = base0+ dat0 *
-    (size_t)args[0].dat->size[0] *
-    (size_t)args[0].dat->size[1] *
+    args[0].dat->size[0] *
+    args[0].dat->size[1] *
     (start[2] * args[0].stencil->stride[2]);
   p_a[0] = (char *)args[0].data_d + base0;
 
   long long int base1 = args[1].dat->base_offset + 
            dat1 * 1 * (start[0] * args[1].stencil->stride[0]);
   base1 = base1+ dat1 *
-    (size_t)args[1].dat->size[0] *
+    args[1].dat->size[0] *
     (start[1] * args[1].stencil->stride[1]);
   base1 = base1+ dat1 *
-    (size_t)args[1].dat->size[0] *
-    (size_t)args[1].dat->size[1] *
+    args[1].dat->size[0] *
+    args[1].dat->size[1] *
     (start[2] * args[1].stencil->stride[2]);
   p_a[1] = (char *)args[1].data_d + base1;
 
   long long int base2 = args[2].dat->base_offset + 
            dat2 * 1 * (start[0] * args[2].stencil->stride[0]);
   base2 = base2+ dat2 *
-    (size_t)args[2].dat->size[0] *
+    args[2].dat->size[0] *
     (start[1] * args[2].stencil->stride[1]);
   base2 = base2+ dat2 *
-    (size_t)args[2].dat->size[0] *
-    (size_t)args[2].dat->size[1] *
+    args[2].dat->size[0] *
+    args[2].dat->size[1] *
     (start[2] * args[2].stencil->stride[2]);
   p_a[2] = (char *)args[2].data_d + base2;
 
   long long int base3 = args[3].dat->base_offset + 
            dat3 * 1 * (start[0] * args[3].stencil->stride[0]);
   base3 = base3+ dat3 *
-    (size_t)args[3].dat->size[0] *
+    args[3].dat->size[0] *
     (start[1] * args[3].stencil->stride[1]);
   base3 = base3+ dat3 *
-    (size_t)args[3].dat->size[0] *
-    (size_t)args[3].dat->size[1] *
+    args[3].dat->size[0] *
+    args[3].dat->size[1] *
     (start[2] * args[3].stencil->stride[2]);
   p_a[3] = (char *)args[3].data_d + base3;
 
   long long int base4 = args[4].dat->base_offset + 
            dat4 * 1 * (start[0] * args[4].stencil->stride[0]);
   base4 = base4+ dat4 *
-    (size_t)args[4].dat->size[0] *
+    args[4].dat->size[0] *
     (start[1] * args[4].stencil->stride[1]);
   base4 = base4+ dat4 *
-    (size_t)args[4].dat->size[0] *
-    (size_t)args[4].dat->size[1] *
+    args[4].dat->size[0] *
+    args[4].dat->size[1] *
     (start[2] * args[4].stencil->stride[2]);
   p_a[4] = (char *)args[4].data_d + base4;
 

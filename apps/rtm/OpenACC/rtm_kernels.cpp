@@ -7,9 +7,9 @@
 
 void ops_init_backend() {acc_set_device_num(ops_get_proc()%acc_get_num_devices(acc_device_nvidia),acc_device_nvidia); }
 
-void ops_decl_const_char(int dim, char const *type,
+void ops_decl_const_char(OPS_instance *instance, int dim, char const *type,
 int size, char *dat, char const *name){
-  ops_execute(OPS_instance::getOPSInstance());
+  ops_execute(instance);
   if (!strcmp(name,"dx")) {
     dx = *(float*)dat;
   }

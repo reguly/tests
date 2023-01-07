@@ -48,129 +48,129 @@ __constant__ float *cz;
 
 void ops_init_backend() {}
 
-void ops_decl_const_char(int dim, char const *type,
+void ops_decl_const_char(OPS_instance *instance, int dim, char const *type,
 int size, char *dat, char const *name){
-  ops_execute(OPS_instance::getOPSInstance());
+  ops_execute(instance);
   if (!strcmp(name,"dx")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(dx, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(dx, dat, dim*size));
   }
   else
   if (!strcmp(name,"dz")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(dz, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(dz, dat, dim*size));
   }
   else
   if (!strcmp(name,"invdx")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(invdx, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(invdx, dat, dim*size));
   }
   else
   if (!strcmp(name,"invdy")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(invdy, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(invdy, dat, dim*size));
   }
   else
   if (!strcmp(name,"invdz")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(invdz, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(invdz, dat, dim*size));
   }
   else
   if (!strcmp(name,"nx")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(nx, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(nx, dat, dim*size));
   }
   else
   if (!strcmp(name,"ny")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(ny, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(ny, dat, dim*size));
   }
   else
   if (!strcmp(name,"nz")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(nz, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(nz, dat, dim*size));
   }
   else
   if (!strcmp(name,"pml_width")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(pml_width, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(pml_width, dat, dim*size));
   }
   else
   if (!strcmp(name,"xbeg")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(xbeg, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(xbeg, dat, dim*size));
   }
   else
   if (!strcmp(name,"ybeg")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(ybeg, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(ybeg, dat, dim*size));
   }
   else
   if (!strcmp(name,"zbeg")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(zbeg, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(zbeg, dat, dim*size));
   }
   else
   if (!strcmp(name,"xend")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(xend, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(xend, dat, dim*size));
   }
   else
   if (!strcmp(name,"yend")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(yend, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(yend, dat, dim*size));
   }
   else
   if (!strcmp(name,"zend")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(zend, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(zend, dat, dim*size));
   }
   else
   if (!strcmp(name,"xpmlbeg")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(xpmlbeg, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(xpmlbeg, dat, dim*size));
   }
   else
   if (!strcmp(name,"ypmlbeg")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(ypmlbeg, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(ypmlbeg, dat, dim*size));
   }
   else
   if (!strcmp(name,"zpmlbeg")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(zpmlbeg, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(zpmlbeg, dat, dim*size));
   }
   else
   if (!strcmp(name,"xpmlend")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(xpmlend, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(xpmlend, dat, dim*size));
   }
   else
   if (!strcmp(name,"ypmlend")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(ypmlend, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(ypmlend, dat, dim*size));
   }
   else
   if (!strcmp(name,"zpmlend")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(zpmlend, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(zpmlend, dat, dim*size));
   }
   else
   if (!strcmp(name,"coeffs")) {
-    char *temp; cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMalloc((void**)&temp,dim*size));
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpy(temp,dat,dim*size,cudaMemcpyHostToDevice));
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(coeffs, &temp, sizeof(char *)));
+    char *temp; cutilSafeCall(instance->ostream(),cudaMalloc((void**)&temp,dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpy(temp,dat,dim*size,cudaMemcpyHostToDevice));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(coeffs, &temp, sizeof(char *)));
   }
   else
   if (!strcmp(name,"halff")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(halff, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(halff, dat, dim*size));
   }
   else
   if (!strcmp(name,"order")) {
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(order, dat, dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(order, dat, dim*size));
   }
   else
   if (!strcmp(name,"c")) {
-    char *temp; cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMalloc((void**)&temp,dim*size));
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpy(temp,dat,dim*size,cudaMemcpyHostToDevice));
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(c, &temp, sizeof(char *)));
+    char *temp; cutilSafeCall(instance->ostream(),cudaMalloc((void**)&temp,dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpy(temp,dat,dim*size,cudaMemcpyHostToDevice));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(c, &temp, sizeof(char *)));
   }
   else
   if (!strcmp(name,"cx")) {
-    char *temp; cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMalloc((void**)&temp,dim*size));
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpy(temp,dat,dim*size,cudaMemcpyHostToDevice));
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(cx, &temp, sizeof(char *)));
+    char *temp; cutilSafeCall(instance->ostream(),cudaMalloc((void**)&temp,dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpy(temp,dat,dim*size,cudaMemcpyHostToDevice));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(cx, &temp, sizeof(char *)));
   }
   else
   if (!strcmp(name,"cy")) {
-    char *temp; cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMalloc((void**)&temp,dim*size));
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpy(temp,dat,dim*size,cudaMemcpyHostToDevice));
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(cy, &temp, sizeof(char *)));
+    char *temp; cutilSafeCall(instance->ostream(),cudaMalloc((void**)&temp,dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpy(temp,dat,dim*size,cudaMemcpyHostToDevice));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(cy, &temp, sizeof(char *)));
   }
   else
   if (!strcmp(name,"cz")) {
-    char *temp; cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMalloc((void**)&temp,dim*size));
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpy(temp,dat,dim*size,cudaMemcpyHostToDevice));
-    cutilSafeCall(OPS_instance::getOPSInstance()->ostream(),cudaMemcpyToSymbol(cz, &temp, sizeof(char *)));
+    char *temp; cutilSafeCall(instance->ostream(),cudaMalloc((void**)&temp,dim*size));
+    cutilSafeCall(instance->ostream(),cudaMemcpy(temp,dat,dim*size,cudaMemcpyHostToDevice));
+    cutilSafeCall(instance->ostream(),cudaMemcpyToSymbol(cz, &temp, sizeof(char *)));
   }
   else
   {

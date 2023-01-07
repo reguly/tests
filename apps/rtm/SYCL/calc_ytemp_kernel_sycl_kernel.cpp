@@ -89,13 +89,13 @@ void ops_par_loop_calc_ytemp_kernel_execute(ops_kernel_descriptor *desc) {
 
 
   int base2 = args[2].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> yy_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[2].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[2].dat->mem/sizeof(float)));
+  float* yy_p = (float*)args[2].data_d;
 
   int base3 = args[3].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> k_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[3].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[3].dat->mem/sizeof(float)));
+  float* k_p = (float*)args[3].data_d;
 
   int base4 = args[4].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> ytemp_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[4].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[4].dat->mem/sizeof(float)));
+  float* ytemp_p = (float*)args[4].data_d;
 
 
 
@@ -119,14 +119,10 @@ void ops_par_loop_calc_ytemp_kernel_execute(ops_kernel_descriptor *desc) {
   int start_2 = start[2];
   int end_2 = end[2];
   int arg_idx_2 = arg_idx[2];
-  block->instance->sycl_instance->queue->submit([&](cl::sycl::handler &cgh) {
-    //accessors
-    auto Accessor_yy = yy_p.get_access<cl::sycl::access::mode::read_write>(cgh);
-    auto Accessor_k = k_p.get_access<cl::sycl::access::mode::read_write>(cgh);
-    auto Accessor_ytemp = ytemp_p.get_access<cl::sycl::access::mode::read_write>(cgh);
+  if ((end[0]-start[0])>0 && (end[1]-start[1])>0 && (end[2]-start[2])>0) {
+    block->instance->sycl_instance->queue->submit([&](cl::sycl::handler &cgh) {
 
 
-    if ((end[0]-start[0])>0 && (end[1]-start[1])>0 && (end[2]-start[2])>0) {
       cgh.parallel_for<class calc_ytemp_kernel_kernel>(cl::sycl::nd_range<3>(cl::sycl::range<3>(
            ((end[2]-start[2]-1)/block->instance->OPS_block_size_z+1)*block->instance->OPS_block_size_z,
            ((end[1]-start[1]-1)/block->instance->OPS_block_size_y+1)*block->instance->OPS_block_size_y,
@@ -143,19 +139,19 @@ void ops_par_loop_calc_ytemp_kernel_execute(ops_kernel_descriptor *desc) {
         int n_x = item.get_global_id()[2]+start_0;
         int idx[] = {arg_idx_0+n_x, arg_idx_1+n_y, arg_idx_2+n_z};
         #ifdef OPS_SOA
-        const ACC<float> yy(6, xdim2_calc_ytemp_kernel, ydim2_calc_ytemp_kernel, zdim2_calc_ytemp_kernel, &Accessor_yy[0] + base2 + n_x*1 + n_y * xdim2_calc_ytemp_kernel*1 + n_z * xdim2_calc_ytemp_kernel * ydim2_calc_ytemp_kernel*1);
+        const ACC<float> yy(6, xdim2_calc_ytemp_kernel, ydim2_calc_ytemp_kernel, zdim2_calc_ytemp_kernel, &yy_p[0] + base2 + n_x*1 + n_y * xdim2_calc_ytemp_kernel*1 + n_z * xdim2_calc_ytemp_kernel * ydim2_calc_ytemp_kernel*1);
         #else
-        const ACC<float> yy(6, xdim2_calc_ytemp_kernel, ydim2_calc_ytemp_kernel, zdim2_calc_ytemp_kernel, &Accessor_yy[0] + 6*(n_x*1 + n_y * xdim2_calc_ytemp_kernel*1 + n_z * xdim2_calc_ytemp_kernel * ydim2_calc_ytemp_kernel*1));
+        const ACC<float> yy(6, xdim2_calc_ytemp_kernel, ydim2_calc_ytemp_kernel, zdim2_calc_ytemp_kernel, &yy_p[0] + 6*(n_x*1 + n_y * xdim2_calc_ytemp_kernel*1 + n_z * xdim2_calc_ytemp_kernel * ydim2_calc_ytemp_kernel*1));
         #endif
         #ifdef OPS_SOA
-        ACC<float> k(6, xdim3_calc_ytemp_kernel, ydim3_calc_ytemp_kernel, zdim3_calc_ytemp_kernel, &Accessor_k[0] + base3 + n_x*1 + n_y * xdim3_calc_ytemp_kernel*1 + n_z * xdim3_calc_ytemp_kernel * ydim3_calc_ytemp_kernel*1);
+        ACC<float> k(6, xdim3_calc_ytemp_kernel, ydim3_calc_ytemp_kernel, zdim3_calc_ytemp_kernel, &k_p[0] + base3 + n_x*1 + n_y * xdim3_calc_ytemp_kernel*1 + n_z * xdim3_calc_ytemp_kernel * ydim3_calc_ytemp_kernel*1);
         #else
-        ACC<float> k(6, xdim3_calc_ytemp_kernel, ydim3_calc_ytemp_kernel, zdim3_calc_ytemp_kernel, &Accessor_k[0] + 6*(n_x*1 + n_y * xdim3_calc_ytemp_kernel*1 + n_z * xdim3_calc_ytemp_kernel * ydim3_calc_ytemp_kernel*1));
+        ACC<float> k(6, xdim3_calc_ytemp_kernel, ydim3_calc_ytemp_kernel, zdim3_calc_ytemp_kernel, &k_p[0] + 6*(n_x*1 + n_y * xdim3_calc_ytemp_kernel*1 + n_z * xdim3_calc_ytemp_kernel * ydim3_calc_ytemp_kernel*1));
         #endif
         #ifdef OPS_SOA
-        ACC<float> ytemp(6, xdim4_calc_ytemp_kernel, ydim4_calc_ytemp_kernel, zdim4_calc_ytemp_kernel, &Accessor_ytemp[0] + base4 + n_x*1 + n_y * xdim4_calc_ytemp_kernel*1 + n_z * xdim4_calc_ytemp_kernel * ydim4_calc_ytemp_kernel*1);
+        ACC<float> ytemp(6, xdim4_calc_ytemp_kernel, ydim4_calc_ytemp_kernel, zdim4_calc_ytemp_kernel, &ytemp_p[0] + base4 + n_x*1 + n_y * xdim4_calc_ytemp_kernel*1 + n_z * xdim4_calc_ytemp_kernel * ydim4_calc_ytemp_kernel*1);
         #else
-        ACC<float> ytemp(6, xdim4_calc_ytemp_kernel, ydim4_calc_ytemp_kernel, zdim4_calc_ytemp_kernel, &Accessor_ytemp[0] + 6*(n_x*1 + n_y * xdim4_calc_ytemp_kernel*1 + n_z * xdim4_calc_ytemp_kernel * ydim4_calc_ytemp_kernel*1));
+        ACC<float> ytemp(6, xdim4_calc_ytemp_kernel, ydim4_calc_ytemp_kernel, zdim4_calc_ytemp_kernel, &ytemp_p[0] + 6*(n_x*1 + n_y * xdim4_calc_ytemp_kernel*1 + n_z * xdim4_calc_ytemp_kernel * ydim4_calc_ytemp_kernel*1));
         #endif
         const float *dt = &dt_val;
         //USER CODE
@@ -170,8 +166,8 @@ void ops_par_loop_calc_ytemp_kernel_execute(ops_kernel_descriptor *desc) {
 
         }
       });
-    }
-  });
+    });
+  }
   if (block->instance->OPS_diags > 1) {
     block->instance->sycl_instance->queue->wait();
     ops_timers_core(&__c2,&__t2);

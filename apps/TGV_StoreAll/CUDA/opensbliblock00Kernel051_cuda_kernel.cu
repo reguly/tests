@@ -163,58 +163,58 @@ int size2 ){
   int idx_y = blockDim.y * blockIdx.y + threadIdx.y;
   int idx_x = blockDim.x * blockIdx.x + threadIdx.x;
 
-  arg0 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[0][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[0][0] * (size_t)dims_opensbliblock00Kernel051[0][1];
-  arg1 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[1][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[1][0] * (size_t)dims_opensbliblock00Kernel051[1][1];
-  arg2 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[2][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[2][0] * (size_t)dims_opensbliblock00Kernel051[2][1];
-  arg3 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[3][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[3][0] * (size_t)dims_opensbliblock00Kernel051[3][1];
-  arg4 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[4][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[4][0] * (size_t)dims_opensbliblock00Kernel051[4][1];
-  arg5 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[5][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[5][0] * (size_t)dims_opensbliblock00Kernel051[5][1];
-  arg6 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[6][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[6][0] * (size_t)dims_opensbliblock00Kernel051[6][1];
-  arg7 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[7][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[7][0] * (size_t)dims_opensbliblock00Kernel051[7][1];
-  arg8 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[8][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[8][0] * (size_t)dims_opensbliblock00Kernel051[8][1];
-  arg9 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[9][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[9][0] * (size_t)dims_opensbliblock00Kernel051[9][1];
-  arg10 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[10][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[10][0] * (size_t)dims_opensbliblock00Kernel051[10][1];
-  arg11 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[11][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[11][0] * (size_t)dims_opensbliblock00Kernel051[11][1];
-  arg12 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[12][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[12][0] * (size_t)dims_opensbliblock00Kernel051[12][1];
-  arg13 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[13][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[13][0] * (size_t)dims_opensbliblock00Kernel051[13][1];
-  arg14 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[14][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[14][0] * (size_t)dims_opensbliblock00Kernel051[14][1];
-  arg15 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[15][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[15][0] * (size_t)dims_opensbliblock00Kernel051[15][1];
-  arg16 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[16][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[16][0] * (size_t)dims_opensbliblock00Kernel051[16][1];
-  arg17 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[17][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[17][0] * (size_t)dims_opensbliblock00Kernel051[17][1];
-  arg18 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[18][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[18][0] * (size_t)dims_opensbliblock00Kernel051[18][1];
-  arg19 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[19][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[19][0] * (size_t)dims_opensbliblock00Kernel051[19][1];
-  arg20 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[20][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[20][0] * (size_t)dims_opensbliblock00Kernel051[20][1];
-  arg21 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[21][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[21][0] * (size_t)dims_opensbliblock00Kernel051[21][1];
-  arg22 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[22][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[22][0] * (size_t)dims_opensbliblock00Kernel051[22][1];
-  arg23 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[23][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[23][0] * (size_t)dims_opensbliblock00Kernel051[23][1];
-  arg24 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[24][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[24][0] * (size_t)dims_opensbliblock00Kernel051[24][1];
-  arg25 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[25][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[25][0] * (size_t)dims_opensbliblock00Kernel051[25][1];
-  arg26 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[26][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[26][0] * (size_t)dims_opensbliblock00Kernel051[26][1];
-  arg27 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[27][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[27][0] * (size_t)dims_opensbliblock00Kernel051[27][1];
-  arg28 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[28][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[28][0] * (size_t)dims_opensbliblock00Kernel051[28][1];
-  arg29 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[29][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[29][0] * (size_t)dims_opensbliblock00Kernel051[29][1];
-  arg30 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[30][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[30][0] * (size_t)dims_opensbliblock00Kernel051[30][1];
-  arg31 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[31][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[31][0] * (size_t)dims_opensbliblock00Kernel051[31][1];
-  arg32 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[32][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[32][0] * (size_t)dims_opensbliblock00Kernel051[32][1];
-  arg33 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[33][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[33][0] * (size_t)dims_opensbliblock00Kernel051[33][1];
-  arg34 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[34][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[34][0] * (size_t)dims_opensbliblock00Kernel051[34][1];
-  arg35 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[35][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[35][0] * (size_t)dims_opensbliblock00Kernel051[35][1];
-  arg36 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[36][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[36][0] * (size_t)dims_opensbliblock00Kernel051[36][1];
-  arg37 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[37][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[37][0] * (size_t)dims_opensbliblock00Kernel051[37][1];
-  arg38 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[38][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[38][0] * (size_t)dims_opensbliblock00Kernel051[38][1];
-  arg39 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[39][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[39][0] * (size_t)dims_opensbliblock00Kernel051[39][1];
-  arg40 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[40][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[40][0] * (size_t)dims_opensbliblock00Kernel051[40][1];
-  arg41 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[41][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[41][0] * (size_t)dims_opensbliblock00Kernel051[41][1];
-  arg42 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[42][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[42][0] * (size_t)dims_opensbliblock00Kernel051[42][1];
-  arg43 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[43][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[43][0] * (size_t)dims_opensbliblock00Kernel051[43][1];
-  arg44 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[44][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[44][0] * (size_t)dims_opensbliblock00Kernel051[44][1];
-  arg45 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[45][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[45][0] * (size_t)dims_opensbliblock00Kernel051[45][1];
-  arg46 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[46][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[46][0] * (size_t)dims_opensbliblock00Kernel051[46][1];
-  arg47 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[47][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[47][0] * (size_t)dims_opensbliblock00Kernel051[47][1];
-  arg48 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[48][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[48][0] * (size_t)dims_opensbliblock00Kernel051[48][1];
-  arg49 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[49][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[49][0] * (size_t)dims_opensbliblock00Kernel051[49][1];
-  arg50 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[50][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[50][0] * (size_t)dims_opensbliblock00Kernel051[50][1];
-  arg51 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel051[51][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel051[51][0] * (size_t)dims_opensbliblock00Kernel051[51][1];
+  arg0 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[0][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[0][0] * dims_opensbliblock00Kernel051[0][1];
+  arg1 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[1][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[1][0] * dims_opensbliblock00Kernel051[1][1];
+  arg2 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[2][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[2][0] * dims_opensbliblock00Kernel051[2][1];
+  arg3 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[3][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[3][0] * dims_opensbliblock00Kernel051[3][1];
+  arg4 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[4][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[4][0] * dims_opensbliblock00Kernel051[4][1];
+  arg5 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[5][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[5][0] * dims_opensbliblock00Kernel051[5][1];
+  arg6 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[6][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[6][0] * dims_opensbliblock00Kernel051[6][1];
+  arg7 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[7][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[7][0] * dims_opensbliblock00Kernel051[7][1];
+  arg8 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[8][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[8][0] * dims_opensbliblock00Kernel051[8][1];
+  arg9 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[9][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[9][0] * dims_opensbliblock00Kernel051[9][1];
+  arg10 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[10][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[10][0] * dims_opensbliblock00Kernel051[10][1];
+  arg11 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[11][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[11][0] * dims_opensbliblock00Kernel051[11][1];
+  arg12 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[12][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[12][0] * dims_opensbliblock00Kernel051[12][1];
+  arg13 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[13][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[13][0] * dims_opensbliblock00Kernel051[13][1];
+  arg14 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[14][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[14][0] * dims_opensbliblock00Kernel051[14][1];
+  arg15 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[15][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[15][0] * dims_opensbliblock00Kernel051[15][1];
+  arg16 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[16][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[16][0] * dims_opensbliblock00Kernel051[16][1];
+  arg17 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[17][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[17][0] * dims_opensbliblock00Kernel051[17][1];
+  arg18 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[18][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[18][0] * dims_opensbliblock00Kernel051[18][1];
+  arg19 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[19][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[19][0] * dims_opensbliblock00Kernel051[19][1];
+  arg20 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[20][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[20][0] * dims_opensbliblock00Kernel051[20][1];
+  arg21 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[21][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[21][0] * dims_opensbliblock00Kernel051[21][1];
+  arg22 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[22][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[22][0] * dims_opensbliblock00Kernel051[22][1];
+  arg23 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[23][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[23][0] * dims_opensbliblock00Kernel051[23][1];
+  arg24 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[24][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[24][0] * dims_opensbliblock00Kernel051[24][1];
+  arg25 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[25][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[25][0] * dims_opensbliblock00Kernel051[25][1];
+  arg26 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[26][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[26][0] * dims_opensbliblock00Kernel051[26][1];
+  arg27 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[27][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[27][0] * dims_opensbliblock00Kernel051[27][1];
+  arg28 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[28][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[28][0] * dims_opensbliblock00Kernel051[28][1];
+  arg29 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[29][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[29][0] * dims_opensbliblock00Kernel051[29][1];
+  arg30 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[30][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[30][0] * dims_opensbliblock00Kernel051[30][1];
+  arg31 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[31][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[31][0] * dims_opensbliblock00Kernel051[31][1];
+  arg32 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[32][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[32][0] * dims_opensbliblock00Kernel051[32][1];
+  arg33 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[33][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[33][0] * dims_opensbliblock00Kernel051[33][1];
+  arg34 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[34][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[34][0] * dims_opensbliblock00Kernel051[34][1];
+  arg35 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[35][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[35][0] * dims_opensbliblock00Kernel051[35][1];
+  arg36 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[36][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[36][0] * dims_opensbliblock00Kernel051[36][1];
+  arg37 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[37][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[37][0] * dims_opensbliblock00Kernel051[37][1];
+  arg38 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[38][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[38][0] * dims_opensbliblock00Kernel051[38][1];
+  arg39 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[39][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[39][0] * dims_opensbliblock00Kernel051[39][1];
+  arg40 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[40][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[40][0] * dims_opensbliblock00Kernel051[40][1];
+  arg41 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[41][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[41][0] * dims_opensbliblock00Kernel051[41][1];
+  arg42 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[42][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[42][0] * dims_opensbliblock00Kernel051[42][1];
+  arg43 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[43][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[43][0] * dims_opensbliblock00Kernel051[43][1];
+  arg44 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[44][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[44][0] * dims_opensbliblock00Kernel051[44][1];
+  arg45 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[45][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[45][0] * dims_opensbliblock00Kernel051[45][1];
+  arg46 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[46][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[46][0] * dims_opensbliblock00Kernel051[46][1];
+  arg47 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[47][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[47][0] * dims_opensbliblock00Kernel051[47][1];
+  arg48 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[48][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[48][0] * dims_opensbliblock00Kernel051[48][1];
+  arg49 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[49][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[49][0] * dims_opensbliblock00Kernel051[49][1];
+  arg50 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[50][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[50][0] * dims_opensbliblock00Kernel051[50][1];
+  arg51 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel051[51][0] + idx_z * 1*1 * dims_opensbliblock00Kernel051[51][0] * dims_opensbliblock00Kernel051[51][1];
 
   if (idx_x < size0 && idx_y < size1 && idx_z < size2) {
     const ACC<double> argp0(dims_opensbliblock00Kernel051[0][0], dims_opensbliblock00Kernel051[0][1], arg0);
@@ -676,572 +676,572 @@ void ops_par_loop_opensbliblock00Kernel051_execute(ops_kernel_descriptor *desc) 
   long long int base0 = args[0].dat->base_offset + 
            dat0 * 1 * (start[0] * args[0].stencil->stride[0]);
   base0 = base0+ dat0 *
-    (size_t)args[0].dat->size[0] *
+    args[0].dat->size[0] *
     (start[1] * args[0].stencil->stride[1]);
   base0 = base0+ dat0 *
-    (size_t)args[0].dat->size[0] *
-    (size_t)args[0].dat->size[1] *
+    args[0].dat->size[0] *
+    args[0].dat->size[1] *
     (start[2] * args[0].stencil->stride[2]);
   p_a[0] = (char *)args[0].data_d + base0;
 
   long long int base1 = args[1].dat->base_offset + 
            dat1 * 1 * (start[0] * args[1].stencil->stride[0]);
   base1 = base1+ dat1 *
-    (size_t)args[1].dat->size[0] *
+    args[1].dat->size[0] *
     (start[1] * args[1].stencil->stride[1]);
   base1 = base1+ dat1 *
-    (size_t)args[1].dat->size[0] *
-    (size_t)args[1].dat->size[1] *
+    args[1].dat->size[0] *
+    args[1].dat->size[1] *
     (start[2] * args[1].stencil->stride[2]);
   p_a[1] = (char *)args[1].data_d + base1;
 
   long long int base2 = args[2].dat->base_offset + 
            dat2 * 1 * (start[0] * args[2].stencil->stride[0]);
   base2 = base2+ dat2 *
-    (size_t)args[2].dat->size[0] *
+    args[2].dat->size[0] *
     (start[1] * args[2].stencil->stride[1]);
   base2 = base2+ dat2 *
-    (size_t)args[2].dat->size[0] *
-    (size_t)args[2].dat->size[1] *
+    args[2].dat->size[0] *
+    args[2].dat->size[1] *
     (start[2] * args[2].stencil->stride[2]);
   p_a[2] = (char *)args[2].data_d + base2;
 
   long long int base3 = args[3].dat->base_offset + 
            dat3 * 1 * (start[0] * args[3].stencil->stride[0]);
   base3 = base3+ dat3 *
-    (size_t)args[3].dat->size[0] *
+    args[3].dat->size[0] *
     (start[1] * args[3].stencil->stride[1]);
   base3 = base3+ dat3 *
-    (size_t)args[3].dat->size[0] *
-    (size_t)args[3].dat->size[1] *
+    args[3].dat->size[0] *
+    args[3].dat->size[1] *
     (start[2] * args[3].stencil->stride[2]);
   p_a[3] = (char *)args[3].data_d + base3;
 
   long long int base4 = args[4].dat->base_offset + 
            dat4 * 1 * (start[0] * args[4].stencil->stride[0]);
   base4 = base4+ dat4 *
-    (size_t)args[4].dat->size[0] *
+    args[4].dat->size[0] *
     (start[1] * args[4].stencil->stride[1]);
   base4 = base4+ dat4 *
-    (size_t)args[4].dat->size[0] *
-    (size_t)args[4].dat->size[1] *
+    args[4].dat->size[0] *
+    args[4].dat->size[1] *
     (start[2] * args[4].stencil->stride[2]);
   p_a[4] = (char *)args[4].data_d + base4;
 
   long long int base5 = args[5].dat->base_offset + 
            dat5 * 1 * (start[0] * args[5].stencil->stride[0]);
   base5 = base5+ dat5 *
-    (size_t)args[5].dat->size[0] *
+    args[5].dat->size[0] *
     (start[1] * args[5].stencil->stride[1]);
   base5 = base5+ dat5 *
-    (size_t)args[5].dat->size[0] *
-    (size_t)args[5].dat->size[1] *
+    args[5].dat->size[0] *
+    args[5].dat->size[1] *
     (start[2] * args[5].stencil->stride[2]);
   p_a[5] = (char *)args[5].data_d + base5;
 
   long long int base6 = args[6].dat->base_offset + 
            dat6 * 1 * (start[0] * args[6].stencil->stride[0]);
   base6 = base6+ dat6 *
-    (size_t)args[6].dat->size[0] *
+    args[6].dat->size[0] *
     (start[1] * args[6].stencil->stride[1]);
   base6 = base6+ dat6 *
-    (size_t)args[6].dat->size[0] *
-    (size_t)args[6].dat->size[1] *
+    args[6].dat->size[0] *
+    args[6].dat->size[1] *
     (start[2] * args[6].stencil->stride[2]);
   p_a[6] = (char *)args[6].data_d + base6;
 
   long long int base7 = args[7].dat->base_offset + 
            dat7 * 1 * (start[0] * args[7].stencil->stride[0]);
   base7 = base7+ dat7 *
-    (size_t)args[7].dat->size[0] *
+    args[7].dat->size[0] *
     (start[1] * args[7].stencil->stride[1]);
   base7 = base7+ dat7 *
-    (size_t)args[7].dat->size[0] *
-    (size_t)args[7].dat->size[1] *
+    args[7].dat->size[0] *
+    args[7].dat->size[1] *
     (start[2] * args[7].stencil->stride[2]);
   p_a[7] = (char *)args[7].data_d + base7;
 
   long long int base8 = args[8].dat->base_offset + 
            dat8 * 1 * (start[0] * args[8].stencil->stride[0]);
   base8 = base8+ dat8 *
-    (size_t)args[8].dat->size[0] *
+    args[8].dat->size[0] *
     (start[1] * args[8].stencil->stride[1]);
   base8 = base8+ dat8 *
-    (size_t)args[8].dat->size[0] *
-    (size_t)args[8].dat->size[1] *
+    args[8].dat->size[0] *
+    args[8].dat->size[1] *
     (start[2] * args[8].stencil->stride[2]);
   p_a[8] = (char *)args[8].data_d + base8;
 
   long long int base9 = args[9].dat->base_offset + 
            dat9 * 1 * (start[0] * args[9].stencil->stride[0]);
   base9 = base9+ dat9 *
-    (size_t)args[9].dat->size[0] *
+    args[9].dat->size[0] *
     (start[1] * args[9].stencil->stride[1]);
   base9 = base9+ dat9 *
-    (size_t)args[9].dat->size[0] *
-    (size_t)args[9].dat->size[1] *
+    args[9].dat->size[0] *
+    args[9].dat->size[1] *
     (start[2] * args[9].stencil->stride[2]);
   p_a[9] = (char *)args[9].data_d + base9;
 
   long long int base10 = args[10].dat->base_offset + 
            dat10 * 1 * (start[0] * args[10].stencil->stride[0]);
   base10 = base10+ dat10 *
-    (size_t)args[10].dat->size[0] *
+    args[10].dat->size[0] *
     (start[1] * args[10].stencil->stride[1]);
   base10 = base10+ dat10 *
-    (size_t)args[10].dat->size[0] *
-    (size_t)args[10].dat->size[1] *
+    args[10].dat->size[0] *
+    args[10].dat->size[1] *
     (start[2] * args[10].stencil->stride[2]);
   p_a[10] = (char *)args[10].data_d + base10;
 
   long long int base11 = args[11].dat->base_offset + 
            dat11 * 1 * (start[0] * args[11].stencil->stride[0]);
   base11 = base11+ dat11 *
-    (size_t)args[11].dat->size[0] *
+    args[11].dat->size[0] *
     (start[1] * args[11].stencil->stride[1]);
   base11 = base11+ dat11 *
-    (size_t)args[11].dat->size[0] *
-    (size_t)args[11].dat->size[1] *
+    args[11].dat->size[0] *
+    args[11].dat->size[1] *
     (start[2] * args[11].stencil->stride[2]);
   p_a[11] = (char *)args[11].data_d + base11;
 
   long long int base12 = args[12].dat->base_offset + 
            dat12 * 1 * (start[0] * args[12].stencil->stride[0]);
   base12 = base12+ dat12 *
-    (size_t)args[12].dat->size[0] *
+    args[12].dat->size[0] *
     (start[1] * args[12].stencil->stride[1]);
   base12 = base12+ dat12 *
-    (size_t)args[12].dat->size[0] *
-    (size_t)args[12].dat->size[1] *
+    args[12].dat->size[0] *
+    args[12].dat->size[1] *
     (start[2] * args[12].stencil->stride[2]);
   p_a[12] = (char *)args[12].data_d + base12;
 
   long long int base13 = args[13].dat->base_offset + 
            dat13 * 1 * (start[0] * args[13].stencil->stride[0]);
   base13 = base13+ dat13 *
-    (size_t)args[13].dat->size[0] *
+    args[13].dat->size[0] *
     (start[1] * args[13].stencil->stride[1]);
   base13 = base13+ dat13 *
-    (size_t)args[13].dat->size[0] *
-    (size_t)args[13].dat->size[1] *
+    args[13].dat->size[0] *
+    args[13].dat->size[1] *
     (start[2] * args[13].stencil->stride[2]);
   p_a[13] = (char *)args[13].data_d + base13;
 
   long long int base14 = args[14].dat->base_offset + 
            dat14 * 1 * (start[0] * args[14].stencil->stride[0]);
   base14 = base14+ dat14 *
-    (size_t)args[14].dat->size[0] *
+    args[14].dat->size[0] *
     (start[1] * args[14].stencil->stride[1]);
   base14 = base14+ dat14 *
-    (size_t)args[14].dat->size[0] *
-    (size_t)args[14].dat->size[1] *
+    args[14].dat->size[0] *
+    args[14].dat->size[1] *
     (start[2] * args[14].stencil->stride[2]);
   p_a[14] = (char *)args[14].data_d + base14;
 
   long long int base15 = args[15].dat->base_offset + 
            dat15 * 1 * (start[0] * args[15].stencil->stride[0]);
   base15 = base15+ dat15 *
-    (size_t)args[15].dat->size[0] *
+    args[15].dat->size[0] *
     (start[1] * args[15].stencil->stride[1]);
   base15 = base15+ dat15 *
-    (size_t)args[15].dat->size[0] *
-    (size_t)args[15].dat->size[1] *
+    args[15].dat->size[0] *
+    args[15].dat->size[1] *
     (start[2] * args[15].stencil->stride[2]);
   p_a[15] = (char *)args[15].data_d + base15;
 
   long long int base16 = args[16].dat->base_offset + 
            dat16 * 1 * (start[0] * args[16].stencil->stride[0]);
   base16 = base16+ dat16 *
-    (size_t)args[16].dat->size[0] *
+    args[16].dat->size[0] *
     (start[1] * args[16].stencil->stride[1]);
   base16 = base16+ dat16 *
-    (size_t)args[16].dat->size[0] *
-    (size_t)args[16].dat->size[1] *
+    args[16].dat->size[0] *
+    args[16].dat->size[1] *
     (start[2] * args[16].stencil->stride[2]);
   p_a[16] = (char *)args[16].data_d + base16;
 
   long long int base17 = args[17].dat->base_offset + 
            dat17 * 1 * (start[0] * args[17].stencil->stride[0]);
   base17 = base17+ dat17 *
-    (size_t)args[17].dat->size[0] *
+    args[17].dat->size[0] *
     (start[1] * args[17].stencil->stride[1]);
   base17 = base17+ dat17 *
-    (size_t)args[17].dat->size[0] *
-    (size_t)args[17].dat->size[1] *
+    args[17].dat->size[0] *
+    args[17].dat->size[1] *
     (start[2] * args[17].stencil->stride[2]);
   p_a[17] = (char *)args[17].data_d + base17;
 
   long long int base18 = args[18].dat->base_offset + 
            dat18 * 1 * (start[0] * args[18].stencil->stride[0]);
   base18 = base18+ dat18 *
-    (size_t)args[18].dat->size[0] *
+    args[18].dat->size[0] *
     (start[1] * args[18].stencil->stride[1]);
   base18 = base18+ dat18 *
-    (size_t)args[18].dat->size[0] *
-    (size_t)args[18].dat->size[1] *
+    args[18].dat->size[0] *
+    args[18].dat->size[1] *
     (start[2] * args[18].stencil->stride[2]);
   p_a[18] = (char *)args[18].data_d + base18;
 
   long long int base19 = args[19].dat->base_offset + 
            dat19 * 1 * (start[0] * args[19].stencil->stride[0]);
   base19 = base19+ dat19 *
-    (size_t)args[19].dat->size[0] *
+    args[19].dat->size[0] *
     (start[1] * args[19].stencil->stride[1]);
   base19 = base19+ dat19 *
-    (size_t)args[19].dat->size[0] *
-    (size_t)args[19].dat->size[1] *
+    args[19].dat->size[0] *
+    args[19].dat->size[1] *
     (start[2] * args[19].stencil->stride[2]);
   p_a[19] = (char *)args[19].data_d + base19;
 
   long long int base20 = args[20].dat->base_offset + 
            dat20 * 1 * (start[0] * args[20].stencil->stride[0]);
   base20 = base20+ dat20 *
-    (size_t)args[20].dat->size[0] *
+    args[20].dat->size[0] *
     (start[1] * args[20].stencil->stride[1]);
   base20 = base20+ dat20 *
-    (size_t)args[20].dat->size[0] *
-    (size_t)args[20].dat->size[1] *
+    args[20].dat->size[0] *
+    args[20].dat->size[1] *
     (start[2] * args[20].stencil->stride[2]);
   p_a[20] = (char *)args[20].data_d + base20;
 
   long long int base21 = args[21].dat->base_offset + 
            dat21 * 1 * (start[0] * args[21].stencil->stride[0]);
   base21 = base21+ dat21 *
-    (size_t)args[21].dat->size[0] *
+    args[21].dat->size[0] *
     (start[1] * args[21].stencil->stride[1]);
   base21 = base21+ dat21 *
-    (size_t)args[21].dat->size[0] *
-    (size_t)args[21].dat->size[1] *
+    args[21].dat->size[0] *
+    args[21].dat->size[1] *
     (start[2] * args[21].stencil->stride[2]);
   p_a[21] = (char *)args[21].data_d + base21;
 
   long long int base22 = args[22].dat->base_offset + 
            dat22 * 1 * (start[0] * args[22].stencil->stride[0]);
   base22 = base22+ dat22 *
-    (size_t)args[22].dat->size[0] *
+    args[22].dat->size[0] *
     (start[1] * args[22].stencil->stride[1]);
   base22 = base22+ dat22 *
-    (size_t)args[22].dat->size[0] *
-    (size_t)args[22].dat->size[1] *
+    args[22].dat->size[0] *
+    args[22].dat->size[1] *
     (start[2] * args[22].stencil->stride[2]);
   p_a[22] = (char *)args[22].data_d + base22;
 
   long long int base23 = args[23].dat->base_offset + 
            dat23 * 1 * (start[0] * args[23].stencil->stride[0]);
   base23 = base23+ dat23 *
-    (size_t)args[23].dat->size[0] *
+    args[23].dat->size[0] *
     (start[1] * args[23].stencil->stride[1]);
   base23 = base23+ dat23 *
-    (size_t)args[23].dat->size[0] *
-    (size_t)args[23].dat->size[1] *
+    args[23].dat->size[0] *
+    args[23].dat->size[1] *
     (start[2] * args[23].stencil->stride[2]);
   p_a[23] = (char *)args[23].data_d + base23;
 
   long long int base24 = args[24].dat->base_offset + 
            dat24 * 1 * (start[0] * args[24].stencil->stride[0]);
   base24 = base24+ dat24 *
-    (size_t)args[24].dat->size[0] *
+    args[24].dat->size[0] *
     (start[1] * args[24].stencil->stride[1]);
   base24 = base24+ dat24 *
-    (size_t)args[24].dat->size[0] *
-    (size_t)args[24].dat->size[1] *
+    args[24].dat->size[0] *
+    args[24].dat->size[1] *
     (start[2] * args[24].stencil->stride[2]);
   p_a[24] = (char *)args[24].data_d + base24;
 
   long long int base25 = args[25].dat->base_offset + 
            dat25 * 1 * (start[0] * args[25].stencil->stride[0]);
   base25 = base25+ dat25 *
-    (size_t)args[25].dat->size[0] *
+    args[25].dat->size[0] *
     (start[1] * args[25].stencil->stride[1]);
   base25 = base25+ dat25 *
-    (size_t)args[25].dat->size[0] *
-    (size_t)args[25].dat->size[1] *
+    args[25].dat->size[0] *
+    args[25].dat->size[1] *
     (start[2] * args[25].stencil->stride[2]);
   p_a[25] = (char *)args[25].data_d + base25;
 
   long long int base26 = args[26].dat->base_offset + 
            dat26 * 1 * (start[0] * args[26].stencil->stride[0]);
   base26 = base26+ dat26 *
-    (size_t)args[26].dat->size[0] *
+    args[26].dat->size[0] *
     (start[1] * args[26].stencil->stride[1]);
   base26 = base26+ dat26 *
-    (size_t)args[26].dat->size[0] *
-    (size_t)args[26].dat->size[1] *
+    args[26].dat->size[0] *
+    args[26].dat->size[1] *
     (start[2] * args[26].stencil->stride[2]);
   p_a[26] = (char *)args[26].data_d + base26;
 
   long long int base27 = args[27].dat->base_offset + 
            dat27 * 1 * (start[0] * args[27].stencil->stride[0]);
   base27 = base27+ dat27 *
-    (size_t)args[27].dat->size[0] *
+    args[27].dat->size[0] *
     (start[1] * args[27].stencil->stride[1]);
   base27 = base27+ dat27 *
-    (size_t)args[27].dat->size[0] *
-    (size_t)args[27].dat->size[1] *
+    args[27].dat->size[0] *
+    args[27].dat->size[1] *
     (start[2] * args[27].stencil->stride[2]);
   p_a[27] = (char *)args[27].data_d + base27;
 
   long long int base28 = args[28].dat->base_offset + 
            dat28 * 1 * (start[0] * args[28].stencil->stride[0]);
   base28 = base28+ dat28 *
-    (size_t)args[28].dat->size[0] *
+    args[28].dat->size[0] *
     (start[1] * args[28].stencil->stride[1]);
   base28 = base28+ dat28 *
-    (size_t)args[28].dat->size[0] *
-    (size_t)args[28].dat->size[1] *
+    args[28].dat->size[0] *
+    args[28].dat->size[1] *
     (start[2] * args[28].stencil->stride[2]);
   p_a[28] = (char *)args[28].data_d + base28;
 
   long long int base29 = args[29].dat->base_offset + 
            dat29 * 1 * (start[0] * args[29].stencil->stride[0]);
   base29 = base29+ dat29 *
-    (size_t)args[29].dat->size[0] *
+    args[29].dat->size[0] *
     (start[1] * args[29].stencil->stride[1]);
   base29 = base29+ dat29 *
-    (size_t)args[29].dat->size[0] *
-    (size_t)args[29].dat->size[1] *
+    args[29].dat->size[0] *
+    args[29].dat->size[1] *
     (start[2] * args[29].stencil->stride[2]);
   p_a[29] = (char *)args[29].data_d + base29;
 
   long long int base30 = args[30].dat->base_offset + 
            dat30 * 1 * (start[0] * args[30].stencil->stride[0]);
   base30 = base30+ dat30 *
-    (size_t)args[30].dat->size[0] *
+    args[30].dat->size[0] *
     (start[1] * args[30].stencil->stride[1]);
   base30 = base30+ dat30 *
-    (size_t)args[30].dat->size[0] *
-    (size_t)args[30].dat->size[1] *
+    args[30].dat->size[0] *
+    args[30].dat->size[1] *
     (start[2] * args[30].stencil->stride[2]);
   p_a[30] = (char *)args[30].data_d + base30;
 
   long long int base31 = args[31].dat->base_offset + 
            dat31 * 1 * (start[0] * args[31].stencil->stride[0]);
   base31 = base31+ dat31 *
-    (size_t)args[31].dat->size[0] *
+    args[31].dat->size[0] *
     (start[1] * args[31].stencil->stride[1]);
   base31 = base31+ dat31 *
-    (size_t)args[31].dat->size[0] *
-    (size_t)args[31].dat->size[1] *
+    args[31].dat->size[0] *
+    args[31].dat->size[1] *
     (start[2] * args[31].stencil->stride[2]);
   p_a[31] = (char *)args[31].data_d + base31;
 
   long long int base32 = args[32].dat->base_offset + 
            dat32 * 1 * (start[0] * args[32].stencil->stride[0]);
   base32 = base32+ dat32 *
-    (size_t)args[32].dat->size[0] *
+    args[32].dat->size[0] *
     (start[1] * args[32].stencil->stride[1]);
   base32 = base32+ dat32 *
-    (size_t)args[32].dat->size[0] *
-    (size_t)args[32].dat->size[1] *
+    args[32].dat->size[0] *
+    args[32].dat->size[1] *
     (start[2] * args[32].stencil->stride[2]);
   p_a[32] = (char *)args[32].data_d + base32;
 
   long long int base33 = args[33].dat->base_offset + 
            dat33 * 1 * (start[0] * args[33].stencil->stride[0]);
   base33 = base33+ dat33 *
-    (size_t)args[33].dat->size[0] *
+    args[33].dat->size[0] *
     (start[1] * args[33].stencil->stride[1]);
   base33 = base33+ dat33 *
-    (size_t)args[33].dat->size[0] *
-    (size_t)args[33].dat->size[1] *
+    args[33].dat->size[0] *
+    args[33].dat->size[1] *
     (start[2] * args[33].stencil->stride[2]);
   p_a[33] = (char *)args[33].data_d + base33;
 
   long long int base34 = args[34].dat->base_offset + 
            dat34 * 1 * (start[0] * args[34].stencil->stride[0]);
   base34 = base34+ dat34 *
-    (size_t)args[34].dat->size[0] *
+    args[34].dat->size[0] *
     (start[1] * args[34].stencil->stride[1]);
   base34 = base34+ dat34 *
-    (size_t)args[34].dat->size[0] *
-    (size_t)args[34].dat->size[1] *
+    args[34].dat->size[0] *
+    args[34].dat->size[1] *
     (start[2] * args[34].stencil->stride[2]);
   p_a[34] = (char *)args[34].data_d + base34;
 
   long long int base35 = args[35].dat->base_offset + 
            dat35 * 1 * (start[0] * args[35].stencil->stride[0]);
   base35 = base35+ dat35 *
-    (size_t)args[35].dat->size[0] *
+    args[35].dat->size[0] *
     (start[1] * args[35].stencil->stride[1]);
   base35 = base35+ dat35 *
-    (size_t)args[35].dat->size[0] *
-    (size_t)args[35].dat->size[1] *
+    args[35].dat->size[0] *
+    args[35].dat->size[1] *
     (start[2] * args[35].stencil->stride[2]);
   p_a[35] = (char *)args[35].data_d + base35;
 
   long long int base36 = args[36].dat->base_offset + 
            dat36 * 1 * (start[0] * args[36].stencil->stride[0]);
   base36 = base36+ dat36 *
-    (size_t)args[36].dat->size[0] *
+    args[36].dat->size[0] *
     (start[1] * args[36].stencil->stride[1]);
   base36 = base36+ dat36 *
-    (size_t)args[36].dat->size[0] *
-    (size_t)args[36].dat->size[1] *
+    args[36].dat->size[0] *
+    args[36].dat->size[1] *
     (start[2] * args[36].stencil->stride[2]);
   p_a[36] = (char *)args[36].data_d + base36;
 
   long long int base37 = args[37].dat->base_offset + 
            dat37 * 1 * (start[0] * args[37].stencil->stride[0]);
   base37 = base37+ dat37 *
-    (size_t)args[37].dat->size[0] *
+    args[37].dat->size[0] *
     (start[1] * args[37].stencil->stride[1]);
   base37 = base37+ dat37 *
-    (size_t)args[37].dat->size[0] *
-    (size_t)args[37].dat->size[1] *
+    args[37].dat->size[0] *
+    args[37].dat->size[1] *
     (start[2] * args[37].stencil->stride[2]);
   p_a[37] = (char *)args[37].data_d + base37;
 
   long long int base38 = args[38].dat->base_offset + 
            dat38 * 1 * (start[0] * args[38].stencil->stride[0]);
   base38 = base38+ dat38 *
-    (size_t)args[38].dat->size[0] *
+    args[38].dat->size[0] *
     (start[1] * args[38].stencil->stride[1]);
   base38 = base38+ dat38 *
-    (size_t)args[38].dat->size[0] *
-    (size_t)args[38].dat->size[1] *
+    args[38].dat->size[0] *
+    args[38].dat->size[1] *
     (start[2] * args[38].stencil->stride[2]);
   p_a[38] = (char *)args[38].data_d + base38;
 
   long long int base39 = args[39].dat->base_offset + 
            dat39 * 1 * (start[0] * args[39].stencil->stride[0]);
   base39 = base39+ dat39 *
-    (size_t)args[39].dat->size[0] *
+    args[39].dat->size[0] *
     (start[1] * args[39].stencil->stride[1]);
   base39 = base39+ dat39 *
-    (size_t)args[39].dat->size[0] *
-    (size_t)args[39].dat->size[1] *
+    args[39].dat->size[0] *
+    args[39].dat->size[1] *
     (start[2] * args[39].stencil->stride[2]);
   p_a[39] = (char *)args[39].data_d + base39;
 
   long long int base40 = args[40].dat->base_offset + 
            dat40 * 1 * (start[0] * args[40].stencil->stride[0]);
   base40 = base40+ dat40 *
-    (size_t)args[40].dat->size[0] *
+    args[40].dat->size[0] *
     (start[1] * args[40].stencil->stride[1]);
   base40 = base40+ dat40 *
-    (size_t)args[40].dat->size[0] *
-    (size_t)args[40].dat->size[1] *
+    args[40].dat->size[0] *
+    args[40].dat->size[1] *
     (start[2] * args[40].stencil->stride[2]);
   p_a[40] = (char *)args[40].data_d + base40;
 
   long long int base41 = args[41].dat->base_offset + 
            dat41 * 1 * (start[0] * args[41].stencil->stride[0]);
   base41 = base41+ dat41 *
-    (size_t)args[41].dat->size[0] *
+    args[41].dat->size[0] *
     (start[1] * args[41].stencil->stride[1]);
   base41 = base41+ dat41 *
-    (size_t)args[41].dat->size[0] *
-    (size_t)args[41].dat->size[1] *
+    args[41].dat->size[0] *
+    args[41].dat->size[1] *
     (start[2] * args[41].stencil->stride[2]);
   p_a[41] = (char *)args[41].data_d + base41;
 
   long long int base42 = args[42].dat->base_offset + 
            dat42 * 1 * (start[0] * args[42].stencil->stride[0]);
   base42 = base42+ dat42 *
-    (size_t)args[42].dat->size[0] *
+    args[42].dat->size[0] *
     (start[1] * args[42].stencil->stride[1]);
   base42 = base42+ dat42 *
-    (size_t)args[42].dat->size[0] *
-    (size_t)args[42].dat->size[1] *
+    args[42].dat->size[0] *
+    args[42].dat->size[1] *
     (start[2] * args[42].stencil->stride[2]);
   p_a[42] = (char *)args[42].data_d + base42;
 
   long long int base43 = args[43].dat->base_offset + 
            dat43 * 1 * (start[0] * args[43].stencil->stride[0]);
   base43 = base43+ dat43 *
-    (size_t)args[43].dat->size[0] *
+    args[43].dat->size[0] *
     (start[1] * args[43].stencil->stride[1]);
   base43 = base43+ dat43 *
-    (size_t)args[43].dat->size[0] *
-    (size_t)args[43].dat->size[1] *
+    args[43].dat->size[0] *
+    args[43].dat->size[1] *
     (start[2] * args[43].stencil->stride[2]);
   p_a[43] = (char *)args[43].data_d + base43;
 
   long long int base44 = args[44].dat->base_offset + 
            dat44 * 1 * (start[0] * args[44].stencil->stride[0]);
   base44 = base44+ dat44 *
-    (size_t)args[44].dat->size[0] *
+    args[44].dat->size[0] *
     (start[1] * args[44].stencil->stride[1]);
   base44 = base44+ dat44 *
-    (size_t)args[44].dat->size[0] *
-    (size_t)args[44].dat->size[1] *
+    args[44].dat->size[0] *
+    args[44].dat->size[1] *
     (start[2] * args[44].stencil->stride[2]);
   p_a[44] = (char *)args[44].data_d + base44;
 
   long long int base45 = args[45].dat->base_offset + 
            dat45 * 1 * (start[0] * args[45].stencil->stride[0]);
   base45 = base45+ dat45 *
-    (size_t)args[45].dat->size[0] *
+    args[45].dat->size[0] *
     (start[1] * args[45].stencil->stride[1]);
   base45 = base45+ dat45 *
-    (size_t)args[45].dat->size[0] *
-    (size_t)args[45].dat->size[1] *
+    args[45].dat->size[0] *
+    args[45].dat->size[1] *
     (start[2] * args[45].stencil->stride[2]);
   p_a[45] = (char *)args[45].data_d + base45;
 
   long long int base46 = args[46].dat->base_offset + 
            dat46 * 1 * (start[0] * args[46].stencil->stride[0]);
   base46 = base46+ dat46 *
-    (size_t)args[46].dat->size[0] *
+    args[46].dat->size[0] *
     (start[1] * args[46].stencil->stride[1]);
   base46 = base46+ dat46 *
-    (size_t)args[46].dat->size[0] *
-    (size_t)args[46].dat->size[1] *
+    args[46].dat->size[0] *
+    args[46].dat->size[1] *
     (start[2] * args[46].stencil->stride[2]);
   p_a[46] = (char *)args[46].data_d + base46;
 
   long long int base47 = args[47].dat->base_offset + 
            dat47 * 1 * (start[0] * args[47].stencil->stride[0]);
   base47 = base47+ dat47 *
-    (size_t)args[47].dat->size[0] *
+    args[47].dat->size[0] *
     (start[1] * args[47].stencil->stride[1]);
   base47 = base47+ dat47 *
-    (size_t)args[47].dat->size[0] *
-    (size_t)args[47].dat->size[1] *
+    args[47].dat->size[0] *
+    args[47].dat->size[1] *
     (start[2] * args[47].stencil->stride[2]);
   p_a[47] = (char *)args[47].data_d + base47;
 
   long long int base48 = args[48].dat->base_offset + 
            dat48 * 1 * (start[0] * args[48].stencil->stride[0]);
   base48 = base48+ dat48 *
-    (size_t)args[48].dat->size[0] *
+    args[48].dat->size[0] *
     (start[1] * args[48].stencil->stride[1]);
   base48 = base48+ dat48 *
-    (size_t)args[48].dat->size[0] *
-    (size_t)args[48].dat->size[1] *
+    args[48].dat->size[0] *
+    args[48].dat->size[1] *
     (start[2] * args[48].stencil->stride[2]);
   p_a[48] = (char *)args[48].data_d + base48;
 
   long long int base49 = args[49].dat->base_offset + 
            dat49 * 1 * (start[0] * args[49].stencil->stride[0]);
   base49 = base49+ dat49 *
-    (size_t)args[49].dat->size[0] *
+    args[49].dat->size[0] *
     (start[1] * args[49].stencil->stride[1]);
   base49 = base49+ dat49 *
-    (size_t)args[49].dat->size[0] *
-    (size_t)args[49].dat->size[1] *
+    args[49].dat->size[0] *
+    args[49].dat->size[1] *
     (start[2] * args[49].stencil->stride[2]);
   p_a[49] = (char *)args[49].data_d + base49;
 
   long long int base50 = args[50].dat->base_offset + 
            dat50 * 1 * (start[0] * args[50].stencil->stride[0]);
   base50 = base50+ dat50 *
-    (size_t)args[50].dat->size[0] *
+    args[50].dat->size[0] *
     (start[1] * args[50].stencil->stride[1]);
   base50 = base50+ dat50 *
-    (size_t)args[50].dat->size[0] *
-    (size_t)args[50].dat->size[1] *
+    args[50].dat->size[0] *
+    args[50].dat->size[1] *
     (start[2] * args[50].stencil->stride[2]);
   p_a[50] = (char *)args[50].data_d + base50;
 
   long long int base51 = args[51].dat->base_offset + 
            dat51 * 1 * (start[0] * args[51].stencil->stride[0]);
   base51 = base51+ dat51 *
-    (size_t)args[51].dat->size[0] *
+    args[51].dat->size[0] *
     (start[1] * args[51].stencil->stride[1]);
   base51 = base51+ dat51 *
-    (size_t)args[51].dat->size[0] *
-    (size_t)args[51].dat->size[1] *
+    args[51].dat->size[0] *
+    args[51].dat->size[1] *
     (start[2] * args[51].stencil->stride[2]);
   p_a[51] = (char *)args[51].data_d + base51;
 

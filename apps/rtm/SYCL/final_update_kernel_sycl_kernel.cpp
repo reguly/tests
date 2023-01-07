@@ -98,19 +98,19 @@ void ops_par_loop_final_update_kernel_execute(ops_kernel_descriptor *desc) {
 
 
   int base2 = args[2].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> k1_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[2].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[2].dat->mem/sizeof(float)));
+  float* k1_p = (float*)args[2].data_d;
 
   int base3 = args[3].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> k2_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[3].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[3].dat->mem/sizeof(float)));
+  float* k2_p = (float*)args[3].data_d;
 
   int base4 = args[4].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> k3_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[4].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[4].dat->mem/sizeof(float)));
+  float* k3_p = (float*)args[4].data_d;
 
   int base5 = args[5].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> k4_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[5].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[5].dat->mem/sizeof(float)));
+  float* k4_p = (float*)args[5].data_d;
 
   int base6 = args[6].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> yy_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[6].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[6].dat->mem/sizeof(float)));
+  float* yy_p = (float*)args[6].data_d;
 
 
 
@@ -134,16 +134,10 @@ void ops_par_loop_final_update_kernel_execute(ops_kernel_descriptor *desc) {
   int start_2 = start[2];
   int end_2 = end[2];
   int arg_idx_2 = arg_idx[2];
-  block->instance->sycl_instance->queue->submit([&](cl::sycl::handler &cgh) {
-    //accessors
-    auto Accessor_k1 = k1_p.get_access<cl::sycl::access::mode::read_write>(cgh);
-    auto Accessor_k2 = k2_p.get_access<cl::sycl::access::mode::read_write>(cgh);
-    auto Accessor_k3 = k3_p.get_access<cl::sycl::access::mode::read_write>(cgh);
-    auto Accessor_k4 = k4_p.get_access<cl::sycl::access::mode::read_write>(cgh);
-    auto Accessor_yy = yy_p.get_access<cl::sycl::access::mode::read_write>(cgh);
+  if ((end[0]-start[0])>0 && (end[1]-start[1])>0 && (end[2]-start[2])>0) {
+    block->instance->sycl_instance->queue->submit([&](cl::sycl::handler &cgh) {
 
 
-    if ((end[0]-start[0])>0 && (end[1]-start[1])>0 && (end[2]-start[2])>0) {
       cgh.parallel_for<class final_update_kernel_kernel>(cl::sycl::nd_range<3>(cl::sycl::range<3>(
            ((end[2]-start[2]-1)/block->instance->OPS_block_size_z+1)*block->instance->OPS_block_size_z,
            ((end[1]-start[1]-1)/block->instance->OPS_block_size_y+1)*block->instance->OPS_block_size_y,
@@ -160,29 +154,29 @@ void ops_par_loop_final_update_kernel_execute(ops_kernel_descriptor *desc) {
         int n_x = item.get_global_id()[2]+start_0;
         int idx[] = {arg_idx_0+n_x, arg_idx_1+n_y, arg_idx_2+n_z};
         #ifdef OPS_SOA
-        const ACC<float> k1(6, xdim2_final_update_kernel, ydim2_final_update_kernel, zdim2_final_update_kernel, &Accessor_k1[0] + base2 + n_x*1 + n_y * xdim2_final_update_kernel*1 + n_z * xdim2_final_update_kernel * ydim2_final_update_kernel*1);
+        const ACC<float> k1(6, xdim2_final_update_kernel, ydim2_final_update_kernel, zdim2_final_update_kernel, &k1_p[0] + base2 + n_x*1 + n_y * xdim2_final_update_kernel*1 + n_z * xdim2_final_update_kernel * ydim2_final_update_kernel*1);
         #else
-        const ACC<float> k1(6, xdim2_final_update_kernel, ydim2_final_update_kernel, zdim2_final_update_kernel, &Accessor_k1[0] + 6*(n_x*1 + n_y * xdim2_final_update_kernel*1 + n_z * xdim2_final_update_kernel * ydim2_final_update_kernel*1));
+        const ACC<float> k1(6, xdim2_final_update_kernel, ydim2_final_update_kernel, zdim2_final_update_kernel, &k1_p[0] + 6*(n_x*1 + n_y * xdim2_final_update_kernel*1 + n_z * xdim2_final_update_kernel * ydim2_final_update_kernel*1));
         #endif
         #ifdef OPS_SOA
-        const ACC<float> k2(6, xdim3_final_update_kernel, ydim3_final_update_kernel, zdim3_final_update_kernel, &Accessor_k2[0] + base3 + n_x*1 + n_y * xdim3_final_update_kernel*1 + n_z * xdim3_final_update_kernel * ydim3_final_update_kernel*1);
+        const ACC<float> k2(6, xdim3_final_update_kernel, ydim3_final_update_kernel, zdim3_final_update_kernel, &k2_p[0] + base3 + n_x*1 + n_y * xdim3_final_update_kernel*1 + n_z * xdim3_final_update_kernel * ydim3_final_update_kernel*1);
         #else
-        const ACC<float> k2(6, xdim3_final_update_kernel, ydim3_final_update_kernel, zdim3_final_update_kernel, &Accessor_k2[0] + 6*(n_x*1 + n_y * xdim3_final_update_kernel*1 + n_z * xdim3_final_update_kernel * ydim3_final_update_kernel*1));
+        const ACC<float> k2(6, xdim3_final_update_kernel, ydim3_final_update_kernel, zdim3_final_update_kernel, &k2_p[0] + 6*(n_x*1 + n_y * xdim3_final_update_kernel*1 + n_z * xdim3_final_update_kernel * ydim3_final_update_kernel*1));
         #endif
         #ifdef OPS_SOA
-        const ACC<float> k3(6, xdim4_final_update_kernel, ydim4_final_update_kernel, zdim4_final_update_kernel, &Accessor_k3[0] + base4 + n_x*1 + n_y * xdim4_final_update_kernel*1 + n_z * xdim4_final_update_kernel * ydim4_final_update_kernel*1);
+        const ACC<float> k3(6, xdim4_final_update_kernel, ydim4_final_update_kernel, zdim4_final_update_kernel, &k3_p[0] + base4 + n_x*1 + n_y * xdim4_final_update_kernel*1 + n_z * xdim4_final_update_kernel * ydim4_final_update_kernel*1);
         #else
-        const ACC<float> k3(6, xdim4_final_update_kernel, ydim4_final_update_kernel, zdim4_final_update_kernel, &Accessor_k3[0] + 6*(n_x*1 + n_y * xdim4_final_update_kernel*1 + n_z * xdim4_final_update_kernel * ydim4_final_update_kernel*1));
+        const ACC<float> k3(6, xdim4_final_update_kernel, ydim4_final_update_kernel, zdim4_final_update_kernel, &k3_p[0] + 6*(n_x*1 + n_y * xdim4_final_update_kernel*1 + n_z * xdim4_final_update_kernel * ydim4_final_update_kernel*1));
         #endif
         #ifdef OPS_SOA
-        ACC<float> k4(6, xdim5_final_update_kernel, ydim5_final_update_kernel, zdim5_final_update_kernel, &Accessor_k4[0] + base5 + n_x*1 + n_y * xdim5_final_update_kernel*1 + n_z * xdim5_final_update_kernel * ydim5_final_update_kernel*1);
+        ACC<float> k4(6, xdim5_final_update_kernel, ydim5_final_update_kernel, zdim5_final_update_kernel, &k4_p[0] + base5 + n_x*1 + n_y * xdim5_final_update_kernel*1 + n_z * xdim5_final_update_kernel * ydim5_final_update_kernel*1);
         #else
-        ACC<float> k4(6, xdim5_final_update_kernel, ydim5_final_update_kernel, zdim5_final_update_kernel, &Accessor_k4[0] + 6*(n_x*1 + n_y * xdim5_final_update_kernel*1 + n_z * xdim5_final_update_kernel * ydim5_final_update_kernel*1));
+        ACC<float> k4(6, xdim5_final_update_kernel, ydim5_final_update_kernel, zdim5_final_update_kernel, &k4_p[0] + 6*(n_x*1 + n_y * xdim5_final_update_kernel*1 + n_z * xdim5_final_update_kernel * ydim5_final_update_kernel*1));
         #endif
         #ifdef OPS_SOA
-        ACC<float> yy(6, xdim6_final_update_kernel, ydim6_final_update_kernel, zdim6_final_update_kernel, &Accessor_yy[0] + base6 + n_x*1 + n_y * xdim6_final_update_kernel*1 + n_z * xdim6_final_update_kernel * ydim6_final_update_kernel*1);
+        ACC<float> yy(6, xdim6_final_update_kernel, ydim6_final_update_kernel, zdim6_final_update_kernel, &yy_p[0] + base6 + n_x*1 + n_y * xdim6_final_update_kernel*1 + n_z * xdim6_final_update_kernel * ydim6_final_update_kernel*1);
         #else
-        ACC<float> yy(6, xdim6_final_update_kernel, ydim6_final_update_kernel, zdim6_final_update_kernel, &Accessor_yy[0] + 6*(n_x*1 + n_y * xdim6_final_update_kernel*1 + n_z * xdim6_final_update_kernel * ydim6_final_update_kernel*1));
+        ACC<float> yy(6, xdim6_final_update_kernel, ydim6_final_update_kernel, zdim6_final_update_kernel, &yy_p[0] + 6*(n_x*1 + n_y * xdim6_final_update_kernel*1 + n_z * xdim6_final_update_kernel * ydim6_final_update_kernel*1));
         #endif
         const float *dt = &dt_val;
         //USER CODE
@@ -202,8 +196,8 @@ void ops_par_loop_final_update_kernel_execute(ops_kernel_descriptor *desc) {
 
         }
       });
-    }
-  });
+    });
+  }
   if (block->instance->OPS_diags > 1) {
     block->instance->sycl_instance->queue->wait();
     ops_timers_core(&__c2,&__t2);

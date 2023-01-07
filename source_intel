@@ -1,0 +1,14 @@
+source /bask/projects/j/jarvissz-cfd-scaling/oneapi2/setvars.sh --force
+export OPS_COMPILER=intel
+export OP2_COMPILER=intel
+export OPS_INSTALL_PATH=/bask/projects/j/jarvissz-cfd-scaling/tests/OPS/ops
+export OP2_INSTALL_PATH=/bask/projects/j/jarvissz-cfd-scaling/tests/OP2-Common/op2
+export MPI_INSTALL_PATH=/bask/projects/j/jarvissz-cfd-scaling/oneapi2/mpi/2021.7.0/
+export HDF5_INSTALL_PATH=/bask/projects/j/jarvissz-cfd-scaling/hdf5-oneapi-par
+export PTSCOTCH_INSTALL_PATH=$HOME/ptscotch-impi
+export PARMETIS_INSTALL_PATH=$HOME/parmetis-impi
+export HDF5_INSTALL_PATH=/bask/apps/test/EL8-ice/software/HDF5/1.10.7-iimpi-2021a
+export I_MPI_CC=icc
+export I_MPI_CXX=icpc
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HDF5_INSTALL_PATH/lib
+export TMPDIR=`pwd`

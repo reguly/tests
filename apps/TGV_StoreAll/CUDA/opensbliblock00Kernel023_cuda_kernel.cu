@@ -29,8 +29,8 @@ int size2 ){
   int idx_y = blockDim.y * blockIdx.y + threadIdx.y;
   int idx_x = blockDim.x * blockIdx.x + threadIdx.x;
 
-  arg0 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel023[0][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel023[0][0] * (size_t)dims_opensbliblock00Kernel023[0][1];
-  arg1 += idx_x * 1*1 + idx_y * 1*1 * (size_t)dims_opensbliblock00Kernel023[1][0] + idx_z * 1*1 * (size_t)dims_opensbliblock00Kernel023[1][0] * (size_t)dims_opensbliblock00Kernel023[1][1];
+  arg0 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel023[0][0] + idx_z * 1*1 * dims_opensbliblock00Kernel023[0][0] * dims_opensbliblock00Kernel023[0][1];
+  arg1 += idx_x * 1*1 + idx_y * 1*1 * dims_opensbliblock00Kernel023[1][0] + idx_z * 1*1 * dims_opensbliblock00Kernel023[1][0] * dims_opensbliblock00Kernel023[1][1];
 
   if (idx_x < size0 && idx_y < size1 && idx_z < size2) {
     const ACC<double> argp0(dims_opensbliblock00Kernel023[0][0], dims_opensbliblock00Kernel023[0][1], arg0);
@@ -122,22 +122,22 @@ void ops_par_loop_opensbliblock00Kernel023_execute(ops_kernel_descriptor *desc) 
   long long int base0 = args[0].dat->base_offset + 
            dat0 * 1 * (start[0] * args[0].stencil->stride[0]);
   base0 = base0+ dat0 *
-    (size_t)args[0].dat->size[0] *
+    args[0].dat->size[0] *
     (start[1] * args[0].stencil->stride[1]);
   base0 = base0+ dat0 *
-    (size_t)args[0].dat->size[0] *
-    (size_t)args[0].dat->size[1] *
+    args[0].dat->size[0] *
+    args[0].dat->size[1] *
     (start[2] * args[0].stencil->stride[2]);
   p_a[0] = (char *)args[0].data_d + base0;
 
   long long int base1 = args[1].dat->base_offset + 
            dat1 * 1 * (start[0] * args[1].stencil->stride[0]);
   base1 = base1+ dat1 *
-    (size_t)args[1].dat->size[0] *
+    args[1].dat->size[0] *
     (start[1] * args[1].stencil->stride[1]);
   base1 = base1+ dat1 *
-    (size_t)args[1].dat->size[0] *
-    (size_t)args[1].dat->size[1] *
+    args[1].dat->size[0] *
+    args[1].dat->size[1] *
     (start[2] * args[1].stencil->stride[2]);
   p_a[1] = (char *)args[1].data_d + base1;
 

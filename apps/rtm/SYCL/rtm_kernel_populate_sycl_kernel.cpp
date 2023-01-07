@@ -96,13 +96,13 @@ void ops_par_loop_rtm_kernel_populate_execute(ops_kernel_descriptor *desc) {
 
 
   int base4 = args[4].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> rho_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[4].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[4].dat->mem/sizeof(float)));
+  float* rho_p = (float*)args[4].data_d;
 
   int base5 = args[5].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> mu_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[5].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[5].dat->mem/sizeof(float)));
+  float* mu_p = (float*)args[5].data_d;
 
   int base6 = args[6].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> yy_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[6].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[6].dat->mem/sizeof(float)));
+  float* yy_p = (float*)args[6].data_d;
 
 
 
@@ -126,17 +126,13 @@ void ops_par_loop_rtm_kernel_populate_execute(ops_kernel_descriptor *desc) {
   int start_2 = start[2];
   int end_2 = end[2];
   int arg_idx_2 = arg_idx[2];
-  block->instance->sycl_instance->queue->submit([&](cl::sycl::handler &cgh) {
-    //accessors
-    auto Accessor_rho = rho_p.get_access<cl::sycl::access::mode::read_write>(cgh);
-    auto Accessor_mu = mu_p.get_access<cl::sycl::access::mode::read_write>(cgh);
-    auto Accessor_yy = yy_p.get_access<cl::sycl::access::mode::read_write>(cgh);
+  if ((end[0]-start[0])>0 && (end[1]-start[1])>0 && (end[2]-start[2])>0) {
+    block->instance->sycl_instance->queue->submit([&](cl::sycl::handler &cgh) {
 
-    auto nx_sycl = (*nx_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto ny_sycl = (*ny_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto nz_sycl = (*nz_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto nx_sycl = (*nx_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto ny_sycl = (*ny_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto nz_sycl = (*nz_p).template get_access<cl::sycl::access::mode::read>(cgh);
 
-    if ((end[0]-start[0])>0 && (end[1]-start[1])>0 && (end[2]-start[2])>0) {
       cgh.parallel_for<class rtm_kernel_populate_kernel>(cl::sycl::nd_range<3>(cl::sycl::range<3>(
            ((end[2]-start[2]-1)/block->instance->OPS_block_size_z+1)*block->instance->OPS_block_size_z,
            ((end[1]-start[1]-1)/block->instance->OPS_block_size_y+1)*block->instance->OPS_block_size_y,
@@ -152,12 +148,12 @@ void ops_par_loop_rtm_kernel_populate_execute(ops_kernel_descriptor *desc) {
         int n_y = item.get_global_id()[1]+start_1;
         int n_x = item.get_global_id()[2]+start_0;
         int idx[] = {arg_idx_0+n_x, arg_idx_1+n_y, arg_idx_2+n_z};
-        ACC<float> rho(xdim4_rtm_kernel_populate, ydim4_rtm_kernel_populate, &Accessor_rho[0] + base4 + n_x*1 + n_y * xdim4_rtm_kernel_populate*1 + n_z * xdim4_rtm_kernel_populate * ydim4_rtm_kernel_populate*1);
-        ACC<float> mu(xdim5_rtm_kernel_populate, ydim5_rtm_kernel_populate, &Accessor_mu[0] + base5 + n_x*1 + n_y * xdim5_rtm_kernel_populate*1 + n_z * xdim5_rtm_kernel_populate * ydim5_rtm_kernel_populate*1);
+        ACC<float> rho(xdim4_rtm_kernel_populate, ydim4_rtm_kernel_populate, &rho_p[0] + base4 + n_x*1 + n_y * xdim4_rtm_kernel_populate*1 + n_z * xdim4_rtm_kernel_populate * ydim4_rtm_kernel_populate*1);
+        ACC<float> mu(xdim5_rtm_kernel_populate, ydim5_rtm_kernel_populate, &mu_p[0] + base5 + n_x*1 + n_y * xdim5_rtm_kernel_populate*1 + n_z * xdim5_rtm_kernel_populate * ydim5_rtm_kernel_populate*1);
         #ifdef OPS_SOA
-        ACC<float> yy(6, xdim6_rtm_kernel_populate, ydim6_rtm_kernel_populate, zdim6_rtm_kernel_populate, &Accessor_yy[0] + base6 + n_x*1 + n_y * xdim6_rtm_kernel_populate*1 + n_z * xdim6_rtm_kernel_populate * ydim6_rtm_kernel_populate*1);
+        ACC<float> yy(6, xdim6_rtm_kernel_populate, ydim6_rtm_kernel_populate, zdim6_rtm_kernel_populate, &yy_p[0] + base6 + n_x*1 + n_y * xdim6_rtm_kernel_populate*1 + n_z * xdim6_rtm_kernel_populate * ydim6_rtm_kernel_populate*1);
         #else
-        ACC<float> yy(6, xdim6_rtm_kernel_populate, ydim6_rtm_kernel_populate, zdim6_rtm_kernel_populate, &Accessor_yy[0] + 6*(n_x*1 + n_y * xdim6_rtm_kernel_populate*1 + n_z * xdim6_rtm_kernel_populate * ydim6_rtm_kernel_populate*1));
+        ACC<float> yy(6, xdim6_rtm_kernel_populate, ydim6_rtm_kernel_populate, zdim6_rtm_kernel_populate, &yy_p[0] + 6*(n_x*1 + n_y * xdim6_rtm_kernel_populate*1 + n_z * xdim6_rtm_kernel_populate * ydim6_rtm_kernel_populate*1));
         #endif
         const int *dispx = &dispx_val;
         const int *dispy = &dispy_val;
@@ -183,8 +179,8 @@ void ops_par_loop_rtm_kernel_populate_execute(ops_kernel_descriptor *desc) {
 
         }
       });
-    }
-  });
+    });
+  }
   if (block->instance->OPS_diags > 1) {
     block->instance->sycl_instance->queue->wait();
     ops_timers_core(&__c2,&__t2);

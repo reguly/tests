@@ -86,16 +86,16 @@ void ops_par_loop_fd3d_pml_kernel_execute(ops_kernel_descriptor *desc) {
 
   //set up initial pointers and exchange halos if necessary
   int base0 = args[0].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> rho_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[0].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[0].dat->mem/sizeof(float)));
+  float* rho_p = (float*)args[0].data_d;
 
   int base1 = args[1].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> mu_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[1].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[1].dat->mem/sizeof(float)));
+  float* mu_p = (float*)args[1].data_d;
 
   int base2 = args[2].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> yy_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[2].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[2].dat->mem/sizeof(float)));
+  float* yy_p = (float*)args[2].data_d;
 
   int base3 = args[3].dat->base_offset/sizeof(float);
-  cl::sycl::buffer<float,1> dy_p = reinterpret_cast<cl::sycl::buffer<char,1> *>((void*)args[3].data_d)->reinterpret<float,1>(cl::sycl::range<1>(args[3].dat->mem/sizeof(float)));
+  float* dy_p = (float*)args[3].data_d;
 
 
 
@@ -120,30 +120,25 @@ void ops_par_loop_fd3d_pml_kernel_execute(ops_kernel_descriptor *desc) {
   int start_2 = start[2];
   int end_2 = end[2];
   int arg_idx_2 = arg_idx[2];
-  block->instance->sycl_instance->queue->submit([&](cl::sycl::handler &cgh) {
-    //accessors
-    auto Accessor_rho = rho_p.get_access<cl::sycl::access::mode::read_write>(cgh);
-    auto Accessor_mu = mu_p.get_access<cl::sycl::access::mode::read_write>(cgh);
-    auto Accessor_yy = yy_p.get_access<cl::sycl::access::mode::read_write>(cgh);
-    auto Accessor_dy = dy_p.get_access<cl::sycl::access::mode::read_write>(cgh);
+  if ((end[0]-start[0])>0 && (end[1]-start[1])>0 && (end[2]-start[2])>0) {
+    block->instance->sycl_instance->queue->submit([&](cl::sycl::handler &cgh) {
 
-    auto invdx_sycl = (*invdx_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto invdy_sycl = (*invdy_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto invdz_sycl = (*invdz_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto pml_width_sycl = (*pml_width_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto xbeg_sycl = (*xbeg_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto ybeg_sycl = (*ybeg_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto zbeg_sycl = (*zbeg_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto xend_sycl = (*xend_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto yend_sycl = (*yend_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto zend_sycl = (*zend_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto halff_sycl = (*halff_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto c_sycl = (*c_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto cx_sycl = (*cx_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto cy_sycl = (*cy_p).template get_access<cl::sycl::access::mode::read>(cgh);
-    auto cz_sycl = (*cz_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto invdx_sycl = (*invdx_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto invdy_sycl = (*invdy_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto invdz_sycl = (*invdz_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto pml_width_sycl = (*pml_width_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto xbeg_sycl = (*xbeg_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto ybeg_sycl = (*ybeg_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto zbeg_sycl = (*zbeg_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto xend_sycl = (*xend_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto yend_sycl = (*yend_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto zend_sycl = (*zend_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto halff_sycl = (*halff_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto c_sycl = (*c_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto cx_sycl = (*cx_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto cy_sycl = (*cy_p).template get_access<cl::sycl::access::mode::read>(cgh);
+      auto cz_sycl = (*cz_p).template get_access<cl::sycl::access::mode::read>(cgh);
 
-    if ((end[0]-start[0])>0 && (end[1]-start[1])>0 && (end[2]-start[2])>0) {
       cgh.parallel_for<class fd3d_pml_kernel_kernel>(cl::sycl::nd_range<3>(cl::sycl::range<3>(
            ((end[2]-start[2]-1)/block->instance->OPS_block_size_z+1)*block->instance->OPS_block_size_z,
            ((end[1]-start[1]-1)/block->instance->OPS_block_size_y+1)*block->instance->OPS_block_size_y,
@@ -159,17 +154,17 @@ void ops_par_loop_fd3d_pml_kernel_execute(ops_kernel_descriptor *desc) {
         int n_y = item.get_global_id()[1]+start_1;
         int n_x = item.get_global_id()[2]+start_0;
         int idx[] = {arg_idx_0+n_x, arg_idx_1+n_y, arg_idx_2+n_z};
-        const ACC<float> rho(xdim0_fd3d_pml_kernel, ydim0_fd3d_pml_kernel, &Accessor_rho[0] + base0 + n_x*1 + n_y * xdim0_fd3d_pml_kernel*1 + n_z * xdim0_fd3d_pml_kernel * ydim0_fd3d_pml_kernel*1);
-        const ACC<float> mu(xdim1_fd3d_pml_kernel, ydim1_fd3d_pml_kernel, &Accessor_mu[0] + base1 + n_x*1 + n_y * xdim1_fd3d_pml_kernel*1 + n_z * xdim1_fd3d_pml_kernel * ydim1_fd3d_pml_kernel*1);
+        const ACC<float> rho(xdim0_fd3d_pml_kernel, ydim0_fd3d_pml_kernel, &rho_p[0] + base0 + n_x*1 + n_y * xdim0_fd3d_pml_kernel*1 + n_z * xdim0_fd3d_pml_kernel * ydim0_fd3d_pml_kernel*1);
+        const ACC<float> mu(xdim1_fd3d_pml_kernel, ydim1_fd3d_pml_kernel, &mu_p[0] + base1 + n_x*1 + n_y * xdim1_fd3d_pml_kernel*1 + n_z * xdim1_fd3d_pml_kernel * ydim1_fd3d_pml_kernel*1);
         #ifdef OPS_SOA
-        const ACC<float> yy(6, xdim2_fd3d_pml_kernel, ydim2_fd3d_pml_kernel, zdim2_fd3d_pml_kernel, &Accessor_yy[0] + base2 + n_x*1 + n_y * xdim2_fd3d_pml_kernel*1 + n_z * xdim2_fd3d_pml_kernel * ydim2_fd3d_pml_kernel*1);
+        const ACC<float> yy(6, xdim2_fd3d_pml_kernel, ydim2_fd3d_pml_kernel, zdim2_fd3d_pml_kernel, &yy_p[0] + base2 + n_x*1 + n_y * xdim2_fd3d_pml_kernel*1 + n_z * xdim2_fd3d_pml_kernel * ydim2_fd3d_pml_kernel*1);
         #else
-        const ACC<float> yy(6, xdim2_fd3d_pml_kernel, ydim2_fd3d_pml_kernel, zdim2_fd3d_pml_kernel, &Accessor_yy[0] + 6*(n_x*1 + n_y * xdim2_fd3d_pml_kernel*1 + n_z * xdim2_fd3d_pml_kernel * ydim2_fd3d_pml_kernel*1));
+        const ACC<float> yy(6, xdim2_fd3d_pml_kernel, ydim2_fd3d_pml_kernel, zdim2_fd3d_pml_kernel, &yy_p[0] + 6*(n_x*1 + n_y * xdim2_fd3d_pml_kernel*1 + n_z * xdim2_fd3d_pml_kernel * ydim2_fd3d_pml_kernel*1));
         #endif
         #ifdef OPS_SOA
-        ACC<float> dy(6, xdim3_fd3d_pml_kernel, ydim3_fd3d_pml_kernel, zdim3_fd3d_pml_kernel, &Accessor_dy[0] + base3 + n_x*1 + n_y * xdim3_fd3d_pml_kernel*1 + n_z * xdim3_fd3d_pml_kernel * ydim3_fd3d_pml_kernel*1);
+        ACC<float> dy(6, xdim3_fd3d_pml_kernel, ydim3_fd3d_pml_kernel, zdim3_fd3d_pml_kernel, &dy_p[0] + base3 + n_x*1 + n_y * xdim3_fd3d_pml_kernel*1 + n_z * xdim3_fd3d_pml_kernel * ydim3_fd3d_pml_kernel*1);
         #else
-        ACC<float> dy(6, xdim3_fd3d_pml_kernel, ydim3_fd3d_pml_kernel, zdim3_fd3d_pml_kernel, &Accessor_dy[0] + 6*(n_x*1 + n_y * xdim3_fd3d_pml_kernel*1 + n_z * xdim3_fd3d_pml_kernel * ydim3_fd3d_pml_kernel*1));
+        ACC<float> dy(6, xdim3_fd3d_pml_kernel, ydim3_fd3d_pml_kernel, zdim3_fd3d_pml_kernel, &dy_p[0] + 6*(n_x*1 + n_y * xdim3_fd3d_pml_kernel*1 + n_z * xdim3_fd3d_pml_kernel * ydim3_fd3d_pml_kernel*1));
         #endif
         //USER CODE
         if (n_x < end_0 && n_y < end_1 && n_z < end_2) {
@@ -273,8 +268,8 @@ void ops_par_loop_fd3d_pml_kernel_execute(ops_kernel_descriptor *desc) {
 
         }
       });
-    }
-  });
+    });
+  }
   if (block->instance->OPS_diags > 1) {
     block->instance->sycl_instance->queue->wait();
     ops_timers_core(&__c2,&__t2);

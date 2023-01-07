@@ -73,7 +73,7 @@ extern float *cz;
 
 void ops_init_backend() {}
 
-void ops_decl_const_char(int dim, char const * type, int size, char * dat, char const * name ) {
+void ops_decl_const_char(OPS_instance *instance, int dim, char const * type, int size, char * dat, char const * name ) {
   if (!strcmp(name,"dx")) {
     if (dx_p == nullptr) dx_p = new cl::sycl::buffer<float,1>(cl::sycl::range<1>(dim));
     auto accessor = (*dx_p).get_access<cl::sycl::access::mode::write>();

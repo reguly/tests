@@ -46,8 +46,7 @@ extern float *cz;
 void ops_init_backend() {}
 
 //this needs to be a platform specific copy symbol to device function
-void ops_decl_const_char(int dim, char const * type, int typeSize, char * dat, char const * name ) {
-  OPS_instance *instance = OPS_instance::getOPSInstance();
+void ops_decl_const_char(OPS_instance *instance, int dim, char const * type, int typeSize, char * dat, char const * name ) {
   ops_execute(instance);
   cl_int ret = 0;
   if (instance->opencl_instance->OPS_opencl_core.constant == NULL) {
@@ -384,8 +383,8 @@ void ops_decl_const_char(int dim, char const * type, int typeSize, char * dat, c
   }
   
 //user kernel files
-#include "rtm_kernel_populate_opencl_kernel.cpp"
-#include "fd3d_pml_kernel_opencl_kernel.cpp"
-#include "calc_ytemp2_kernel_opencl_kernel.cpp"
-#include "calc_ytemp_kernel_opencl_kernel.cpp"
 #include "final_update_kernel_opencl_kernel.cpp"
+#include "fd3d_pml_kernel_opencl_kernel.cpp"
+#include "rtm_kernel_populate_opencl_kernel.cpp"
+#include "calc_ytemp_kernel_opencl_kernel.cpp"
+#include "calc_ytemp2_kernel_opencl_kernel.cpp"

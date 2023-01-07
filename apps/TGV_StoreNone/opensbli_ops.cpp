@@ -5,6 +5,9 @@ void ops_init_backend();
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#ifdef PROFILE_ITT
+#include <ittnotify.h>
+#endif
 int block0np0;
 int block0np1;
 int block0np2;
@@ -336,6 +339,9 @@ int main(int argc, char **argv)
                ops_arg_dat(rhou1_B0, 1, stencil_0_03, "double", OPS_WRITE),
                ops_arg_idx());
 
+#ifdef PROFILE_ITT
+  __itt_resume();
+#endif
   double cpu_start0, elapsed_start0;
   ops_timers(&cpu_start0, &elapsed_start0);
   for(int iter=0; iter<=niter - 1; iter++)
@@ -607,6 +613,9 @@ int main(int argc, char **argv)
   }
   double cpu_end0, elapsed_end0;
   ops_timers(&cpu_end0, &elapsed_end0);
+#ifdef PROFILE_ITT
+  __itt_pause();
+#endif
   ops_timing_output(std::cout);
   ops_printf("\nTimings are:\n");
   ops_printf("-----------------------------------------\n");

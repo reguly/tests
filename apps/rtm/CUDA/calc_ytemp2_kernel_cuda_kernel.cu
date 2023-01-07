@@ -254,8 +254,8 @@ void ops_par_loop_calc_ytemp2_kernel(char const *name, ops_block block, int dim,
   desc->args = (ops_arg*)ops_malloc(5*sizeof(ops_arg));
   desc->args[0] = arg0;
   desc->args[1] = arg1;
-  char *tmp = (char*)ops_malloc(1*sizeof(float));
-  memcpy(tmp, arg1.data,1*sizeof(float));
+  char *tmp = (char*)ops_malloc(arg1.dim*sizeof(float));
+  memcpy(tmp, arg1.data,arg1.dim*sizeof(float));
   desc->args[1].data = tmp;
   desc->args[2] = arg2;
   desc->hash = ((desc->hash << 5) + desc->hash) + arg2.dat->index;
