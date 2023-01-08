@@ -36,6 +36,15 @@ if [[ -v REBUILD ]]; then
 	OP2_SCALAR=1 OP2_BLOCKLOOP=1 OP_AUTO_SOA=1 ./translate2op2.sh
 	make mpi_sycl
 	mv bin/mgcfd_mpi_sycl bin/mgcfd_mpi_sycl_hier_scalar_blockloop_soa
+
+	OP2_ATOMICS=1 ./translate2op2.sh
+	make mpi_sycl
+	mv bin/mgcfd_mpi_sycl bin/mgcfd_mpi_sycl_atomics_aos
+
+	OP2_ATOMICS=1 OP_AUTO_SOA=1 ./translate2op2.sh
+	make mpi_sycl
+	mv bin/mgcfd_mpi_sycl bin/mgcfd_mpi_sycl_atomics_soa
+
 fi
 cd $BASEDIR/Rotor37_8M
 export OMP_PROC_BIND=TRUE

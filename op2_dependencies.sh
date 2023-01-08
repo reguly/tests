@@ -8,7 +8,8 @@ make install -j20
 cd ..
 echo "export HDF5_INSTALL_PATH=${BASE}/hdf5"
 echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HDF5_INSTALL_PATH/lib"
-wget http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/parmetis-4.0.3.tar.gz
+#wget http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/parmetis-4.0.3.tar.gz
+wget https://ftp.mcs.anl.gov/pub/pdetools/spack-pkgs/parmetis-4.0.3.tar.gz
 tar xfv parmetis-4.0.3.tar.gz
 cd parmetis-4.0.3/metis
 make config prefix=$BASE/parmetis
@@ -28,6 +29,8 @@ sed -i 's/-DSCOTCH_PTHREAD//g' Makefile.inc
 sed -i 's/-DIDXSIZE64/-DIDXSIZE32/g' Makefile.inc
 mkdir -p $BASE/ptscotch/lib
 mkdir -p $BASE/ptscotch/include
+make -j20
+make ptscotch -j20
 cp ../lib/*sc* $BASE/ptscotch/lib
 cp ../include/*sc* $BASE/ptscotch/include
 echo "export PTSCOTCH_INSTALL_PATH=${BASE}/ptscotch"

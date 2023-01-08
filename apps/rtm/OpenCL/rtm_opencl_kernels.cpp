@@ -383,8 +383,8 @@ void ops_decl_const_char(OPS_instance *instance, int dim, char const * type, int
   }
   
 //user kernel files
-#include "final_update_kernel_opencl_kernel.cpp"
-#include "fd3d_pml_kernel_opencl_kernel.cpp"
 #include "rtm_kernel_populate_opencl_kernel.cpp"
 #include "calc_ytemp_kernel_opencl_kernel.cpp"
+#include "final_update_kernel_opencl_kernel.cpp"
+#include "fd3d_pml_kernel_opencl_kernel.cpp"
 #include "calc_ytemp2_kernel_opencl_kernel.cpp"

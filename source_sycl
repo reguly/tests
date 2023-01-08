@@ -1,14 +1,15 @@
-source /bask/projects/j/jarvissz-cfd-scaling/oneapi2/setvars.sh --force
+#source /bask/projects/j/jarvissz-cfd-scaling/oneapi2/setvars.sh --force
+source /opt/intel/oneapi/setvars.sh --force
 export OPS_COMPILER=intel-sycl
 export OP2_COMPILER=intel-sycl
-export OPS_INSTALL_PATH=/bask/projects/j/jarvissz-cfd-scaling/tests/OPS/ops
-export OP2_INSTALL_PATH=/bask/projects/j/jarvissz-cfd-scaling/tests/OP2-Common-sycl/op2
-export MPI_INSTALL_PATH=/bask/projects/j/jarvissz-cfd-scaling/oneapi2/mpi/2021.7.0/
-export HDF5_INSTALL_PATH=/bask/projects/j/jarvissz-cfd-scaling/hdf5-oneapi-par
-export PTSCOTCH_INSTALL_PATH=$HOME/ptscotch-impi
-export PARMETIS_INSTALL_PATH=$HOME/parmetis-impi
-export HDF5_INSTALL_PATH=/bask/apps/test/EL8-ice/software/HDF5/1.10.7-iimpi-2021a
+export OPS_INSTALL_PATH=$HOME/tests/OPS/ops
+export OP2_INSTALL_PATH=$HOME/tests/OP2-Common-sycl/op2
+export MPI_INSTALL_PATH=/opt/intel/oneapi/mpi/2021.8.0/
+export HDF5_INSTALL_PATH=$HOME/hdf5
+export PTSCOTCH_INSTALL_PATH=$HOME/ptscotch
+export PARMETIS_INSTALL_PATH=$HOME/parmetis
+#export HDF5_INSTALL_PATH=/bask/apps/test/EL8-ice/software/HDF5/1.10.7-iimpi-2021a
 export I_MPI_CC=icc
 export I_MPI_CXX=dpcpp
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HDF5_INSTALL_PATH/lib
-export TMPDIR=`pwd`
+#export TMPDIR=`pwd`
