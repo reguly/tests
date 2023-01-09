@@ -19,7 +19,7 @@ make opensbli_mpi opensbli_mpi_tiled &
 wait
 cd $BASE/apps/MG-CFD-app-OP2/
 ./translate2op2.sh
-make mpi mpi_vec
+make mpi mpi_vec mpi_openmp
 cd $BASE/apps/volna/sp
 ./translate2op2.sh
 make volna_mpi_genseq volna_mpi_vec
