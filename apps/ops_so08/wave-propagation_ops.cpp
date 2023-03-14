@@ -32,7 +32,7 @@ void ops_par_loop_source_injection_kernel(char const *, ops_block, int , int*,
 int X_size;
 int Y_size;
 int Z_size;
-float dt = 0.001, start = 0, stop = 1;
+float dt = 0.001, start = 0, stop = 0.5;
 int border_size = 10;
 int space_order = 8;
 int ii_src[6], u_dim_size;

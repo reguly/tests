@@ -40,19 +40,19 @@ fi
 export OMP_PROC_BIND=TRUE
 for j in {1..4}
 do
-	OMP_NUM_THREADS=1 mpirun -np 144 -bind-to hwthread ./volna_mpi_vec Problem.h5 0 old-format OP_TEST_FREQ=1000 >> volna_mpivec144_diag2
-	OMP_NUM_THREADS=1 mpirun -np 72 -bind-to core ./volna_mpi_vec Problem.h5 0 old-format OP_TEST_FREQ=1000 >> volna_mpivec72_diag2
-	OMP_NUM_THREADS=1 mpirun -np 144 -bind-to hwthread ./volna_mpi Problem.h5 0 old-format OP_TEST_FREQ=1000 >> volna_mpi144_diag2
-	OMP_NUM_THREADS=1 mpirun -np 72 -bind-to core ./volna_mpi Problem.h5 0 old-format OP_TEST_FREQ=1000 >> volna_mpi72_diag2
-	OMP_NUM_THREADS=72 OMP_PROC_BIND=TRUE mpirun -np 2 -bind-to numa ./volna_mpi_openmp Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2omp72_part4096_diag2
-	OMP_NUM_THREADS=36 OMP_PROC_BIND=TRUE mpirun -np 2 -bind-to numa ./volna_mpi_openmp Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2omp36_part4096_diag2
-	mpirun -np 2 -bind-to numa ./volna_mpi_sycl_global_aos    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_global_aos
-	mpirun -np 2 -bind-to numa ./volna_mpi_sycl_hier_scalar_aos              Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_hier_scalar_aos
-	OP_AUTO_SOA=1 mpirun -np 2 -bind-to numa ./volna_mpi_sycl_hier_scalar_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_hier_scalar_soa
-	OP_AUTO_SOA=1 mpirun -np 2 -bind-to numa ./volna_mpi_sycl_global_soa    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_global_soa
-	mpirun -np 2 -bind-to numa ./volna_mpi_sycl_hier_scalar_blockloop_aos    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_hier_scalar_blockloop_aos
-	OP_AUTO_SOA=1 mpirun -np 2 -bind-to numa ./volna_mpi_sycl_hier_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_hier_soa
-	mpirun -np 2 -bind-to numa ./volna_mpi_sycl_hier_aos      Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_hier_aos
-	OP_AUTO_SOA=1 mpirun -np 2 -bind-to numa ./volna_mpi_sycl_hier_scalar_blockloop_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_hier_scalar_blockloop_soa
+	OMP_NUM_THREADS=1 mpirun -np 144 -bind-to hwthread ./volna_mpi_vec volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 >> volna_mpivec144_diag2
+	OMP_NUM_THREADS=1 mpirun -np 72 -bind-to core ./volna_mpi_vec volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 >> volna_mpivec72_diag2
+	OMP_NUM_THREADS=1 mpirun -np 144 -bind-to hwthread ./volna_mpi volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 >> volna_mpi144_diag2
+	OMP_NUM_THREADS=1 mpirun -np 72 -bind-to core ./volna_mpi volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 >> volna_mpi72_diag2
+	OMP_NUM_THREADS=72 OMP_PROC_BIND=TRUE mpirun -np 2 -bind-to numa ./volna_mpi_openmp volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2omp72_part4096_diag2
+	OMP_NUM_THREADS=36 OMP_PROC_BIND=TRUE mpirun -np 2 -bind-to numa ./volna_mpi_openmp volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2omp36_part4096_diag2
+	mpirun -np 2 -bind-to numa ./volna_mpi_sycl_global_aos    volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_global_aos
+	mpirun -np 2 -bind-to numa ./volna_mpi_sycl_hier_scalar_aos              volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_hier_scalar_aos
+	OP_AUTO_SOA=1 mpirun -np 2 -bind-to numa ./volna_mpi_sycl_hier_scalar_soa  volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_hier_scalar_soa
+	OP_AUTO_SOA=1 mpirun -np 2 -bind-to numa ./volna_mpi_sycl_global_soa    volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_global_soa
+	mpirun -np 2 -bind-to numa ./volna_mpi_sycl_hier_scalar_blockloop_aos    volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_hier_scalar_blockloop_aos
+	OP_AUTO_SOA=1 mpirun -np 2 -bind-to numa ./volna_mpi_sycl_hier_soa  volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_hier_soa
+	mpirun -np 2 -bind-to numa ./volna_mpi_sycl_hier_aos      volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_hier_aos
+	OP_AUTO_SOA=1 mpirun -np 2 -bind-to numa ./volna_mpi_sycl_hier_scalar_blockloop_soa  volna_30m2.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi2_sycl_hier_scalar_blockloop_soa
 
 done

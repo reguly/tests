@@ -5,7 +5,7 @@ sed -i "s/end_step=.*/end_step=50/g" clover.in
 #mv cloverleaf_mpi_sycl cloverleaf_mpi_sycl_flat
 #OPS_CPU=1 make cloverleaf_mpi_sycl -B
 #mv cloverleaf_mpi_sycl cloverleaf_mpi_sycl_ndrange
-array=(  408 )
+array=( 408 )
 for i in "${array[@]}"
 do
 	sed -i "s/x_cells=.*/x_cells=$i/g" clover.in

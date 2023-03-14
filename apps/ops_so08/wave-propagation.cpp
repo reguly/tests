@@ -9,7 +9,7 @@
 int X_size;
 int Y_size;
 int Z_size;
-float dt = 0.001, start = 0, stop = 1;  // time variables
+float dt = 0.001, start = 0, stop = 0.5;  // time variables
 int border_size = 10;                    // Abosrbent border
 int space_order = 8;                     // Space order
 int ii_src[6], u_dim_size;
