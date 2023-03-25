@@ -1,0 +1,8 @@
+source /opt/intel/oneapi_nightly/setvars.sh --force
+export OPS_COMPILER=intel-sycl
+BASE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+export OPS_INSTALL_PATH=$BASE_DIR/OPS/ops
+export MPI_INSTALL_PATH=$(dirname $(dirname `which mpicxx`))
+export I_MPI_CC=icc
+export I_MPI_CXX=icpx
+export TMPDIR=`pwd`
