@@ -43,10 +43,7 @@ void opensbliblock00Kernel005_c_wrapper(
         const ptr_double ptr0 = {  p_a0 + n_x*1*1 + n_y*xdim0_opensbliblock00Kernel005*1*1 + n_z*xdim0_opensbliblock00Kernel005*ydim0_opensbliblock00Kernel005*1*1, xdim0_opensbliblock00Kernel005, ydim0_opensbliblock00Kernel005};
         const ptr_double ptr1 = {  p_a1 + n_x*1*1 + n_y*xdim1_opensbliblock00Kernel005*1*1 + n_z*xdim1_opensbliblock00Kernel005*ydim1_opensbliblock00Kernel005*1*1, xdim1_opensbliblock00Kernel005, ydim1_opensbliblock00Kernel005};
         ptr_double ptr2 = {  p_a2 + n_x*1*1 + n_y*xdim2_opensbliblock00Kernel005*1*1 + n_z*xdim2_opensbliblock00Kernel005*ydim2_opensbliblock00Kernel005*1*1, xdim2_opensbliblock00Kernel005, ydim2_opensbliblock00Kernel005};
-        opensbliblock00Kernel005( ptr0,
-          ptr1,
-          ptr2 );
-
+        opensbliblock00Kernel005( ptr0, ptr1, ptr2);
       }
     }
   }

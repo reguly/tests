@@ -8,6 +8,6 @@ do
 	sed -i "s/y_cells=.*/y_cells=$i/g" clover.in
 	for j in {1..8}
 	do
-		OMP_NUM_THREADS=1 mpirun  -np 224 -bind-to hwthread ./cloverleaf_mpi_tiled -OPS_DIAGS=2 OPS_TILING OPS_TILING_MAXDEPTH=6 OPS_TILESIZE_X=100000 OPS_TILESIZE_Y=14 >> c2d_mpi224_icc_tiled_diag2
+		OMP_NUM_THREADS=1 mpirun  -np $logical_cores -bind-to hwthread ./cloverleaf_mpi_tiled -OPS_DIAGS=2 OPS_TILING OPS_TILING_MAXDEPTH=6 OPS_TILESIZE_X=100000 OPS_TILESIZE_Y=14 >> c2d_mpi"$logical_cores"_icc_tiled_diag2
 	done
 done

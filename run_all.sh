@@ -1,9 +1,12 @@
 #!/bin/bash
 export BASE=`pwd`
 source source_intel
-module purge; module load baskerville
-module load bask-apps/test
-module load HDF5/1.10.7-iimpi-2021a
+source detect_hardware.sh
+export OMP_PROC_BIND=TRUE
+#these are for baskerville
+#module purge; module load baskerville
+#module load bask-apps/test
+#module load HDF5/1.10.7-iimpi-2021a
 cd $BASE/OPS/apps/c/CloverLeaf
 $BASE/runner_scripts/run_cloverleaf.sh
 cd $BASE/OPS/apps/c/CloverLeaf_3D
@@ -20,3 +23,5 @@ cd $BASE/apps/Rotor37_8M
 $BASE/runner_scripts/run_mgcfd.sh
 cd $BASE/apps/volna/sp
 $BASE/runner_scripts/run_volna.sh
+cd $BASE/apps/ops_so08
+$BASE/runner_scripts/run_so08.sh

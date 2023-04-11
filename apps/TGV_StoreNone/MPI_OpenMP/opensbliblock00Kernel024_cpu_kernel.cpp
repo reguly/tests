@@ -182,7 +182,7 @@ void ops_par_loop_opensbliblock00Kernel024_execute(ops_kernel_descriptor *desc) 
       #pragma loop_count(10000)
       #pragma omp simd
       #elif defined(__clang__)
-      #pragma omp simd
+      #pragma clang loop vectorize(assume_safety)
       #elif defined(__GNUC__)
       #pragma GCC ivdep
       #else
