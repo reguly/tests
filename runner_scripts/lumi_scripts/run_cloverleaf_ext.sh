@@ -19,7 +19,7 @@ do
 
 #		OMP_NUM_THREADS=1 mpirun  -np 192 -bind-to hwthread ./cloverleaf_mpi -OPS_DIAGS=1 >> c2d_mpi_icc_diag1
 #		OMP_NUM_THREADS=1 mpirun  -np 192 -bind-to hwthread ./cloverleaf_mpi -OPS_DIAGS=2 >> c2d_mpi_icc_diag2
-#		OMP_NUM_THREADS=24 OMP_PROC_BIND=TRUE mpirun -np $numa_domains  $bind_numa:1 ./cloverleaf_mpi_openmp -OPS_DIAGS=1 >> c2d_mpi4omp24_icc_diag1
-#		OMP_NUM_THREADS=24 OMP_PROC_BIND=TRUE mpirun -np $numa_domains  $bind_numa:1 ./cloverleaf_mpi_openmp -OPS_DIAGS=2 >> c2d_mpi4omp24_icc_diag2
+#		OMP_NUM_THREADS=24 OMP_PROC_BIND=TRUE mpirun -np 8  -bind-to numa:1 ./cloverleaf_mpi_openmp -OPS_DIAGS=1 >> c2d_mpi4omp24_icc_diag1
+#		OMP_NUM_THREADS=24 OMP_PROC_BIND=TRUE mpirun -np 8  -bind-to numa:1 ./cloverleaf_mpi_openmp -OPS_DIAGS=2 >> c2d_mpi4omp24_icc_diag2
 	done
 done

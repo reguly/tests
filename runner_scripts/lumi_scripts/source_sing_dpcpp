@@ -1,0 +1,10 @@
+export HDF5_INSTALL_PATH=/users/regulyre/hdf5-singularity
+export OP2_INSTALL_PATH=/users/regulyre/OP2-Common-sycl/op2
+export OP2_COMPILER=clang
+export OP_AUTO_SOA=1
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HDF5_INSTALL_PATH/lib
+#dpcpp
+export PATH=/opt/llvm/build/install/bin:$PATH
+export LD_LIBRARY_PATH=/opt/llvm/build/install/lib:$LD_LIBRARY_PATH
+export OPS_COMPILER=clang
+export OPS_INSTALL_PATH=/users/regulyre/OPS3/ops

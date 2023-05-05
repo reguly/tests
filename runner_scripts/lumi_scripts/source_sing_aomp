@@ -1,0 +1,18 @@
+export ROCM_PATH=/opt/rocm-5.4.2
+export HIP_INSTALL_PATH=/opt/rocm-5.4.2
+export HIP_LIB_PATH=/opt/rocm-5.4.2/lib
+export HIP_PATH=/opt/rocm-5.4.2/hip
+export PATH=/opt/rocm-5.4.2/bin:$PATH
+export PATH=$PATH:/scratch/project_465000281/omniperf-install/bin
+source /scratch/project_465000281/env/bin/activate
+
+export HDF5_INSTALL_PATH=/users/regulyre/hdf5-singularity
+export OP2_INSTALL_PATH=/users/regulyre/OP2-Common/op2
+export OP2_COMPILER=clang
+export OP_AUTO_SOA=1
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HDF5_INSTALL_PATH/lib
+#dpcpp
+export PATH=/opt/rocm-5.4.2/llvm/bin/:$PATH
+export LD_LIBRARY_PATH=/opt/rocm-5.4.2/llvm/lib:$LD_LIBRARY_PATH
+export OPS_COMPILER=clang
+export OPS_INSTALL_PATH=/users/regulyre/OPS3/ops

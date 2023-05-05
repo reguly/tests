@@ -1,0 +1,3 @@
+module load LUMI/22.08
+export MODULEPATH=/users/regulyre/.local/easybuild/modules/all:$MODULEPATH
+module load ARMForge/22.1.2

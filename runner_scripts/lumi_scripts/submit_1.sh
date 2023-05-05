@@ -2,11 +2,11 @@
 #SBATCH --job-name=scaling_ops   # Job name
 #SBATCH --output=scaling_ops.o%j # Name of stdout output file
 #SBATCH --error=scaling_ops.e%j  # Name of stderr error file
-#SBATCH --partition=standard-g    # Partition (queue) name
-#SBATCH --gpus=8192
-#SBATCH --ntasks=8192
-#SBATCH --ntasks-per-node=8
-##SBATCH --cpus-per-task=7
+#SBATCH --partition=dev-g    # Partition (queue) name
+#SBATCH --gpus=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=63
 #SBATCH --account=project_465000281
 #SBATCH --time=01:20:00      # Run time (d-hh:mm:ss)
 #SBATCH --mem=0
@@ -19,13 +19,13 @@ source ~/source_rocm
 #export HSA_ENABLE_DEBUG=1
 #export HSA_TOOLS_LIB=$ROCM_PATH/lib/librocm-debug-agent.so.2
 #export ROCM_DEBUG_AGENT_OPTIONS="--output=debug-agent-outdir/output.txt --save-code-objects=debug-agent-outdir"
-x=32
-y=16
-z=16
+x=1
+y=1
+z=1
 echo $ROCM_PATH
 cd ~/
 #base: 7680 7680
-./run_cloverleaf2d.sh $(( 128*7680 )) $(( 64*7680 ))
+./run_cloverleaf2d.sh $(( 1*7680 )) $(( 1*7680 ))
 cd ~/
 ./run_cloverleaf2d.sh 18000 18000
 cd ~/
