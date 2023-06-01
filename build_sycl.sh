@@ -102,3 +102,14 @@ mv volna_mpi_sycl volna_mpi_sycl_atomics_aos
 OP2_ATOMICS=1 OP_AUTO_SOA=1 ./translate2op2.sh
 make volna_mpi_sycl
 mv volna_mpi_sycl volna_mpi_sycl_atomics_soa
+
+
+cd $BASE/apps/miniBUDE/sycl
+mkdir build; cd build; CC=icx CXX=icpx cmake .. -DSYCL_RUNTIME=DPCPP -DCMAKE_BUILD_TYPE=Release; make -j
+mv build/bude bude_sycl
+
+cd $BASE/apps/miniWeather/miniWeather-sycl
+make -B -f Makefile-dpcpp
+mv main main_sycl_flat
+make -B -f Makefile-dpcpp NDRANGE=1
+mv main main_sycl_ndrange

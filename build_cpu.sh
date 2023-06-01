@@ -24,3 +24,9 @@ cd $BASE/apps/volna/sp
 ./translate2op2.sh
 make volna_mpi_genseq volna_mpi_vec
 mv volna_mpi_genseq volna_mpi 
+cd $BASE/apps/miniBUDE/openmp
+make COMPILER=INTEL ARCH=avx512
+mv bude bude_icx_omp
+cd $BASE/apps/miniWeather/miniWeather-omp
+make -B
+mv main main_omp
