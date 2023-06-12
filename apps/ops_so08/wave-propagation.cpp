@@ -9,7 +9,7 @@
 int X_size;
 int Y_size;
 int Z_size;
-float dt = 0.001, start = 0, stop = 0.5;  // time variables
+float dt = 0.001, start = 0, stop = 0.1;  // time variables
 int border_size = 10;                    // Abosrbent border
 int space_order = 8;                     // Space order
 int ii_src[6], u_dim_size;
@@ -41,7 +41,9 @@ int main(int argc, const char* argv[]) {
         exit(-1);
     }
 
-    X_size = Y_size = Z_size = atoi(argv[1]) - 2 * border_size - 2 * space_order;
+    X_size = atoi(argv[1]) - 2 * border_size - 2 * space_order;
+    Y_size = atoi(argv[2]) - 2 * border_size - 2 * space_order;
+    Z_size = atoi(argv[3]) - 2 * border_size - 2 * space_order;
 
     // Each dimension size. (This is only valid because X, Y, Z have the same size in this example).
     u_dim_size = X_size + 2 * border_size + 2 * space_order;
@@ -123,6 +125,8 @@ int main(int argc, const char* argv[]) {
     ops_decl_const("u_dim_size", 1, "int", &u_dim_size);
     ops_decl_const("ii_src", 6, "int", ii_src);
     ops_decl_const("p", 3, "float", p);
+
+    ops_printf("Wave propagation size = %dx%dx%d, %d steps\n", X_size, Y_size, Z_size, T_intervals);
 
     // Declare ops_block
     ops_block grid = ops_decl_block(3, "grid");

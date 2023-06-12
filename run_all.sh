@@ -7,6 +7,8 @@ export OMP_PROC_BIND=TRUE
 #module purge; module load baskerville
 #module load bask-apps/test
 #module load HDF5/1.10.7-iimpi-2021a
+#export SYCL=1
+#export CPUTEST=1
 
 #if $1 is not set, set it to all
 if [ -z "$1" ]; then

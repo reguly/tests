@@ -32,7 +32,7 @@ void ops_par_loop_source_injection_kernel(char const *, ops_block, int , int*,
 int X_size;
 int Y_size;
 int Z_size;
-float dt = 0.001, start = 0, stop = 0.5;
+float dt = 0.001, start = 0, stop = 0.1;
 int border_size = 10;
 int space_order = 8;
 int ii_src[6], u_dim_size;
@@ -58,12 +58,16 @@ int main(int argc, const char* argv[]) {
     struct timeval start_propagation_section, end_propagation_section;
     double total_time = 0;
 
+
     if (argc < 2) {
         printf("Inform grid size\n");
         exit(-1);
     }
 
-    X_size = Y_size = Z_size = atoi(argv[1]) - 2 * border_size - 2 * space_order;
+    X_size = atoi(argv[1]) - 2 * border_size - 2 * space_order;
+    Y_size = atoi(argv[2]) - 2 * border_size - 2 * space_order;
+    Z_size = atoi(argv[3]) - 2 * border_size - 2 * space_order;
+
 
     u_dim_size = X_size + 2 * border_size + 2 * space_order;
 
@@ -80,7 +84,11 @@ int main(int argc, const char* argv[]) {
 
 
 
+
+
     src = (float*)malloc(T_intervals * sizeof(float));
+
+
 
 
 
@@ -92,7 +100,9 @@ int main(int argc, const char* argv[]) {
 
 
 
+
     initialize_source_coordinates(src_coords);
+
 
 
 
@@ -102,8 +112,10 @@ int main(int argc, const char* argv[]) {
 
 
 
+
     ops_init(argc, argv, 2);
   ops_init_backend();
+
 
     ops_decl_const("X_size", 1, "int", &X_size);
     ops_decl_const("Y_size", 1, "int", &Y_size);
@@ -114,7 +126,11 @@ int main(int argc, const char* argv[]) {
     ops_decl_const("ii_src", 6, "int", ii_src);
     ops_decl_const("p", 3, "float", p);
 
+    ops_printf("Wave propagation size = %dx%dx%d, %d steps\n", X_size, Y_size, Z_size, T_intervals);
+
+
     ops_block grid = ops_decl_block(3, "grid");
+
 
     ops_dat dat_ut[3];
     ops_dat dat_m;
@@ -124,6 +140,7 @@ int main(int argc, const char* argv[]) {
     dat_ut[2] = ops_decl_dat(grid, 1, size, base, d_m, d_p, u[2], "float", "ut2");
     dat_m = ops_decl_dat(grid, 1, size, base, d_m, d_p, m, "float", "m");
     dat_damp = ops_decl_dat(grid, 1, damp_size, base, d_m, d_p, damp, "float", "damp");
+
 
     int s3d_000[] = {0, 0, 0};
     int s3d_1pt[] = {-1, -1, -1};
@@ -135,14 +152,18 @@ int main(int argc, const char* argv[]) {
     ops_stencil S3D_1PT = ops_decl_stencil(3, 1, s3d_1pt, "-1,-1,-1");
     ops_stencil S3D_SO8 = ops_decl_stencil(3, 25, s3d_so8, "so8");
 
+
     int propagation_range[] = {space_order, space_order + X_size + 2 * border_size,
                                space_order, space_order + Y_size + 2 * border_size,
                                space_order, space_order + Z_size + 2 * border_size};
 
 
 
+
     int injection_range[] = {ii_src[2] + 2,     ii_src[3] + 2 + 1, ii_src[1] + 2,
                              ii_src[4] + 2 + 1, ii_src[0] + 2,     ii_src[5] + 2 + 1};
+
+
 
 
     ops_partition("");
@@ -173,7 +194,11 @@ int main(int argc, const char* argv[]) {
 
 
 
+
+
+
     ops_printf("Wave propagation time: %lf\n", total_time);
+
 
 
 
@@ -181,8 +206,10 @@ int main(int argc, const char* argv[]) {
 
     ops_exit();
 
+
     return 0;
 }
+
 
 void initialize_slowness(float* m, int x_size, int y_size, int z_size) {
 
@@ -194,6 +221,7 @@ void initialize_slowness(float* m, int x_size, int y_size, int z_size) {
         }
     }
 }
+
 
 void initialize_damp(float* damp, int x_size, int y_size, int z_size) {
     float dampcoeff;
@@ -216,6 +244,7 @@ void initialize_damp(float* damp, int x_size, int y_size, int z_size) {
                             damp[i + j * x_size + k * x_size * y_size] += val;
                         }
 
+
                         if ((dim == 0 && i == x_size - border - 1) || (dim == 1 && j == y_size - border - 1) ||
                             (dim == 2 && k == z_size - border - 1)) {
                             damp[i + j * x_size + k * x_size * y_size] += val;
@@ -225,6 +254,7 @@ void initialize_damp(float* damp, int x_size, int y_size, int z_size) {
             }
         }
     }
+
 
     int new_i, new_j, new_k;
     for (int k = 0; k < z_size; k++) {
@@ -236,12 +266,14 @@ void initialize_damp(float* damp, int x_size, int y_size, int z_size) {
                     new_j = j < 1 ? j + 1 : j > y_size - 2 ? j - 1 : j;
                     new_k = k < 1 ? k + 1 : k > z_size - 2 ? k - 1 : k;
 
+
                     damp[i + j * x_size + k * x_size * y_size] = damp[new_i + new_j * x_size + new_k * x_size * y_size];
                 }
             }
         }
     }
 }
+
 
 void initialize_source(float* src, int total_time) {
     float f0 = 0.1;
@@ -257,11 +289,13 @@ void initialize_source(float* src, int total_time) {
     }
 }
 
+
 void initialize_source_coordinates(float* src_coords) {
     src_coords[0] = (float)(X_size - 1) / (float)2;
     src_coords[1] = (float)(Y_size - 1) / (float)2;
     src_coords[2] = (float)1.;
 }
+
 
 void calculate_source_interpolation_position(float* src_coords, float* p, int* ii_src) {
 
@@ -278,6 +312,7 @@ void calculate_source_interpolation_position(float* src_coords, float* p, int* i
     p[1] = (float)(border_size - 1.0F * r2 + src_coords[1]);
     p[2] = (float)(border_size - 1.0F * r3 + src_coords[2]);
 }
+
 
 void print_vector(float* vec, int x_limit, int y_limit, int z_limit) {
     ops_printf("Vector of dimensions: %d %d %d\n", x_limit, y_limit, z_limit);
