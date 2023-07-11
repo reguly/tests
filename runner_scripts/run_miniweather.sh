@@ -6,7 +6,9 @@ do
   if [ -n "$CPUTEST" ]; then
   cd miniWeather-omp
 	OMP_PROC_BIND=TRUE OMP_NUM_THREADS=$threads_per_numa mpirun -np $numa_domains $bind_numa ./main_omp >> miniweather_mpi"$numa_domains"omp"$threads_per_numa"_diag2 2>&1
+  if [ "$logical_cores" -ne "$physical_cores" ]; then
 	OMP_PROC_BIND=spread OMP_NUM_THREADS=$physical_cores_per_numa mpirun -np $numa_domains $bind_numa ./main_omp >> miniweather_mpi"$numa_domains"omp"$physical_cores_per_numa"_diag2 2>&1
+  fi
   cd ..
   fi
   if [ -n "$SYCL" ]; then
