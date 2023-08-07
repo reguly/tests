@@ -1,0 +1,27 @@
+#OneAPI Install paths
+#This is just for the PVC
+source $HOME/source_hipsycl
+#export HDF5_INSTALL_PATH=/bask/apps/test/EL8-ice/software/HDF5/1.10.7-iimpi-2021a
+export MPI_INSTALL_PATH=$(dirname $(dirname `which mpicxx`))
+
+#test suite
+BASE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+export OPS_COMPILER=hipsycl
+export OP2_COMPILER=hipsycl
+export HIPSYCL_FLAGS=--opensycl-targets=generic
+export OPS_INSTALL_PATH=$BASE_DIR/OPS/ops
+export OP2_INSTALL_PATH=$BASE_DIR/OP2-Common-sycl/op2
+export HDF5_INSTALL_PATH=$BASE_DIR/hdf5
+export PTSCOTCH_INSTALL_PATH=$BASE_DIR/ptscotch
+export PARMETIS_INSTALL_PATH=$BASE_DIR/parmetis
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HDF5_INSTALL_PATH/lib
+export TMPDIR=`pwd`
+export I_MPI_CC=clang
+export I_MPI_CXX=clang++
+export OMPI_CC=$I_MPI_CC
+export OMPI_CXX=$I_MPI_CXX
+
+export bind_numa="-bind-to numa"
+#this is just for the OpenMPI setup on PPCU local cluster
+# export mpirunflags="-mca io ^ompio"
+# export bind_numa="/home/reguly/numawrap_omp2"

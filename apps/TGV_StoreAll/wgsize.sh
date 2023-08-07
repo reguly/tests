@@ -11,7 +11,7 @@ do
 			fi
 			echo "wg size test ${k} ${j} ${i}"
 			echo "wg size test ${k} ${j} ${i}" >> sn_"$ACCEL"_wgtest3d
-			#mpirun -np 8 -bind-to numa ./opensbli_"$ACCEL" 320 320 320 -OPS_DIAGS=2 OPS_SYCL_DEVICE=1 -gpudirect OPS_BLOCK_SIZE_X=${k} OPS_BLOCK_SIZE_Z=${j} OPS_BLOCK_SIZE_Y=${i} >> sn_mpisycl_ndrange_wgtest3d
+			#mpirun -np 8 -bind-to numa ./opensbli_mpi_sycl_ndrange 320 320 320 -OPS_DIAGS=2 OPS_SYCL_DEVICE=1 -gpudirect OPS_BLOCK_SIZE_X=${k} OPS_BLOCK_SIZE_Z=${j} OPS_BLOCK_SIZE_Y=${i} >> sn_mpisycl_ndrange_wgtest3d
 			./opensbli_"$ACCEL" 320 320 320 -OPS_DIAGS=2 OPS_SYCL_DEVICE=$SYCL_DEVICE -gpudirect OPS_BLOCK_SIZE_X=${k} OPS_BLOCK_SIZE_Z=${j} OPS_BLOCK_SIZE_Y=${i} >> sn_"$ACCEL"_wgtest3d
 		done
 	done
