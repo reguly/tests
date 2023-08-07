@@ -42,7 +42,8 @@ void opensbliblock00Kernel087_c_wrapper(
 
 // host stub function
 void ops_par_loop_opensbliblock00Kernel087(char const *name, ops_block block, int dim, int* range,
- ops_arg arg0, ops_arg arg1, ops_arg arg2, ops_arg arg3, ops_arg arg4, ops_arg arg5) {
+ ops_arg arg0, ops_arg arg1, ops_arg arg2, ops_arg arg3,
+ ops_arg arg4, ops_arg arg5) {
 
   ops_arg args[6] = { arg0, arg1, arg2, arg3, arg4, arg5};
 

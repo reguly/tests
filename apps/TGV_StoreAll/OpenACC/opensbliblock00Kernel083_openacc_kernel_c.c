@@ -71,12 +71,8 @@ void opensbliblock00Kernel083_c_wrapper(
         ptr_double ptr2 = {  p_a2 + n_x*1*1 + n_y*xdim2_opensbliblock00Kernel083*1*1 + n_z*xdim2_opensbliblock00Kernel083*ydim2_opensbliblock00Kernel083*1*1, xdim2_opensbliblock00Kernel083, ydim2_opensbliblock00Kernel083};
         ptr_double ptr3 = {  p_a3 + n_x*1*1 + n_y*xdim3_opensbliblock00Kernel083*1*1 + n_z*xdim3_opensbliblock00Kernel083*ydim3_opensbliblock00Kernel083*1*1, xdim3_opensbliblock00Kernel083, ydim3_opensbliblock00Kernel083};
         ptr_double ptr4 = {  p_a4 + n_x*1*1 + n_y*xdim4_opensbliblock00Kernel083*1*1 + n_z*xdim4_opensbliblock00Kernel083*ydim4_opensbliblock00Kernel083*1*1, xdim4_opensbliblock00Kernel083, ydim4_opensbliblock00Kernel083};
-        opensbliblock00Kernel083( ptr0,
-          ptr1,
-          ptr2,
-          ptr3,
-          ptr4 );
-
+        opensbliblock00Kernel083( ptr0, ptr1, ptr2, ptr3,
+           ptr4);
       }
     }
   }

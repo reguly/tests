@@ -51,6 +51,8 @@ void fd3d_pml_kernel(const ptr_float rho,
 
 
 
+
+
   float px = OPS_ACC(yy, 0,0,0,0);
   float py = OPS_ACC(yy, 1,0,0,0);
   float pz = OPS_ACC(yy, 2,0,0,0);
@@ -158,12 +160,8 @@ void fd3d_pml_kernel_c_wrapper(
         #else
         ptrm_float ptr3 = {  p_a3 + n_x*1 + n_y*xdim3_fd3d_pml_kernel*1 + n_z*xdim3_fd3d_pml_kernel*ydim3_fd3d_pml_kernel*1, xdim3_fd3d_pml_kernel, ydim3_fd3d_pml_kernel, 6};
         #endif
-        fd3d_pml_kernel( ptr0,
-          ptr1,
-          ptr2,
-          ptr3,
-          arg_idx );
-
+        fd3d_pml_kernel( ptr0, ptr1, ptr2, ptr3,
+          arg_idx);
       }
     }
   }

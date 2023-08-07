@@ -7,7 +7,7 @@ CC        = mpicxx
 OPTIMIZE  = yes
 DEBUG     = no
 
-# GPU       = yes
+GPU       = yes
 # CUDA      = no
 # CUDA_ARCH = sm_70
 # HIP       = no
@@ -43,7 +43,7 @@ CFLAGS := $(EXTRA_CFLAGS) \
 	  -DSIM_TIME=1 \
 	  -DDATA_SPEC=DATA_SPEC_THERMAL \
           -I$(MPI_INCLUDE) \
-          -std=c++17 -Wall -I../include -fsycl -fsycl-targets=spir64_x86_64 -Xs "-march=avx512"
+          -std=c++17 -Wall -I../include --opensycl-targets=generic #-fsycl #-fsycl-targets=spir64_x86_64 -Xs "-march=avx512"
 
 # Linker Flags
 LDFLAGS = -L$(MPI_LIB_DIR) -lmpi

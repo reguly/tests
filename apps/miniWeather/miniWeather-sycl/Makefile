@@ -43,7 +43,7 @@ CFLAGS := $(EXTRA_CFLAGS) \
 	  -DSIM_TIME=600 \
 	  -DDATA_SPEC=DATA_SPEC_THERMAL \
           -I$(MPI_INCLUDE) \
-          -std=c++17 -Wall -I../include -fsycl
+          -std=c++17 -Wall -I../include -fsycl -g
 
 # Linker Flags
 LDFLAGS = -L$(MPI_LIB_DIR) -lmpi

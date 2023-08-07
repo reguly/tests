@@ -142,17 +142,17 @@ void ops_par_loop_fd3d_pml_kernel_execute(ops_kernel_descriptor *desc) {
       cgh.parallel_for<class fd3d_pml_kernel_kernel>(cl::sycl::nd_range<3>(cl::sycl::range<3>(
            ((end[2]-start[2]-1)/block->instance->OPS_block_size_z+1)*block->instance->OPS_block_size_z,
            ((end[1]-start[1]-1)/block->instance->OPS_block_size_y+1)*block->instance->OPS_block_size_y,
-            end[0]-start[0]
+            ((end[0]-start[0]-1)/block->instance->OPS_block_size_x+1)*block->instance->OPS_block_size_x
              ),cl::sycl::range<3>(
              block->instance->OPS_block_size_z,
              block->instance->OPS_block_size_y,
-            end[0]-start[0]
+      block->instance->OPS_block_size_x
              ))
       , [=](cl::sycl::nd_item<3> item
       ) [[intel::kernel_args_restrict]] {
-        int n_z = item.get_global_id()[0]+start_2;
-        int n_y = item.get_global_id()[1]+start_1;
-        int n_x = item.get_global_id()[2]+start_0;
+        int n_z = item.get_global_id(0)+start_2;
+        int n_y = item.get_global_id(1)+start_1;
+        int n_x = item.get_global_id(2)+start_0;
         int idx[] = {arg_idx_0+n_x, arg_idx_1+n_y, arg_idx_2+n_z};
         const ACC<float> rho(xdim0_fd3d_pml_kernel, ydim0_fd3d_pml_kernel, &rho_p[0] + base0 + n_x*1 + n_y * xdim0_fd3d_pml_kernel*1 + n_z * xdim0_fd3d_pml_kernel * ydim0_fd3d_pml_kernel*1);
         const ACC<float> mu(xdim1_fd3d_pml_kernel, ydim1_fd3d_pml_kernel, &mu_p[0] + base1 + n_x*1 + n_y * xdim1_fd3d_pml_kernel*1 + n_z * xdim1_fd3d_pml_kernel * ydim1_fd3d_pml_kernel*1);
@@ -192,6 +192,8 @@ void ops_par_loop_fd3d_pml_kernel_execute(ops_kernel_descriptor *desc) {
   if(idx[2]>=zend_sycl[0]-pml_width_sycl[0]){
     sigmaz=(idx[2]-(zend_sycl[0]-pml_width_sycl[0]))*sigma/pml_width_sycl[0];
   }
+
+
 
 
 

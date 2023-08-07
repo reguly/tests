@@ -164,17 +164,17 @@ void ops_par_loop_opensbliblock00Kernel000_execute(ops_kernel_descriptor *desc) 
       cgh.parallel_for<class opensbliblock00Kernel000_kernel>(cl::sycl::nd_range<3>(cl::sycl::range<3>(
            ((end[2]-start[2]-1)/block->instance->OPS_block_size_z+1)*block->instance->OPS_block_size_z,
            ((end[1]-start[1]-1)/block->instance->OPS_block_size_y+1)*block->instance->OPS_block_size_y,
-            end[0]-start[0]
+            ((end[0]-start[0]-1)/block->instance->OPS_block_size_x+1)*block->instance->OPS_block_size_x
              ),cl::sycl::range<3>(
              block->instance->OPS_block_size_z,
              block->instance->OPS_block_size_y,
-            end[0]-start[0]
+      block->instance->OPS_block_size_x
              ))
       , [=](cl::sycl::nd_item<3> item
       ) [[intel::kernel_args_restrict]] {
-        int n_z = item.get_global_id()[0]+start_2;
-        int n_y = item.get_global_id()[1]+start_1;
-        int n_x = item.get_global_id()[2]+start_0;
+        int n_z = item.get_global_id(0)+start_2;
+        int n_y = item.get_global_id(1)+start_1;
+        int n_x = item.get_global_id(2)+start_0;
         const ACC<double> p_B0(xdim0_opensbliblock00Kernel000, ydim0_opensbliblock00Kernel000, &p_B0_p[0] + base0 + n_x*1 + n_y * xdim0_opensbliblock00Kernel000*1 + n_z * xdim0_opensbliblock00Kernel000 * ydim0_opensbliblock00Kernel000*1);
         const ACC<double> u1_B0(xdim1_opensbliblock00Kernel000, ydim1_opensbliblock00Kernel000, &u1_B0_p[0] + base1 + n_x*1 + n_y * xdim1_opensbliblock00Kernel000*1 + n_z * xdim1_opensbliblock00Kernel000 * ydim1_opensbliblock00Kernel000*1);
         const ACC<double> rhoE_B0(xdim2_opensbliblock00Kernel000, ydim2_opensbliblock00Kernel000, &rhoE_B0_p[0] + base2 + n_x*1 + n_y * xdim2_opensbliblock00Kernel000*1 + n_z * xdim2_opensbliblock00Kernel000 * ydim2_opensbliblock00Kernel000*1);

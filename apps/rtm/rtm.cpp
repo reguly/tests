@@ -188,7 +188,7 @@ int main(int argc, char **argv)
   ops_decl_const("ypmlend",1,"int",&ypmlend);
   ops_decl_const("zpmlend",1,"int",&zpmlend);
   int ncoeffs = (ORDER+1)*(ORDER+1);
-  ops_decl_const("coeffs",ncoeffs,"float",&coeffs[0][0]);
+//ops_decl_const("coeffs",ncoeffs,"float",&coeffs[0][0]);
   halff = HALF;
   ops_decl_const("halff",1,"int",&halff);
   order = ORDER;

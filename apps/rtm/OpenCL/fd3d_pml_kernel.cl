@@ -65,6 +65,8 @@ void fd3d_pml_kernel(const ptr_float rho,
 
 
 
+
+
   float px = OPS_ACCM(yy, 0,0,0,0);
   float py = OPS_ACCM(yy, 1,0,0,0);
   float pz = OPS_ACCM(yy, 2,0,0,0);

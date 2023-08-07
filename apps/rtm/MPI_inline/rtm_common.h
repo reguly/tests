@@ -36,7 +36,6 @@ extern int zpmlbeg;
 extern int xpmlend;
 extern int ypmlend;
 extern int zpmlend;
-extern float *coeffs;
 extern int halff;
 extern int order;
 extern float *c;

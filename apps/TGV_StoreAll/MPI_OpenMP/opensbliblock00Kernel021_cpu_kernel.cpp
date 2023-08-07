@@ -153,16 +153,7 @@ void ops_par_loop_opensbliblock00Kernel021_execute(ops_kernel_descriptor *desc) 
   #pragma omp parallel for collapse(2)
   for ( int n_z=start[2]; n_z<end[2]; n_z++ ){
     for ( int n_y=start[1]; n_y<end[1]; n_y++ ){
-      #ifdef __INTEL_COMPILER
-      #pragma loop_count(10000)
       #pragma omp simd
-      #elif defined(__clang__)
-      #pragma omp simd
-      #elif defined(__GNUC__)
-      #pragma GCC ivdep
-      #else
-      #pragma simd
-      #endif
       for ( int n_x=start[0]; n_x<end[0]; n_x++ ){
         const ACC<double> p_B0(xdim0_opensbliblock00Kernel021, ydim0_opensbliblock00Kernel021, p_B0_p + n_x*1 + n_y * xdim0_opensbliblock00Kernel021*1 + n_z * xdim0_opensbliblock00Kernel021 * ydim0_opensbliblock00Kernel021*1);
         const ACC<double> u0_B0(xdim1_opensbliblock00Kernel021, ydim1_opensbliblock00Kernel021, u0_B0_p + n_x*1 + n_y * xdim1_opensbliblock00Kernel021*1 + n_z * xdim1_opensbliblock00Kernel021 * ydim1_opensbliblock00Kernel021*1);

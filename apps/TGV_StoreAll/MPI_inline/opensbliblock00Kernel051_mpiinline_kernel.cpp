@@ -275,7 +275,19 @@ void opensbliblock00Kernel051_c_wrapper(
 
 // host stub function
 void ops_par_loop_opensbliblock00Kernel051(char const *name, ops_block block, int dim, int* range,
- ops_arg arg0, ops_arg arg1, ops_arg arg2, ops_arg arg3, ops_arg arg4, ops_arg arg5, ops_arg arg6, ops_arg arg7, ops_arg arg8, ops_arg arg9, ops_arg arg10, ops_arg arg11, ops_arg arg12, ops_arg arg13, ops_arg arg14, ops_arg arg15, ops_arg arg16, ops_arg arg17, ops_arg arg18, ops_arg arg19, ops_arg arg20, ops_arg arg21, ops_arg arg22, ops_arg arg23, ops_arg arg24, ops_arg arg25, ops_arg arg26, ops_arg arg27, ops_arg arg28, ops_arg arg29, ops_arg arg30, ops_arg arg31, ops_arg arg32, ops_arg arg33, ops_arg arg34, ops_arg arg35, ops_arg arg36, ops_arg arg37, ops_arg arg38, ops_arg arg39, ops_arg arg40, ops_arg arg41, ops_arg arg42, ops_arg arg43, ops_arg arg44, ops_arg arg45, ops_arg arg46, ops_arg arg47, ops_arg arg48, ops_arg arg49, ops_arg arg50, ops_arg arg51) {
+ ops_arg arg0, ops_arg arg1, ops_arg arg2, ops_arg arg3,
+ ops_arg arg4, ops_arg arg5, ops_arg arg6, ops_arg arg7,
+ ops_arg arg8, ops_arg arg9, ops_arg arg10, ops_arg arg11,
+ ops_arg arg12, ops_arg arg13, ops_arg arg14, ops_arg arg15,
+ ops_arg arg16, ops_arg arg17, ops_arg arg18, ops_arg arg19,
+ ops_arg arg20, ops_arg arg21, ops_arg arg22, ops_arg arg23,
+ ops_arg arg24, ops_arg arg25, ops_arg arg26, ops_arg arg27,
+ ops_arg arg28, ops_arg arg29, ops_arg arg30, ops_arg arg31,
+ ops_arg arg32, ops_arg arg33, ops_arg arg34, ops_arg arg35,
+ ops_arg arg36, ops_arg arg37, ops_arg arg38, ops_arg arg39,
+ ops_arg arg40, ops_arg arg41, ops_arg arg42, ops_arg arg43,
+ ops_arg arg44, ops_arg arg45, ops_arg arg46, ops_arg arg47,
+ ops_arg arg48, ops_arg arg49, ops_arg arg50, ops_arg arg51) {
 
   ops_arg args[52] = { arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19, arg20, arg21, arg22, arg23, arg24, arg25, arg26, arg27, arg28, arg29, arg30, arg31, arg32, arg33, arg34, arg35, arg36, arg37, arg38, arg39, arg40, arg41, arg42, arg43, arg44, arg45, arg46, arg47, arg48, arg49, arg50, arg51};
 

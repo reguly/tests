@@ -56,8 +56,6 @@ cl::sycl::buffer<int,1> *ypmlend_p=nullptr;
 extern int ypmlend;
 cl::sycl::buffer<int,1> *zpmlend_p=nullptr;
 extern int zpmlend;
-cl::sycl::buffer<float,1> *coeffs_p=nullptr;
-extern float *coeffs;
 cl::sycl::buffer<int,1> *halff_p=nullptr;
 extern int halff;
 cl::sycl::buffer<int,1> *order_p=nullptr;
@@ -239,14 +237,6 @@ void ops_decl_const_char(OPS_instance *instance, int dim, char const * type, int
     auto accessor = (*zpmlend_p).get_access<cl::sycl::access::mode::write>();
     for ( int d=0; d<dim; d++ ){
       accessor[d] = ((int*)dat)[d];
-    }
-  }
-  else
-  if (!strcmp(name,"coeffs")) {
-    if (coeffs_p == nullptr) coeffs_p = new cl::sycl::buffer<float,1>(cl::sycl::range<1>(dim));
-    auto accessor = (*coeffs_p).get_access<cl::sycl::access::mode::write>();
-    for ( int d=0; d<dim; d++ ){
-      accessor[d] = ((float*)dat)[d];
     }
   }
   else

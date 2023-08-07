@@ -67,12 +67,8 @@ void calc_ytemp2_kernel_c_wrapper(
         #else
         ptrm_float ptr4 = {  p_a4 + n_x*1 + n_y*xdim4_calc_ytemp2_kernel*1 + n_z*xdim4_calc_ytemp2_kernel*ydim4_calc_ytemp2_kernel*1, xdim4_calc_ytemp2_kernel, ydim4_calc_ytemp2_kernel, 6};
         #endif
-        calc_ytemp2_kernel( arg_idx,
-           &p_a1,
-          ptr2,
-          ptr3,
-          ptr4 );
-
+        calc_ytemp2_kernel(arg_idx, &p_a1, ptr2, ptr3,
+           ptr4);
       }
     }
   }

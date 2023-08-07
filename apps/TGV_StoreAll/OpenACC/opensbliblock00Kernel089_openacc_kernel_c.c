@@ -89,18 +89,9 @@ void opensbliblock00Kernel089_c_wrapper(
         ptr_double ptr7 = {  p_a7 + n_x*1*1 + n_y*xdim7_opensbliblock00Kernel089*1*1 + n_z*xdim7_opensbliblock00Kernel089*ydim7_opensbliblock00Kernel089*1*1, xdim7_opensbliblock00Kernel089, ydim7_opensbliblock00Kernel089};
         ptr_double ptr8 = {  p_a8 + n_x*1*1 + n_y*xdim8_opensbliblock00Kernel089*1*1 + n_z*xdim8_opensbliblock00Kernel089*ydim8_opensbliblock00Kernel089*1*1, xdim8_opensbliblock00Kernel089, ydim8_opensbliblock00Kernel089};
         ptr_double ptr9 = {  p_a9 + n_x*1*1 + n_y*xdim9_opensbliblock00Kernel089*1*1 + n_z*xdim9_opensbliblock00Kernel089*ydim9_opensbliblock00Kernel089*1*1, xdim9_opensbliblock00Kernel089, ydim9_opensbliblock00Kernel089};
-        opensbliblock00Kernel089( ptr0,
-          ptr1,
-          ptr2,
-          ptr3,
-          ptr4,
-          ptr5,
-          ptr6,
-          ptr7,
-          ptr8,
-          ptr9,
-           &p_a10 );
-
+        opensbliblock00Kernel089( ptr0, ptr1, ptr2, ptr3,
+           ptr4, ptr5, ptr6, ptr7,
+           ptr8, ptr9, &p_a10);
       }
     }
   }

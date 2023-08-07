@@ -115,16 +115,7 @@ void ops_par_loop_fd3d_pml_kernel_execute(ops_kernel_descriptor *desc) {
   #pragma omp parallel for collapse(2)
   for ( int n_z=start[2]; n_z<end[2]; n_z++ ){
     for ( int n_y=start[1]; n_y<end[1]; n_y++ ){
-      #ifdef __INTEL_COMPILER
-      #pragma loop_count(10000)
       #pragma omp simd
-      #elif defined(__clang__)
-      #pragma omp simd
-      #elif defined(__GNUC__)
-      #pragma GCC ivdep
-      #else
-      #pragma simd
-      #endif
       for ( int n_x=start[0]; n_x<end[0]; n_x++ ){
         int idx[] = {arg_idx[0]+n_x, arg_idx[1]+n_y, arg_idx[2]+n_z};
         const ACC<float> rho(xdim0_fd3d_pml_kernel, ydim0_fd3d_pml_kernel, rho_p + n_x*1 + n_y * xdim0_fd3d_pml_kernel*1 + n_z * xdim0_fd3d_pml_kernel * ydim0_fd3d_pml_kernel*1);
@@ -163,6 +154,8 @@ void ops_par_loop_fd3d_pml_kernel_execute(ops_kernel_descriptor *desc) {
   if(idx[2]>=zend-pml_width){
     sigmaz=(idx[2]-(zend-pml_width))*sigma/pml_width;
   }
+
+
 
 
 

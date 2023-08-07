@@ -1,6 +1,11 @@
 #OneAPI Install paths
 #This is just for the PVC
 source $HOME/source_hipsycl
+#export PATH=/home/u101201/opensycl-install/bin:/home/u101201/llvm-install/bin:$PATH
+#export LD_LIBRARY_PATH=/home/u101201/opensycl-install/lib:/home/u101201/llvm-install/lib:$LD_LIBRARY_PATH
+#export CPLUS_INCLUDE_PATH=/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
+#export LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11
+
 #export HDF5_INSTALL_PATH=/bask/apps/test/EL8-ice/software/HDF5/1.10.7-iimpi-2021a
 export MPI_INSTALL_PATH=$(dirname $(dirname `which mpicxx`))
 
@@ -12,6 +17,7 @@ export HIPSYCL_FLAGS=--opensycl-targets=generic
 export OPS_INSTALL_PATH=$BASE_DIR/OPS/ops
 export OP2_INSTALL_PATH=$BASE_DIR/OP2-Common-sycl/op2
 export HDF5_INSTALL_PATH=$BASE_DIR/hdf5
+export HDF5_SEQ_INSTALL_PATH=$BASE_DIR/hdf5-seq
 export PTSCOTCH_INSTALL_PATH=$BASE_DIR/ptscotch
 export PARMETIS_INSTALL_PATH=$BASE_DIR/parmetis
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HDF5_INSTALL_PATH/lib

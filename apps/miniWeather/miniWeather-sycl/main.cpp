@@ -14,6 +14,8 @@
 #include <time.h>
 #include "common.h"
 #include "timing.h"
+using namespace cl::sycl;
+using namespace cl;
 
 const double pi        = 3.14159265358979323846264338327;   //Pi
 const double grav      = 9.8;                               //Gravitational acceleration (m / s^2)
@@ -105,8 +107,8 @@ void hydro_const_theta( double z , double &r , double &t ) {
   //Establish hydrostatic balance first using Exner pressure
   t = theta0;                                  //Potential Temperature at z
   exner = exner0 - grav * z / (cp * theta0);   //Exner pressure at z
-  p = p0 * pow(exner,(cp/rd));                 //Pressure at z
-  rt = pow((p / C0),(1. / gamm));             //rho*theta at z
+  p = p0 * sycl::pow(exner,(cp/rd));                 //Pressure at z
+  rt = sycl::pow((p / C0),(1. / gamm));             //rho*theta at z
   r = rt / t;                                  //Density at z
 }
 
@@ -119,10 +121,10 @@ void hydro_const_bvfreq( double z , double bv_freq0 , double &r , double &t ) {
   const double theta0 = 300.;  //Background potential temperature
   const double exner0 = 1.;    //Surface-level Exner pressure
   double       p, exner, rt;
-  t = theta0 * exp( bv_freq0*bv_freq0 / grav * z );                                    //Pot temp at z
+  t = theta0 * sycl::exp( bv_freq0*bv_freq0 / grav * z );                                    //Pot temp at z
   exner = exner0 - grav*grav / (cp * bv_freq0*bv_freq0) * (t - theta0) / (t * theta0); //Exner pressure at z
-  p = p0 * pow(exner,(cp/rd));                                                         //Pressure at z
-  rt = pow((p / C0),(1. / gamm));                                                  //rho*theta at z
+  p = p0 * sycl::pow(exner,(cp/rd));                                                         //Pressure at z
+  rt = sycl::pow((p / C0),(1. / gamm));                                                  //rho*theta at z
   r = rt / t;                                                                          //Density at z
 }
 
@@ -133,10 +135,10 @@ void hydro_const_bvfreq( double z , double bv_freq0 , double &r , double &t ) {
 double sample_ellipse_cosine( double x , double z , double amp , double x0 , double z0 , double xrad , double zrad ) {
   double dist;
   //Compute distance from bubble center
-  dist = sqrt( ((x-x0)/xrad)*((x-x0)/xrad) + ((z-z0)/zrad)*((z-z0)/zrad) ) * pi / 2.;
+  dist = sycl::sqrt( ((x-x0)/xrad)*((x-x0)/xrad) + ((z-z0)/zrad)*((z-z0)/zrad) ) * pi / 2.;
   //If the distance from bubble center is less than the radius, create a cos**2 profile
   if (dist <= pi / 2.) {
-    return amp * pow(cos(dist),2.);
+    return amp * sycl::pow(sycl::cos(dist),2.);
   } else {
     return 0.;
   }
@@ -442,7 +444,7 @@ void set_halo_values_x(
   ierr = MPI_Irecv(recvbuf_r,hs*nz*NUM_VARS,MPI_DOUBLE,right_rank,1,MPI_COMM_WORLD,&req_r[1]);
 
   //Pack the send buffers
-  range<3> buffer_gws (NUM_VARS, nz, hs);
+  range<3> buffer_gws (NUM_VARS, nz, std::max(BS_X,hs));
   range<3> buffer_lws (1, BS_Y, BS_X);
 
   q.submit([&] (handler &cgh) {
@@ -594,8 +596,8 @@ void init( int *argc , char ***argv ) {
   ierr = MPI_Comm_size(MPI_COMM_WORLD,&nranks);
   ierr = MPI_Comm_rank(MPI_COMM_WORLD,&myrank);
   nper = ( (double) nx_glob ) / nranks;
-  i_beg = round( nper* (myrank)    );
-  i_end = round( nper*((myrank)+1) )-1;
+  i_beg = sycl::round( nper* (myrank)    );
+  i_end = sycl::round( nper*((myrank)+1) )-1;
   nx = i_end - i_beg + 1;
   left_rank  = myrank - 1;
   if (left_rank == -1) left_rank = nranks-1;
@@ -628,7 +630,7 @@ void init( int *argc , char ***argv ) {
   recvbuf_r          = (double *) malloc( hs*nz*NUM_VARS*sizeof(double) );
 
   //Define the maximum stable time step based on an assumed maximum wind speed
-  dt = fmin(dx,dz) / max_speed * cfl;
+  dt = sycl::fmin(dx,dz) / max_speed * cfl;
   //Set initial elapsed model time and output_counter to zero
   etime = 0.;
   output_counter = 0.;
@@ -712,7 +714,7 @@ void init( int *argc , char ***argv ) {
     if (data_spec_int == DATA_SPEC_INJECTION      ) { injection      (0.,z,r,u,w,t,hr,ht); }
     hy_dens_int      [k] = hr;
     hy_dens_theta_int[k] = hr*ht;
-    hy_pressure_int  [k] = C0*pow((hr*ht),gamm);
+    hy_pressure_int  [k] = C0*sycl::pow((hr*ht),gamm);
   }
 }
 
@@ -742,7 +744,7 @@ void finalize() {
 
 static inline void atomicAdd(double& val, const double delta)
 {
-  sycl::ext::oneapi::atomic_ref<double, sycl::memory_order::relaxed,
+  sycl::atomic_ref<double, sycl::memory_order::relaxed,
                                 sycl::memory_scope::device,
                                 sycl::access::address_space::global_space> ref(val);
   ref.fetch_add(delta);
