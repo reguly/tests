@@ -14,8 +14,13 @@ do
   #if environment variable SYCL exists
   if [ -n "$SYCL" ]; then
     cd sycl
-    ./bude_sycl -d 1 -i 30 -w 0 >> bude_sycl_flat_diag2
-    ./bude_sycl -d 1 -i 30 -w 256 >> bude_sycl_ndrage_diag2
+    ./bude_sycl -d $SYCL_DEVICE -i 30 -w 0 >> bude_sycl_flat_diag2
+    ./bude_sycl -d $SYCL_DEVICE -i 30 -w 256 >> bude_sycl_ndrage_diag2
     cd ..
+  fi
+  if [ -n "$ACCEL" ]; then
+	  cd $ACCEL
+	  ./bude_"${ACCEL}" $ACCEL_FLAGS >> bude_"${ACCEL}"_diag2
+	  cd ..
   fi
 done

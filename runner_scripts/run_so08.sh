@@ -1,6 +1,11 @@
 #!/bin/bash
 set -x
 export OMP_PROC_BIND=TRUE
+if [ -n "$GPU" ]; then
+        BS_X=32
+        BS_Y=4
+        BS_Z=4
+fi
 for j in {1..4}
 do
 	if [ -n "$CPUTEST" ]; then
@@ -10,7 +15,10 @@ do
 	OMP_PROC_BIND=spread OMP_NUM_THREADS=$physical_cores_per_numa mpirun -np $numa_domains $bind_numa ./wave-propagation_mpi 1000 1000 1000 -OPS_DIAGS=2 >> so08_mpi"$numa_domains"omp"$physical_cores_per_numa"_diag2
 	fi
 	if [ -n "$SYCL" ]; then
-	mpirun -np $numa_domains $bind_numa ./wave-propagation_mpi_sycl_flat 1000 1000 1000 -OPS_DIAGS=2 OPS_SYCL_DEVICE=1 -gpudirect OPS_BLOCK_SIZE_Z=1 OPS_BLOCK_SIZE_Y=1 >> so08_mpisycl_flat_diag2
-	mpirun -np $numa_domains $bind_numa ./wave-propagation_mpi_sycl_ndrange 1000 1000 1000 -OPS_DIAGS=2 OPS_SYCL_DEVICE=1 -gpudirect OPS_BLOCK_SIZE_Z=1 OPS_BLOCK_SIZE_Y=1 >> so08_mpisycl_ndrange_diag2
+	mpirun -np $numa_domains $bind_numa ./wave-propagation_mpi_sycl_flat 1000 1000 1000 -OPS_DIAGS=2 OPS_SYCL_DEVICE=$SYCL_DEVICE -gpudirect OPS_BLOCK_SIZE_Z=1 OPS_BLOCK_SIZE_Y=1 >> so08_mpisycl_flat_diag2
+	mpirun -np $numa_domains $bind_numa ./wave-propagation_mpi_sycl_ndrange 1000 1000 1000 -OPS_DIAGS=2 OPS_SYCL_DEVICE=$SYCL_DEVICE -gpudirect OPS_BLOCK_SIZE_Z=$BS_Z OPS_BLOCK_SIZE_Y=$BS_Y OPS_BLOCK_SIZE_X=$BS_X >> so08_mpisycl_ndrange_diag2
+	fi
+	if [ -n "$ACCEL" ]; then
+	./wave-propagation_"$ACCEL" 1000 1000 1000 -OPS_DIAGS=2 $ACCEL_FLAGS OPS_BLOCK_SIZE_Z=$BS_Z OPS_BLOCK_SIZE_Y=$BS_Y OPS_BLOCK_SIZE_X=$BS_X >> so08_"$ACCEL"_diag2
 	fi
 done

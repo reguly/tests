@@ -12,14 +12,17 @@ do
 	OMP_NUM_THREADS=$physical_cores_per_numa OMP_PROC_BIND=TRUE mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_openmp Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi"$numa_domains"omp"$physical_cores_per_numa"_part4096_diag2
 	fi
 	if [ -n "$SYCL" ]; then
-#	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_global_aos    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi"$numa_domains"_sycl_global_aos_diag2
-	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_aos              Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi"$numa_domains"_sycl_hier_scalar_aos_diag2
-	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi"$numa_domains"_sycl_hier_scalar_soa_diag2
-#	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_global_soa    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi"$numa_domains"_sycl_global_soa_diag2
-	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_blockloop_aos    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi"$numa_domains"_sycl_hier_scalar_blockloop_aos_diag2
-	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi"$numa_domains"_sycl_hier_soa_diag2
-	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_aos      Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi"$numa_domains"_sycl_hier_aos_diag2
-	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_blockloop_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=4096 >> volna_mpi"$numa_domains"_sycl_hier_scalar_blockloop_soa_diag2
+	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_global_aos    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_global_aos_diag2
+	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_aos              Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_scalar_aos_diag2
+	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_scalar_soa_diag2
+	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_global_soa    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_global_soa_diag2
+	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_blockloop_aos    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_scalar_blockloop_aos_diag2
+	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_soa_diag2
+	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_aos      Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_aos_diag2
+	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_blockloop_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_scalar_blockloop_soa_diag2
 	fi
 
+	if [ -n "$ACCEL" ]; then
+	./volna_"$ACCEL"    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_"$ACCEL"_diag2
+	fi
 done
