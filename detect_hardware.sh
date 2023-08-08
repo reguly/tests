@@ -1,6 +1,5 @@
 #!/bin/bash
-export numa_domains=1
-#$(lscpu | awk '/^NUMA node\(s\)/ { print $NF }')
+export numa_domains=$(lscpu | awk '/^NUMA node\(s\)/ { print $NF }')
 export threads_per_numa=$(lscpu | awk '/^CPU\(s\)/ { cpus=$2 } /^NUMA node\(s\)/ { numa_domains=$NF } END { print cpus/numa_domains }')
 export threads_per_core=$(lscpu | awk '/^Thread\(s\) per core:/ { threads_per_core=$4 } END { print threads_per_core }')
 export cores_per_numa=$(lscpu | awk '/^CPU\(s\)/ { cpus=$2 } /^NUMA node\(s\)/ { numa_domains=$NF } END { print cpus/numa_domains }')
