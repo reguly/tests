@@ -1,6 +1,6 @@
 #!/bin/bash
 BASE=`pwd`
-source source_hipsycl
+source source_sycl
 
 #if $1 is not set, set it to all
 if [ -z "$1" ]; then
@@ -69,7 +69,7 @@ fi
 
 if [ "$1" == "all" ] || [ "$1" == "op2" ]; then
 cd $BASE/OP2-Common-sycl/op2/c
-#make core seq sycl mpi_sycl hdf5
+make core seq sycl mpi_sycl hdf5
 cd $BASE/apps/MG-CFD-app-OP2/
 export OP2_OLD=1
 ./translate2op2.sh
@@ -155,7 +155,11 @@ fi
 
 if [ "$1" == "all" ] || [ "$1" == "other" ]; then
 cd $BASE/apps/miniBUDE/sycl
-mkdir build; cd build; CC=icx CXX=icpx cmake .. -DSYCL_RUNTIME=DPCPP -DCMAKE_BUILD_TYPE=Release; make -j; cd ..
+if [ "$OPS_COMPILER" == "hipsycl" ]; then
+  mkdir build; cd build; CC=clang CXX=syclcc cmake .. -DSYCL_RUNTIME=HIPSYCL -DHIPSYCL_INSTALL_DIR=$(dirname $(dirname `which syclcc`))  -DCMAKE_BUILD_TYPE=Release; make -j; cd ..
+else
+  mkdir build; cd build; CC=icx CXX=icpx cmake .. -DSYCL_RUNTIME=DPCPP -DCMAKE_BUILD_TYPE=Release; make -j; cd ..
+fi
 mv build/bude bude_sycl
 
 cd $BASE/apps/miniWeather/miniWeather-sycl

@@ -1,6 +1,6 @@
 #!/bin/bash
 BASE=`pwd`
-source source_clang
+source source_intel
 cd $BASE/OPS/ops/c
 make mpi -j8 -B
 cd $BASE/OP2-Common/op2/
@@ -27,7 +27,7 @@ cd $BASE/apps/volna/sp
 make volna_mpi_genseq volna_mpi_vec volna_mpi_openmp -B
 mv volna_mpi_genseq volna_mpi 
 cd $BASE/apps/miniBUDE/openmp
-make COMPILER=GNU #ARCH=avx512
+make COMPILER=INTEL ARCH=avx512
 mv bude bude_icx_omp
 cd $BASE/apps/miniWeather/miniWeather-omp
 make -B
