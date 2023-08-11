@@ -174,7 +174,7 @@ void fasten_main(
 		clsycl::accessor<FFParams, 1, RW, Local> local_forcefield(clsycl::range<1>(ntypes), h);
 
 
-		h.parallel_for<class bude_kernel_ndrange>(clsycl::nd_range<1>(global, wgSize), [=](clsycl::nd_item<1> item) [[intel::reqd_sub_group_size(8)]] {
+		h.parallel_for<class bude_kernel_ndrange>(clsycl::nd_range<1>(global, wgSize), [=](clsycl::nd_item<1> item) {
 
 			#ifdef USE_PRE_SYCL121R3
 			const size_t lid = item.get_local(0);

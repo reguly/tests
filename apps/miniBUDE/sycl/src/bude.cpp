@@ -8,6 +8,10 @@
 #include <algorithm>
 #include <CL/sycl.hpp>
 
+#ifdef PROFILE_ITT
+#include <ittnotify.h>
+#endif
+
 #include "bude.h"
 
 typedef std::chrono::high_resolution_clock::time_point TimePoint;
@@ -346,12 +350,18 @@ std::vector<float> runKernel(Params params) {
 	queue.wait();
 	auto warmupEnd = std::chrono::high_resolution_clock::now();
 
+#ifdef PROFILE_ITT
+  __itt_resume();
+#endif
 	auto kernelStart = std::chrono::high_resolution_clock::now();
 	for (size_t i = 0; i < params.iterations; ++i) {
 		runKernel();
 	}
 	queue.wait();
 	auto kernelEnd = std::chrono::high_resolution_clock::now();
+#ifdef PROFILE_ITT
+  __itt_pause();
+#endif
 
 	clsycl::buffer<float> buffer(energies.data(), energies.size());
 	queue.submit([&](clsycl::handler &h) { h.copy(results.get_access<RW>(h), buffer.get_access<RW>(h)); });

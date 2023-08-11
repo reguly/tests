@@ -72,14 +72,8 @@ void rtm_kernel_populate_c_wrapper(
         #else
         ptrm_float ptr6 = {  p_a6 + n_x*1 + n_y*xdim6_rtm_kernel_populate*1 + n_z*xdim6_rtm_kernel_populate*ydim6_rtm_kernel_populate*1, xdim6_rtm_kernel_populate, ydim6_rtm_kernel_populate, 6};
         #endif
-        rtm_kernel_populate(  &p_a0,
-           &p_a1,
-           &p_a2,
-          arg_idx,
-          ptr4,
-          ptr5,
-          ptr6 );
-
+        rtm_kernel_populate( &p_a0, &p_a1, &p_a2,arg_idx,
+           ptr4, ptr5, ptr6);
       }
     }
   }

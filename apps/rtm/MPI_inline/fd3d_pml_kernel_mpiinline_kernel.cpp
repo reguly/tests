@@ -45,7 +45,8 @@ void fd3d_pml_kernel_c_wrapper(
 
 // host stub function
 void ops_par_loop_fd3d_pml_kernel(char const *name, ops_block block, int dim, int* range,
- ops_arg arg0, ops_arg arg1, ops_arg arg2, ops_arg arg3, ops_arg arg4) {
+ ops_arg arg0, ops_arg arg1, ops_arg arg2, ops_arg arg3,
+ ops_arg arg4) {
 
   ops_arg args[5] = { arg0, arg1, arg2, arg3, arg4};
 

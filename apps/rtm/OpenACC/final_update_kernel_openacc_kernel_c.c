@@ -93,14 +93,8 @@ void final_update_kernel_c_wrapper(
         #else
         ptrm_float ptr6 = {  p_a6 + n_x*1 + n_y*xdim6_final_update_kernel*1 + n_z*xdim6_final_update_kernel*ydim6_final_update_kernel*1, xdim6_final_update_kernel, ydim6_final_update_kernel, 6};
         #endif
-        final_update_kernel( arg_idx,
-           &p_a1,
-          ptr2,
-          ptr3,
-          ptr4,
-          ptr5,
-          ptr6 );
-
+        final_update_kernel(arg_idx, &p_a1, ptr2, ptr3,
+           ptr4, ptr5, ptr6);
       }
     }
   }

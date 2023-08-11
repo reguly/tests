@@ -1,12 +1,21 @@
 #!/bin/bash
 export BASE=`pwd`
-source source_intel
+source source_clang
 source detect_hardware.sh
 export OMP_PROC_BIND=TRUE
+export SYCL_DEVICE=3
 #these are for baskerville
 #module purge; module load baskerville
 #module load bask-apps/test
 #module load HDF5/1.10.7-iimpi-2021a
+#export SYCL=1
+#export ACCEL=ompoffload
+#export GPU=1
+export CPUTEST=1
+
+export BS_X=128
+export BS_Y=1
+export BS_Z=1
 
 #if $1 is not set, set it to all
 if [ -z "$1" ]; then

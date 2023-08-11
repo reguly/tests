@@ -6,7 +6,10 @@
 #include <sys/time.h>
 
 #include "bude.h"
-
+#ifdef PROFILE_ITT
+#include <ittnotify.h>
+#endif
+//#define restrict __restrict
 struct
 {
   int    natlig;
@@ -153,6 +156,9 @@ void runOpenMP(float *restrict results)
                   buffer, forcefield, group);
     }
 
+#ifdef PROFILE_ITT
+  __itt_resume();
+#endif
   double start = getTimestamp();
 
 #pragma omp parallel
@@ -169,6 +175,9 @@ void runOpenMP(float *restrict results)
   }
 
   double end = getTimestamp();
+#ifdef PROFILE_ITT
+  __itt_pause();
+#endif
 
   memcpy(results, buffer, sizeof(float) * params.nposes);
 

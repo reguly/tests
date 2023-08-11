@@ -228,41 +228,15 @@ void opensbliblock00Kernel080_c_wrapper(
         ptr_double ptr31 = {  p_a31 + n_x*1*1 + n_y*xdim31_opensbliblock00Kernel080*1*1 + n_z*xdim31_opensbliblock00Kernel080*ydim31_opensbliblock00Kernel080*1*1, xdim31_opensbliblock00Kernel080, ydim31_opensbliblock00Kernel080};
         ptr_double ptr32 = {  p_a32 + n_x*1*1 + n_y*xdim32_opensbliblock00Kernel080*1*1 + n_z*xdim32_opensbliblock00Kernel080*ydim32_opensbliblock00Kernel080*1*1, xdim32_opensbliblock00Kernel080, ydim32_opensbliblock00Kernel080};
         ptr_double ptr33 = {  p_a33 + n_x*1*1 + n_y*xdim33_opensbliblock00Kernel080*1*1 + n_z*xdim33_opensbliblock00Kernel080*ydim33_opensbliblock00Kernel080*1*1, xdim33_opensbliblock00Kernel080, ydim33_opensbliblock00Kernel080};
-        opensbliblock00Kernel080( ptr0,
-          ptr1,
-          ptr2,
-          ptr3,
-          ptr4,
-          ptr5,
-          ptr6,
-          ptr7,
-          ptr8,
-          ptr9,
-          ptr10,
-          ptr11,
-          ptr12,
-          ptr13,
-          ptr14,
-          ptr15,
-          ptr16,
-          ptr17,
-          ptr18,
-          ptr19,
-          ptr20,
-          ptr21,
-          ptr22,
-          ptr23,
-          ptr24,
-          ptr25,
-          ptr26,
-          ptr27,
-          ptr28,
-          ptr29,
-          ptr30,
-          ptr31,
-          ptr32,
-          ptr33 );
-
+        opensbliblock00Kernel080( ptr0, ptr1, ptr2, ptr3,
+           ptr4, ptr5, ptr6, ptr7,
+           ptr8, ptr9, ptr10, ptr11,
+           ptr12, ptr13, ptr14, ptr15,
+           ptr16, ptr17, ptr18, ptr19,
+           ptr20, ptr21, ptr22, ptr23,
+           ptr24, ptr25, ptr26, ptr27,
+           ptr28, ptr29, ptr30, ptr31,
+           ptr32, ptr33);
       }
     }
   }

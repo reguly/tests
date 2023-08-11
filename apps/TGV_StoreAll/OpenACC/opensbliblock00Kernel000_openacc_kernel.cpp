@@ -82,7 +82,10 @@ void opensbliblock00Kernel000_c_wrapper(
 
 // host stub function
 void ops_par_loop_opensbliblock00Kernel000(char const *name, ops_block block, int dim, int* range,
- ops_arg arg0, ops_arg arg1, ops_arg arg2, ops_arg arg3, ops_arg arg4, ops_arg arg5, ops_arg arg6, ops_arg arg7, ops_arg arg8, ops_arg arg9, ops_arg arg10, ops_arg arg11, ops_arg arg12) {
+ ops_arg arg0, ops_arg arg1, ops_arg arg2, ops_arg arg3,
+ ops_arg arg4, ops_arg arg5, ops_arg arg6, ops_arg arg7,
+ ops_arg arg8, ops_arg arg9, ops_arg arg10, ops_arg arg11,
+ ops_arg arg12) {
 
   //Timing
   double t1,t2,c1,c2;
@@ -103,9 +106,6 @@ void ops_par_loop_opensbliblock00Kernel000(char const *name, ops_block block, in
 
   int start[3];
   int end[3];
-  #ifdef OPS_MPI
-  sub_block_list sb = OPS_sub_block_list[block->index];
-  #endif //OPS_MPI
 
   int arg_idx[3];
   int arg_idx_base[3];

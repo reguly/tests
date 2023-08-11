@@ -51,7 +51,7 @@ CFLAGS_CLANG   = -std=c99 -Wall -Ofast -ffast-math -fopenmp -$(ARCHFLAG)=$(ARCH)
 CFLAGS_CRAY    = -O3 -homp -hfp4 -haggress -hflex_mp=tolerant -hvector3 -hscalar3 -Gfast
 CFLAGS_FUJITSU = -Nclang -std=c99 -Wall -Ofast -ffast-math -fopenmp -$(ARCHFLAG)=$(ARCH) -mllvm -force-vector-interleave=4
 CFLAGS_GNU     = -std=c99 -Wall -Ofast -ffast-math -fopenmp -$(ARCHFLAG)=$(ARCH) $(if $(AVX512),-mprefer-vector-width=512)
-CFLAGS_INTEL   = -std=c99 -Wall -Ofast -ffast-math -fopenmp -$(ARCHFLAG)=$(ARCH) $(if $(AVX512),-qopt-zmm-usage=high)
+CFLAGS_INTEL   = -std=c99 -Wall -Ofast -ffast-math -qopenmp -$(ARCHFLAG)=native $(if $(AVX512),-qopt-zmm-usage=high) -DPROFILE_ITT -I/opt/intel/oneapi/vtune/2023.1.0/include -L/opt/intel/oneapi/vtune/2023.1.0/lib64 -littnotify
 CFLAGS = $(CFLAGS_$(COMPILER)) -DWGSIZE=$(WGSIZE)
 
 LDFLAGS = -lm

@@ -1,0 +1,34 @@
+#OneAPI Install paths
+#This is just for the PVC
+#source $HOME/source_hipsycl
+export PATH=/home/azureuser/opensycl-install/bin:$PATH
+export LD_LIBRARY_PATH=/home/azureuser/opensycl-install/lib:$LD_LIBRARY_PATH
+export CPLUS_INCLUDE_PATH=/usr/lib/x86_64-linux-gnu/openmpi/include
+#export LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/11
+
+#export HDF5_INSTALL_PATH=/bask/apps/test/EL8-ice/software/HDF5/1.10.7-iimpi-2021a
+export MPI_INSTALL_PATH=$(dirname $(dirname `which mpicxx`))
+
+#test suite
+BASE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+export OPS_COMPILER=hipsycl
+export OP2_COMPILER=hipsycl
+export HIPSYCL_FLAGS=--opensycl-targets=omp.accelerated
+export OPS_INSTALL_PATH=$BASE_DIR/OPS/ops
+export OP2_INSTALL_PATH=$BASE_DIR/OP2-Common-sycl/op2
+export HDF5_INSTALL_PATH=$BASE_DIR/hdf5
+export HDF5_SEQ_INSTALL_PATH=$BASE_DIR/hdf5-seq
+export PTSCOTCH_INSTALL_PATH=$BASE_DIR/ptscotch
+export PARMETIS_INSTALL_PATH=$BASE_DIR/parmetis
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HDF5_INSTALL_PATH/lib
+export TMPDIR=`pwd`
+export I_MPI_CC=syclcc
+export I_MPI_CXX=syclcc
+export OMPI_CC=$I_MPI_CC
+export OMPI_CXX=$I_MPI_CXX
+export OPS_CPU=1
+
+export bind_numa="-bind-to numa"
+#this is just for the OpenMPI setup on PPCU local cluster
+# export mpirunflags="-mca io ^ompio"
+# export bind_numa="/home/reguly/numawrap_omp2"

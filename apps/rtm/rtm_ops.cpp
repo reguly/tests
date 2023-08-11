@@ -4,6 +4,8 @@
 
 
 
+
+
 void ops_init_backend();
 #include <stdlib.h>
 #include <stdio.h>
@@ -99,13 +101,16 @@ void final_update(ops_block blocks, ops_stencil S3D_000, float dt,
 		  ops_dat k1, ops_dat k2, ops_dat k3, ops_dat k4, ops_dat yy);
 
 
+
 int main(int argc, char **argv)
 {
+
 
 
   ops_init(argc,argv,1);
   ops_init_backend();
   OPS_instance::getOPSInstance()->OPS_soa = 1;
+
 
 
 #ifdef LARGE
@@ -200,7 +205,7 @@ int main(int argc, char **argv)
   ops_decl_const("ypmlend",1,"int",&ypmlend);
   ops_decl_const("zpmlend",1,"int",&zpmlend);
   int ncoeffs = (ORDER+1)*(ORDER+1);
-  ops_decl_const("coeffs",ncoeffs,"float",&coeffs[0][0]);
+
   halff = HALF;
   ops_decl_const("halff",1,"int",&halff);
   order = ORDER;
@@ -258,6 +263,7 @@ int main(int argc, char **argv)
 
   ops_reduction red_err = ops_decl_reduction_handle(sizeof(float), "float", "err");
 
+
   int d_p[3] = {HALF,HALF,HALF};
   int d_m[3] = {-HALF,-HALF,-HALF};
   int base[3] = {0,0,0};
@@ -305,6 +311,7 @@ int main(int argc, char **argv)
   ops_diagnostic_output();
 
 
+
   double ct0, ct1, et0, et1;
 
 
@@ -320,6 +327,7 @@ int main(int argc, char **argv)
                ops_arg_dat(mu, 1, S3D_000, "float", OPS_WRITE),
                ops_arg_dat(yy, 6, S3D_000, "float", OPS_WRITE));
 
+
 #ifdef PROFILE_ITT
   __itt_resume();
 #endif
@@ -327,6 +335,7 @@ int main(int argc, char **argv)
   double it0, it1, it2, it3;
   ops_timers(&ct0, &it0);
   for (int iter = 0; iter < n_iter; iter++) {
+
 
 
     if (iter%itertile == 0) ops_execute(blocks->instance);
@@ -350,12 +359,14 @@ int main(int argc, char **argv)
 
 
 
+
     derivs(blocks, S3D_000, S3D_big_sten,
     	   rho, mu, ytemp, k2);
 
 
     calc_ytemp(blocks, S3D_000, dt,
     	       yy, k2, ytemp);
+
 
     derivs(blocks, S3D_000, S3D_big_sten,
     	   rho, mu, ytemp, k3);
@@ -364,6 +375,7 @@ int main(int argc, char **argv)
     calc_ytemp2(blocks, S3D_000, dt,
     		yy, k3, ytemp);
 
+
     derivs(blocks, S3D_000, S3D_big_sten,
     	   rho, mu, ytemp, k4);
 
@@ -371,11 +383,13 @@ int main(int argc, char **argv)
     final_update(blocks, S3D_000, dt,
     		 k1, k2, k3, k4, yy);
 
+
     iter2 = iter2 + 1;
 
   }
   ops_execute(blocks->instance);
   ops_timers(&ct0, &it1);
+
 
 
   ops_timers(&ct1, &et1);

@@ -3,7 +3,7 @@
 #===============================================================================
 
 # Compiler can be set below, or via environment variable
-CC        = mpic++
+CC        = mpicxx
 OPTIMIZE  = yes
 DEBUG     = no
 DEVICE    = cpu
@@ -41,11 +41,11 @@ endif
 
 # Optimization Flags
 ifeq ($(OPTIMIZE),yes)
-  CFLAGS += -O3 -march=native -ffast-math -funroll-loops -qopt-zmm-usage=high
+  CFLAGS += -O3 -march=native -ffast-math -funroll-loops #-qopt-zmm-usage=high
 endif
 
 ifeq ($(DEVICE),gpu)
-  CFLAGS +=-cxx=icpc -qnextgen -fiopenmp -fopenmp-targets=spir64 -D__STRICT_ANSI__
+  CFLAGS +=-cxx=icpx -qnextgen -fiopenmp -fopenmp-targets=spir64 -D__STRICT_ANSI__
 else
   CFLAGS += -qopenmp #-cxx=icpx
 endif

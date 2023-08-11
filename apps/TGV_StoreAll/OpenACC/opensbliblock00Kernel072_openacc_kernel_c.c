@@ -39,9 +39,7 @@ void opensbliblock00Kernel072_c_wrapper(
       for ( int n_x=0; n_x<x_size; n_x++ ){
         const ptr_double ptr0 = {  p_a0 + n_x*1*1 + n_y*xdim0_opensbliblock00Kernel072*1*1 + n_z*xdim0_opensbliblock00Kernel072*ydim0_opensbliblock00Kernel072*1*1, xdim0_opensbliblock00Kernel072, ydim0_opensbliblock00Kernel072};
         ptr_double ptr1 = {  p_a1 + n_x*1*1 + n_y*xdim1_opensbliblock00Kernel072*1*1 + n_z*xdim1_opensbliblock00Kernel072*ydim1_opensbliblock00Kernel072*1*1, xdim1_opensbliblock00Kernel072, ydim1_opensbliblock00Kernel072};
-        opensbliblock00Kernel072( ptr0,
-          ptr1 );
-
+        opensbliblock00Kernel072( ptr0, ptr1);
       }
     }
   }

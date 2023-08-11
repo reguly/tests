@@ -5,6 +5,9 @@ tar xfv hdf5-1.12.2.tar.gz
 cd hdf5-1.12.2/
 CC=mpicc CXX=mpicxx ./configure --enable-parallel --prefix=$BASE/hdf5
 make install -j20
+make distclean
+./configure --prefix=$BASE/hdf5-seq
+make install -j20
 cd ..
 echo "export HDF5_INSTALL_PATH=${BASE}/hdf5"
 echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HDF5_INSTALL_PATH/lib"
