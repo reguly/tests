@@ -16,7 +16,6 @@ do
   fi
 	fi
 	if [ -n "$SYCL" ]; then
-<<<<<<< HEAD
 	 mpirun -np $numa_domains $bind_numa ../MG-CFD-app-OP2/bin/mgcfd_mpi_sycl_atomics_aos    -i input-mgcfd.dat -m ptscotch OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> mgcfd_mpi"$numa_domains"_sycl_atomics_aos_diag2
 	 mpirun -np $numa_domains $bind_numa ../MG-CFD-app-OP2/bin/mgcfd_mpi_sycl_atomics_soa    -i input-mgcfd.dat -m ptscotch OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> mgcfd_mpi"$numa_domains"_sycl_atomics_soa_diag2
 	 mpirun -np $numa_domains $bind_numa ../MG-CFD-app-OP2/bin/mgcfd_mpi_sycl_global_aos    -i input-mgcfd.dat -m ptscotch OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> mgcfd_mpi"$numa_domains"_sycl_global_aos_diag2

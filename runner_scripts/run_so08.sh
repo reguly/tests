@@ -5,6 +5,11 @@ if [ -n "$GPU" ]; then
         BS_X=32
         BS_Y=4
         BS_Z=4
+        if [[ "${NV_ARCH}" == "Hopper" ]]; then
+        BS_X=32
+        BS_Y=1
+        BS_Z=16
+        fi
 fi
 for j in {1..4}
 do

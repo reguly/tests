@@ -1,11 +1,12 @@
 #!/bin/bash
 BASE=`pwd`
-source source_intel
+source source_gcc
 export OP_AUTO_SOA=1
 cd $BASE/OPS/ops/c
 make $1 -j8
 cd $BASE/OP2-Common/op2/
 make config
+make $1
 make openmp4 -j8
 cd $BASE/OPS/apps/c/CloverLeaf
 make cloverleaf_"$1" &

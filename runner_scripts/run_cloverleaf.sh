@@ -3,6 +3,10 @@ set -x
 if [ -n "$GPU" ]; then
         BS_X=512
         BS_Y=2
+        if [[ "${NV_ARCH}" == "Hopper" ]]; then
+        BS_X=128
+        BS_Y=2
+        fi
 fi
 sed -i "s/end_step=.*/end_step=50/g" clover.in
 array=( 7680 )

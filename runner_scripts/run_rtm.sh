@@ -5,6 +5,11 @@ if [ -n "$GPU" ]; then
         BS_X=32
         BS_Z=4
         BS_Y=4
+        if [[ "${NV_ARCH}" == "Hopper" ]]; then
+        BS_X=64
+        BS_Y=2
+        BS_Z=1
+        fi
 fi
 export OMP_PROC_BIND=TRUE
 for j in {1..4}
