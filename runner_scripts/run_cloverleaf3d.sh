@@ -14,6 +14,11 @@ if [ -n "$GPU" ]; then
         BS_Y=4
         BS_Z=4
         fi
+        if [[ "${HIP_ARCH}" == "gfx90a" ]]; then
+        BS_X=64
+        BS_Y=4
+        BS_Z=4
+        fi
 fi
 array=( 408 )
 for i in "${array[@]}"

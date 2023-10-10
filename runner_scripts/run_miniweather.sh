@@ -14,7 +14,8 @@ do
   if [ -n "$SYCL" ]; then
   cd miniWeather-sycl
 	mpirun -np $numa_domains $bind_numa ./main_sycl_flat >> miniweather_mpisycl_flat_diag2 2>&1
-	mpirun -np $numa_domains $bind_numa ./main_sycl_ndrange 4096 2 >> miniweather_mpisycl_ndrange_diag2 2>&1
+	#mpirun -np $numa_domains $bind_numa ./main_sycl_ndrange 4096 2 >> miniweather_mpisycl_ndrange_diag2 2>&1
+	mpirun -np $numa_domains $bind_numa ./main_sycl_ndrange 128 2 >> miniweather_mpisycl_ndrange_diag2 2>&1
   cd ..
   if [ -n "$ACCEL" ]; then
 	  cd miniWeather-"$ACCEL"

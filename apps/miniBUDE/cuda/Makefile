@@ -20,7 +20,7 @@ CC = $(CC_$(COMPILER))
 OPTIONS 	    = -DUSE_SHARED
 CFLAGS_GNU    = -Ofast -march=native -std=c99
 CFLAGS_PGI    = -O3 -acc -ta=nvidia -fast -Minfo=accel
-CFLAGS_CRAY   = -h list=a -Wx,'--maxrregcount=50'
+CFLAGS_CRAY   = -Ofast --offload-arch=gfx90a -munsafe-fp-atomics #-h list=a -Wx,'--maxrregcount=50'
 CFLAGS_INTEL  = -O3 -Ofast -xhost -std=c99 -restrict
 CFLAGS = $(CFLAGS_$(COMPILER)) $(OPTIONS)
 LDFLAGS =
@@ -32,11 +32,12 @@ NV_FLAGS  = -O3 --ptxas-options="-v" -use_fast_math \
 		-gencode arch=compute_60,code=sm_60 -restrict \
 		-gencode arch=compute_70,code=sm_70 -restrict
 
-HIP_FLAGS = -O3
+HIP_FLAGS = -O3 --offload-arch=gfx90a -munsafe-fp-atomics -DUSE_SHARED
 
 OBJ  = $(patsubst %.cu,%.o,$(wildcard *.cu))
 OBJ += $(patsubst %.c,%.o,$(wildcard *.c))
 
+USE_HIP=1
 ifdef USE_HIP
 LINK = hipcc
 else
@@ -53,8 +54,8 @@ bude: Makefile $(OBJ)
 	$(CC) $(CFLAGS) -c $<
 
 ifdef USE_HIP
-%.cpp: %.cu
-	hipify-perl $< > $@
+#%.cpp: %.cu
+#	hipify-perl $< > $@
 %.o: %.cpp Makefile make.deps
 	hipcc $(HIP_FLAGS) -c $<
 else

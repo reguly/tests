@@ -3,7 +3,7 @@ set -x
 if [ -n "$GPU" ]; then
         BS_X=512
         BS_Y=2
-        if [[ "${NV_ARCH}" == "Hopper" ]]; then
+        if [[ "${NV_ARCH}" == "Hopper" || "${HIP_ARCH}" == "gfx90a" ]]; then
         BS_X=128
         BS_Y=2
         fi

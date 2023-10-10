@@ -17,17 +17,19 @@ do
   fi
 	fi
 	if [ -n "$SYCL" ]; then
-	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_global_aos    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_global_aos_diag2
-	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_aos              Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_scalar_aos_diag2
-	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_scalar_soa_diag2
-	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_global_soa    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_global_soa_diag2
-	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_blockloop_aos    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_scalar_blockloop_aos_diag2
-	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_soa_diag2
-	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_aos      Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_aos_diag2
-	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_blockloop_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_scalar_blockloop_soa_diag2
+	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_atomics_aos    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 OP_BLOCK_SIZE=256 >> volna_mpi"$numa_domains"_sycl_atomics_aos_diag2
+	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_atomics_soa    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 OP_BLOCK_SIZE=256 >> volna_mpi"$numa_domains"_sycl_atomics_soa_diag2
+	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_global_aos    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 OP_BLOCK_SIZE=256 >> volna_mpi"$numa_domains"_sycl_global_aos_diag2
+#	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_aos              Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 OP_BLOCK_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_scalar_aos_diag2
+#	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 OP_BLOCK_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_scalar_soa_diag2
+	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_global_soa    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 OP_BLOCK_SIZE=256 >> volna_mpi"$numa_domains"_sycl_global_soa_diag2
+#	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_blockloop_aos    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 OP_BLOCK_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_scalar_blockloop_aos_diag2
+	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 OP_BLOCK_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_soa_diag2
+	mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_aos      Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 OP_BLOCK_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_aos_diag2
+#	OP_AUTO_SOA=1 mpirun $mpirunflags -np $numa_domains $bind_numa ./volna_mpi_sycl_hier_scalar_blockloop_soa  Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 OP_BLOCK_SIZE=256 >> volna_mpi"$numa_domains"_sycl_hier_scalar_blockloop_soa_diag2
 	fi
 
 	if [ -n "$ACCEL" ]; then
-	./volna_"$ACCEL"    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 >> volna_"$ACCEL"_diag2
+	./volna_"$ACCEL"    Problem.h5 0 old-format OP_TEST_FREQ=1000 OP_PART_SIZE=256 OP_BLOCK_SIZE=256 >> volna_"$ACCEL"_diag2
 	fi
 done

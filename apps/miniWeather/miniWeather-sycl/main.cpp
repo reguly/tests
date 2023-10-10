@@ -96,6 +96,7 @@ int BS_Y = 16;
 #ifndef NDRANGE
 #define get_global_id get_id
 #endif
+#define ROUND(X,Y) (((X-1)/Y+1)*Y)
 
 //Establish hydrstatic balance using constant potential temperature (thermally neutral atmosphere)
 //z is the input coordinate
@@ -245,7 +246,7 @@ void compute_tendencies_x(
     double *d_hy_dens_theta_cell,
     queue &q )
 { 
-  range<3> flux_gws (1, nz, nx+1);
+  range<3> flux_gws (1, ROUND(nz, BS_Y), ROUND(nx+1, BS_X));
   range<3> flux_lws (1, BS_Y, BS_X);
 
   //Compute the hyperviscosity coeficient
@@ -293,7 +294,7 @@ void compute_tendencies_x(
   END_PROFILING("Compute fluxes x")
 
   //Use the fluxes to compute tendencies for each cell
-  range<3> tend_gws (NUM_VARS, nz, nx);
+  range<3> tend_gws (NUM_VARS, ROUND(nz, BS_Y), ROUND(nx, BS_X));
   range<3> tend_lws (1, BS_Y, BS_X);
 
   BEGIN_PROFILING("Compute tendencies x")
@@ -340,7 +341,7 @@ void compute_tendencies_z(
 
   //Compute fluxes in the z-direction for each cell
 
-  range<3> flux_gws (1, nz+1, nx);
+  range<3> flux_gws (1, ROUND(nz+1, BS_Y), ROUND(nx, BS_X));
   range<3> flux_lws (1, BS_Y, BS_X);
 
   BEGIN_PROFILING("Compute fluxes z")
@@ -390,7 +391,7 @@ void compute_tendencies_z(
   END_PROFILING("Compute fluxes z")
 
   //Use the fluxes to compute tendencies for each cell
-  range<3> tend_gws (NUM_VARS, nz, nx);
+  range<3> tend_gws (NUM_VARS, ROUND(nz, BS_Y), ROUND(nx, BS_X));
   range<3> tend_lws (1, BS_Y, BS_X);
 
   BEGIN_PROFILING("Compute tendencies z")
@@ -444,7 +445,7 @@ void set_halo_values_x(
   ierr = MPI_Irecv(recvbuf_r,hs*nz*NUM_VARS,MPI_DOUBLE,right_rank,1,MPI_COMM_WORLD,&req_r[1]);
 
   //Pack the send buffers
-  range<3> buffer_gws (NUM_VARS, nz, std::max(BS_X,hs));
+  range<3> buffer_gws (NUM_VARS, ROUND(nz, BS_Y), ROUND(std::max(BS_X,hs), BS_X));
   range<3> buffer_lws (1, BS_Y, BS_X);
 
   q.submit([&] (handler &cgh) {
@@ -501,7 +502,7 @@ void set_halo_values_x(
 
   if (data_spec_int == DATA_SPEC_INJECTION) {
     if (myrank == 0) {
-      range<3> inj_gws (1, nz, hs);
+      range<3> inj_gws (1, ROUND(nz, BS_Y), ROUND(hs, BS_X));
       range<3> inj_lws (1, BS_Y, BS_X);
 
       q.submit([&] (handler &cgh) {
@@ -542,7 +543,7 @@ void set_halo_values_z(
   PROFILE_FUNCTION();
   const double mnt_width = xlen/8;
 
-  range<3> gws (1, NUM_VARS, nx+2*hs);
+  range<3> gws (1, ROUND(NUM_VARS, BS_Y), ROUND(nx+2*hs, BS_X));
   range<3> lws (1, BS_Y, BS_X);
 
   q.submit([&] (handler &cgh) {
@@ -767,7 +768,7 @@ void reductions(
   d_mass = malloc_device<double>(1, q);
   d_te = malloc_device<double>(1, q);
 
-  range<3> gws (1, nz, nx);
+  range<3> gws (1, ROUND(nz, BS_Y), ROUND(nx, BS_X));
   range<3> lws (1, BS_Y, BS_X);
 
   q.memset(d_mass, 0, sizeof(double));
@@ -877,7 +878,7 @@ void semi_discrete_step(
   }
 
   //Apply the tendencies to the fluid state
-  range<3> tend_gws (NUM_VARS, nz, nx);
+  range<3> tend_gws (NUM_VARS, ROUND(nz, BS_Y), ROUND(nx, BS_X));
   range<3> tend_lws (1, BS_Y, BS_X);
 
   BEGIN_PROFILING("Apply tendencies")

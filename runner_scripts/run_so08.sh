@@ -10,6 +10,11 @@ if [ -n "$GPU" ]; then
         BS_Y=1
         BS_Z=16
         fi
+        if [[ "${HIP_ARCH}" == "gfx90a" ]]; then
+        BS_X=64
+        BS_Y=4
+        BS_Z=4
+        fi
 fi
 for j in {1..4}
 do

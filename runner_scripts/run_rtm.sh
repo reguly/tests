@@ -10,6 +10,11 @@ if [ -n "$GPU" ]; then
         BS_Y=2
         BS_Z=1
         fi
+        if [[ "${HIP_ARCH}" == "gfx90a" ]]; then
+        BS_X=128
+        BS_Y=1
+        BS_Z=8
+        fi
 fi
 export OMP_PROC_BIND=TRUE
 for j in {1..4}

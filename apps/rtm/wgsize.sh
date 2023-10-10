@@ -32,6 +32,6 @@ do
 done
 
 echo "Lowest time: ${lowest_time}"
-echo "BS_X=${k}"
-echo "BS_Y=${i}"
-echo "BS_Z=${j}"
+echo "BS_X=${best_k}"
+echo "BS_Y=${best_i}"
+echo "BS_Z=${best_j}"
