@@ -50,8 +50,8 @@ CFLAGS_ARM     = -std=c99 -Wall -Ofast -ffast-math -fopenmp -fsimdmath -$(ARCHFL
 CFLAGS_CLANG   = -std=c99 -Wall -Ofast -ffast-math -fopenmp -$(ARCHFLAG)=$(ARCH) $(if $(AVX512),-mprefer-vector-width=512)
 CFLAGS_CRAY    = -O3 -homp -hfp4 -haggress -hflex_mp=tolerant -hvector3 -hscalar3 -Gfast
 CFLAGS_FUJITSU = -Nclang -std=c99 -Wall -Ofast -ffast-math -fopenmp -$(ARCHFLAG)=$(ARCH) -mllvm -force-vector-interleave=4
-CFLAGS_GNU     = -std=c99 -Wall -Ofast -ffast-math -fopenmp -$(ARCHFLAG)=$(ARCH) $(if $(AVX512),-mprefer-vector-width=512)
-CFLAGS_INTEL   = -std=c99 -Wall -Ofast -ffast-math -qopenmp -$(ARCHFLAG)=native $(if $(AVX512),-qopt-zmm-usage=high) -DPROFILE_ITT -I/opt/intel/oneapi/vtune/2023.1.0/include -L/opt/intel/oneapi/vtune/2023.1.0/lib64 -littnotify
+CFLAGS_GNU     = -Wall -Ofast -ffast-math -fopenmp -$(ARCHFLAG)=$(ARCH) $(if $(AVX512),-mprefer-vector-width=512)
+CFLAGS_INTEL   = -Wall -Ofast -ffast-math -qopenmp -$(ARCHFLAG)=native $(if $(AVX512),-qopt-zmm-usage=high) -DPROFILE_ITT -I/opt/intel/oneapi/vtune/2023.1.0/include -L/opt/intel/oneapi/vtune/2023.1.0/lib64 -littnotify
 CFLAGS = $(CFLAGS_$(COMPILER)) -DWGSIZE=$(WGSIZE)
 
 LDFLAGS = -lm
@@ -66,7 +66,7 @@ EXE = bude
 all: $(EXE)
 
 $(EXE): bude.c bude.h vec-pose-inner.c
-	$(CC) $(CFLAGS) bude.c vec-pose-inner.c -o $@ $(LDFLAGS) $(EXTRA_FLAGS)
+	$(CC) $(CFLAGS) bude.c ../../energy.c vec-pose-inner.c -o $@ $(LDFLAGS) $(EXTRA_FLAGS)
 
 clean:
 	rm -f $(EXE)

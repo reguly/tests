@@ -312,6 +312,7 @@ int main(int argc, char **argv)
 	       );
 
   //printf(" DONE populate\n");
+  blocks->instance->reset_power_counters();
 #ifdef PROFILE_ITT
   __itt_resume();
 #endif

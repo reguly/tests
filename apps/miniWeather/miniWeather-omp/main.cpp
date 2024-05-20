@@ -111,6 +111,10 @@ void   set_halo_values_x    ( double *state );
 void   set_halo_values_z    ( double *state );
 void   reductions           ( double &mass , double &te );
 
+extern "C" {
+void initialize_rapl();
+void report_rapl();
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // THE MAIN PROGRAM STARTS HERE
@@ -156,6 +160,7 @@ int main(int argc, char **argv) {
   ////////////////////////////////////////////////////
   auto c_start = clock();
   int step = 0;
+  initialize_rapl();
   BEGIN_PROFILING("Compute")
   while (etime < sim_time) {
     step++;
@@ -170,6 +175,7 @@ int main(int argc, char **argv) {
     }
   }
   END_PROFILING("Compute")
+  report_rapl();
   auto c_end = clock();
   if (masterproc) {
      printf("CPU Time: %lf sec\n",( (double) (c_end-c_start) ) / CLOCKS_PER_SEC);

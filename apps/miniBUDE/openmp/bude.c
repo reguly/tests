@@ -9,6 +9,10 @@
 #ifdef PROFILE_ITT
 #include <ittnotify.h>
 #endif
+
+void initialize_rapl();
+void report_rapl();
+
 //#define restrict __restrict
 struct
 {
@@ -156,6 +160,7 @@ void runOpenMP(float *restrict results)
                   buffer, forcefield, group);
     }
 
+  initialize_rapl();
 #ifdef PROFILE_ITT
   __itt_resume();
 #endif
@@ -178,6 +183,7 @@ void runOpenMP(float *restrict results)
 #ifdef PROFILE_ITT
   __itt_pause();
 #endif
+  report_rapl();
 
   memcpy(results, buffer, sizeof(float) * params.nposes);
 

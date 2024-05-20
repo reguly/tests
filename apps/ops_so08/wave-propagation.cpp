@@ -168,6 +168,7 @@ int main(int argc, const char* argv[]) {
     // Start time
     ops_partition("");
 
+    grid->instance->reset_power_counters();
     for (t = 1; t < T_intervals; t++) {
         gettimeofday(&start_propagation_section, NULL);
 

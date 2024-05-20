@@ -127,6 +127,7 @@ int main(int argc, char **argv)
       ops_arg_dat(rhou2_B0, 1, stencil_0_00, "float", OPS_WRITE),
       ops_arg_idx());
 
+  opensbliblock00->instance->reset_power_counters();
 #ifdef PROFILE_ITT
   __itt_resume();
 #endif

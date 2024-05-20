@@ -91,6 +91,11 @@ int    direction_switch = 1;
 double mass0, te0;            //Initial domain totals for mass and total energy  
 double mass , te ;            //Domain totals for mass and total energy  
 
+extern "C" {
+void initialize_rapl();
+void report_rapl();
+}
+
 int BS_X = 16;
 int BS_Y = 16;
 #ifndef NDRANGE
@@ -1026,6 +1031,7 @@ int main(int argc, char **argv) {
   auto c_start = clock();
 
   int step = 0;
+  initialize_rapl();
   BEGIN_PROFILING("Compute")
   while (etime < sim_time) {
     step++;
@@ -1056,6 +1062,7 @@ int main(int argc, char **argv) {
     }
   }
   END_PROFILING("Compute")
+  report_rapl();
 
   auto c_end = clock();
   if (masterproc)

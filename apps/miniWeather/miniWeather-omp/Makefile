@@ -54,7 +54,8 @@ endif
 #===============================================================================
 
 $(program): $(obj) Makefile
-	$(CC) $(CFLAGS) $(obj) -o $@ $(LDFLAGS)
+	gcc ../../energy.c -c -o energy.o
+	$(CC) $(CFLAGS) $(obj) energy.o -o $@ $(LDFLAGS)
 
 %.o: %.cpp Makefile
 	$(CC) $(CFLAGS) -c $< -o $@

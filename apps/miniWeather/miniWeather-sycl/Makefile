@@ -78,7 +78,8 @@ endif
 #===============================================================================
 
 $(program): $(obj)
-	$(CC) $(CFLAGS) $(obj) -o $@ $(LDFLAGS)
+	gcc ../../energy.c -c -o energy.o
+	$(CC) $(CFLAGS) $(obj) energy.o -o $@ $(LDFLAGS)
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
