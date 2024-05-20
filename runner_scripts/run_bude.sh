@@ -22,7 +22,8 @@ do
   fi
   if [ -n "$ACCEL" ]; then
 	  cd $ACCEL
-	  ./bude_"${ACCEL}" -i 30 -w 256 $ACCEL_FLAGS >> bude_"${ACCEL}"_diag2
+	  #./bude_"${ACCEL}" -i 30 -w 256 $ACCEL_FLAGS >> bude_"${ACCEL}"_diag2
+	  ./bude_"${ACCEL}" -i 30 $ACCEL_FLAGS >> bude_"${ACCEL}"_diag2
 	  cd ..
   fi
 done

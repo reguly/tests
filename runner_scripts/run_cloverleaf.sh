@@ -1,12 +1,16 @@
 #!/bin/bash
 set -x
 if [ -n "$GPU" ]; then
+#intel 
         BS_X=512
         BS_Y=2
-        if [[ "${NV_ARCH}" == "Hopper" || "${HIP_ARCH}" == "gfx90a" ]]; then
+if [[ "${NV_ARCH}" == "Hopper" || "${HIP_ARCH}" == "gfx90a" ]]; then
         BS_X=128
         BS_Y=2
-        fi
+#a100
+  BS_X=64
+  BS_Y=4
+fi
 fi
 sed -i "s/end_step=.*/end_step=50/g" clover.in
 array=( 7680 )

@@ -1,6 +1,6 @@
 #!/bin/bash
 BASE=`pwd`
-source source_cray
+source source_gcc
 export OP_AUTO_SOA=1
 if [ -z "$2" ]; then
   set -- "$1" "all"
@@ -10,17 +10,17 @@ if [ "$2" == "all" ] || [ "$2" == "ops" ]; then
 cd $BASE/OPS/ops/c
 make $1 -j8
 cd $BASE/OPS/apps/c/CloverLeaf
-make cloverleaf_"$1" &
+make cloverleaf_"$1" -B &
 cd $BASE/OPS/apps/c/CloverLeaf_3D
-make cloverleaf_"$1" &
+make cloverleaf_"$1" -B &
 cd $BASE/apps/rtm/
-make rtm_"$1" &
+make rtm_"$1" -B &
 cd $BASE/apps/TGV_StoreAll
-make opensbli_"$1" &
+make opensbli_"$1" -B &
 cd $BASE/apps/TGV_StoreNone
-make opensbli_"$1" &
+make opensbli_"$1" -B &
 cd $BASE/apps/ops_so08
-make wave-propagation_"$1" &
+make wave-propagation_"$1" -B &
 wait
 fi
 if [ "$2" == "all" ] || [ "$2" == "op2" ]; then

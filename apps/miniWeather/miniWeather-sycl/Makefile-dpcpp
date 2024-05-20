@@ -8,8 +8,8 @@ OPTIMIZE  = yes
 DEBUG     = no
 
 GPU       = yes
-# CUDA      = no
-# CUDA_ARCH = sm_70
+CUDA      = no
+CUDA_ARCH = sm_80
 # HIP       = no
 # HIP_ARCH  = gfx908
 # GCC_TOOLCHAIN = "/auto/software/gcc/x86_64/gcc-9.1.0/"
@@ -43,7 +43,7 @@ CFLAGS := $(EXTRA_CFLAGS) \
 	  -DSIM_TIME=1 \
 	  -DDATA_SPEC=DATA_SPEC_THERMAL \
           -I$(MPI_INCLUDE) \
-          -std=c++17 -Wall -I../include --opensycl-targets=generic #-fsycl #-fsycl-targets=spir64_x86_64 -Xs "-march=avx512"
+           -I../include --opensycl-targets=cuda:sm_80 #generic #-fsycl #-fsycl-targets=spir64_x86_64 -Xs "-march=avx512"
 
 # Linker Flags
 LDFLAGS = -L$(MPI_LIB_DIR) -lmpi
@@ -54,8 +54,8 @@ endif
 
 ifeq ($(CUDA), yes)
   CFLAGS += -fsycl-targets=nvptx64-nvidia-cuda-sycldevice \
-            -Xsycl-target-backend --cuda-gpu-arch=$(CUDA_ARCH) \
-            --gcc-toolchain=$(GCC_TOOLCHAIN)
+            -Xsycl-target-backend --cuda-gpu-arch=$(CUDA_ARCH)
+#            --gcc-toolchain=$(GCC_TOOLCHAIN)
 endif
 
 ifeq ($(HIP), yes)
