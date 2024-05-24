@@ -1,6 +1,6 @@
 #!/bin/bash
 export BASE=`pwd`
-source source_clang
+source source_intel
 source detect_hardware.sh
 export OMP_PROC_BIND=TRUE
 export SYCL_DEVICE=0
@@ -8,10 +8,10 @@ export SYCL_DEVICE=0
 #module purge; module load baskerville
 #module load bask-apps/test
 #module load HDF5/1.10.7-iimpi-2021a
-export SYCL=1
+#export SYCL=1
 #export ACCEL=hip
-export GPU=1
-#export CPUTEST=1
+#export GPU=1
+export CPUTEST=1
 
 export BS_X=128
 export BS_Y=1

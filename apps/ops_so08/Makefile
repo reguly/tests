@@ -12,4 +12,4 @@ OPS_GENERATED=wave-propagation_ops.cpp
 APP=wave-propagation
 MAIN_SRC=wave-propagation
 
-include $(OPS_INSTALL_PATH)/../makefiles/Makefile.c_app
+include $(OPS_INSTALL_PATH)/../makefiles/Makefile.c_app_legacy

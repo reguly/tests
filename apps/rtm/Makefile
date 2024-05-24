@@ -25,4 +25,4 @@ OTHER_FILES=
 APP=rtm
 MAIN_SRC=rtm
 
-include $(OPS_INSTALL_PATH)/../makefiles/Makefile.c_app
+include $(OPS_INSTALL_PATH)/../makefiles/Makefile.c_app_legacy

@@ -328,6 +328,7 @@ int main(int argc, char **argv)
                ops_arg_dat(yy, 6, S3D_000, "float", OPS_WRITE));
 
 
+  blocks->instance->reset_power_counters();
 #ifdef PROFILE_ITT
   __itt_resume();
 #endif

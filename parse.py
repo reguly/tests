@@ -7,6 +7,7 @@ import numpy as np
 
 # pattern to search as a regular expression
 pattern = re.compile(r'Total Wall|GFLOP/s|Max total runtime|Main simulation runtime|semi_discrete_step|Wave propagation time')
+#pattern = re.compile(r'Total CPU energy consumed')
 
 # prepare a list to hold the results
 dfs = []
