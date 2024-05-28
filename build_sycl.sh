@@ -1,8 +1,9 @@
 #!/bin/bash
 BASE=`pwd`
-source source_clang
-mpi=
-#mpi=mpi_
+source source_sycl
+#mpi=
+mpi=mpi_
+export OPS_CPU=1 
 
 #if $1 is not set, set it to all
 if [ -z "$1" ]; then
@@ -22,6 +23,20 @@ cd $BASE/apps/TGV_StoreAll
 OPS_FLAT=1 make opensbli_"$mpi"sycl -B &
 cd $BASE/apps/TGV_StoreNone
 OPS_FLAT=1 make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_StoreAll_sp
+OPS_FLAT=1 make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_StoreNone_sp
+OPS_FLAT=1 make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_mixed/TGsym_DP
+OPS_FLAT=1 make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_mixed/TGsym_SP
+OPS_FLAT=1 make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_mixed/TGsym_HP
+OPS_FLAT=1 make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_mixed/TGsym_SPDP
+OPS_FLAT=1 make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_mixed/TGsym_HPSP
+OPS_FLAT=1 make opensbli_"$mpi"sycl -B &
 cd $BASE/apps/ops_so08
 OPS_FLAT=1 make wave-propagation_"$mpi"sycl -B &
 wait
@@ -36,6 +51,21 @@ cd $BASE/apps/TGV_StoreAll
 mv opensbli_"$mpi"sycl opensbli_mpi_sycl_flat
 cd $BASE/apps/TGV_StoreNone
 mv opensbli_"$mpi"sycl opensbli_mpi_sycl_flat
+cd $BASE/apps/TGV_StoreAll_sp
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_flat
+cd $BASE/apps/TGV_StoreNone_sp
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_flat
+cd $BASE/apps/TGV_mixed/TGsym_DP
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_flat
+cd $BASE/apps/TGV_mixed/TGsym_SP
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_flat
+cd $BASE/apps/TGV_mixed/TGsym_HP
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_flat
+cd $BASE/apps/TGV_mixed/TGsym_SPDP
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_flat
+cd $BASE/apps/TGV_mixed/TGsym_HPSP
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_flat
+
 cd $BASE/apps/ops_so08
 mv wave-propagation_"$mpi"sycl wave-propagation_mpi_sycl_flat
 
@@ -50,6 +80,20 @@ cd $BASE/apps/TGV_StoreAll
 make opensbli_"$mpi"sycl -B &
 cd $BASE/apps/TGV_StoreNone
 make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_StoreAll_sp
+make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_StoreNone_sp
+make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_mixed/TGsym_DP
+make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_mixed/TGsym_SP
+make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_mixed/TGsym_HP
+make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_mixed/TGsym_SPDP
+make opensbli_"$mpi"sycl -B &
+cd $BASE/apps/TGV_mixed/TGsym_HPSP
+make opensbli_"$mpi"sycl -B &
 cd $BASE/apps/ops_so08
 make wave-propagation_"$mpi"sycl -B &
 wait
@@ -63,6 +107,20 @@ mv rtm_"$mpi"sycl rtm_mpi_sycl_ndrange
 cd $BASE/apps/TGV_StoreAll
 mv opensbli_"$mpi"sycl opensbli_mpi_sycl_ndrange
 cd $BASE/apps/TGV_StoreNone
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_ndrange
+cd $BASE/apps/TGV_StoreAll_sp
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_ndrange
+cd $BASE/apps/TGV_StoreNone_sp
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_ndrange
+cd $BASE/apps/TGV_mixed/TGsym_DP
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_ndrange
+cd $BASE/apps/TGV_mixed/TGsym_SP
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_ndrange
+cd $BASE/apps/TGV_mixed/TGsym_HP
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_ndrange
+cd $BASE/apps/TGV_mixed/TGsym_SPDP
+mv opensbli_"$mpi"sycl opensbli_mpi_sycl_ndrange
+cd $BASE/apps/TGV_mixed/TGsym_HPSP
 mv opensbli_"$mpi"sycl opensbli_mpi_sycl_ndrange
 cd $BASE/apps/ops_so08
 mv wave-propagation_"$mpi"sycl wave-propagation_mpi_sycl_ndrange

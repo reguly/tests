@@ -24,6 +24,16 @@ cd $BASE/apps/TGV_StoreNone
 make opensbli_mpi opensbli_mpi_tiled -B &
 cd $BASE/apps/TGV_StoreNone_sp
 make opensbli_mpi opensbli_mpi_tiled -B &
+cd $BASE/apps/TGV_mixed/TGsym_DP
+make opensbli_mpi opensbli_mpi_tiled -B &
+cd $BASE/apps/TGV_mixed/TGsym_SP
+make opensbli_mpi opensbli_mpi_tiled -B &
+cd $BASE/apps/TGV_mixed/TGsym_HP
+make opensbli_mpi opensbli_mpi_tiled -B &
+cd $BASE/apps/TGV_mixed/TGsym_SPDP
+make opensbli_mpi opensbli_mpi_tiled -B &
+cd $BASE/apps/TGV_mixed/TGsym_HPSP
+make opensbli_mpi opensbli_mpi_tiled -B &
 cd $BASE/apps/ops_so08
 make wave-propagation_mpi wave-propagation_mpi_tiled -B &
 wait

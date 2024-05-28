@@ -3,7 +3,7 @@ export BASE=`pwd`
 source source_intel
 source detect_hardware.sh
 export OMP_PROC_BIND=TRUE
-export SYCL_DEVICE=0
+export SYCL_DEVICE=1
 #these are for baskerville
 #module purge; module load baskerville
 #module load bask-apps/test
@@ -12,6 +12,8 @@ export SYCL_DEVICE=0
 #export ACCEL=hip
 #export GPU=1
 export CPUTEST=1
+export TILING=1
+# export RAPL_PATH="/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/energy_uj;/sys/devices/virtual/powercap/intel-rapl/intel-rapl:2/energy_uj"
 
 export BS_X=128
 export BS_Y=1
@@ -48,6 +50,28 @@ if [ "$1" == "all" ] || [ "$1" == "ops" ] || [ "$1" == "sn" ]; then
 cd $BASE/apps/TGV_StoreNone
 $BASE/runner_scripts/run_SN.sh
 fi
+if [ "$1" == "all" ] || [ "$1" == "ops" ] || [ "$1" == "sa_sp" ]; then
+cd $BASE/apps/TGV_StoreAll_sp
+$BASE/runner_scripts/run_SA.sh
+fi
+if [ "$1" == "all" ] || [ "$1" == "ops" ] || [ "$1" == "sn_sp" ]; then
+cd $BASE/apps/TGV_StoreNone_sp
+$BASE/runner_scripts/run_SN.sh
+fi
+
+if [ "$1" == "all" ] || [ "$1" == "ops" ] || [ "$1" == "sbli_mixed" ]; then
+cd $BASE/apps/TGV_mixed/TGsym_DP
+$BASE/runner_scripts/run_mixed.sh
+cd $BASE/apps/TGV_mixed/TGsym_SP
+$BASE/runner_scripts/run_mixed.sh
+cd $BASE/apps/TGV_mixed/TGsym_HP
+$BASE/runner_scripts/run_mixed.sh
+cd $BASE/apps/TGV_mixed/TGsym_SPDP
+$BASE/runner_scripts/run_mixed.sh
+cd $BASE/apps/TGV_mixed/TGsym_HPSP
+$BASE/runner_scripts/run_mixed.sh
+fi
+
 if [ "$1" == "all" ] || [ "$1" == "op2" ] || [ "$1" == "mgcfd" ]; then
 cd $BASE/apps/Rotor37_8M
 $BASE/runner_scripts/run_mgcfd.sh

@@ -51,3 +51,6 @@ df_final['MinAverage'] = df_final.iloc[:, 1:].idxmin(axis=1)
 
 # print the final DataFrame
 print(df_final.to_string())
+
+# save the final DataFrame to a CSV file
+df_final.to_csv('output.csv', index=False)

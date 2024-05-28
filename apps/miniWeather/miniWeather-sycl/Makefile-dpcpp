@@ -7,7 +7,7 @@ CC        = mpicxx
 OPTIMIZE  = yes
 DEBUG     = no
 
-GPU       = yes
+GPU       = no
 CUDA      = no
 CUDA_ARCH = sm_80
 # HIP       = no
@@ -43,7 +43,7 @@ CFLAGS := $(EXTRA_CFLAGS) \
 	  -DSIM_TIME=1 \
 	  -DDATA_SPEC=DATA_SPEC_THERMAL \
           -I$(MPI_INCLUDE) \
-           -I../include --opensycl-targets=cuda:sm_80 #generic #-fsycl #-fsycl-targets=spir64_x86_64 -Xs "-march=avx512"
+           -I../include -fsycl -fsycl-targets=spir64_x86_64 -Xs "-march=avx512" #--opensycl-targets=cuda:sm_80 #generic #-fsycl #-fsycl-targets=spir64_x86_64 -Xs "-march=avx512"
 
 # Linker Flags
 LDFLAGS = -L$(MPI_LIB_DIR) -lmpi
