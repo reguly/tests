@@ -12,7 +12,7 @@ fi
 
 if [ "$1" == "all" ] || [ "$1" == "ops" ]; then
 cd $BASE/OPS/ops/c
-make mpi_sycl sycl -j8
+make mpi_sycl sycl hdf5_mpi -j8
 cd $BASE/OPS/apps/c/CloverLeaf
 OPS_FLAT=1 make cloverleaf_"$mpi"sycl -B &
 cd $BASE/OPS/apps/c/CloverLeaf_3D
@@ -65,7 +65,6 @@ cd $BASE/apps/TGV_mixed/TGsym_SPDP
 mv opensbli_"$mpi"sycl opensbli_mpi_sycl_flat
 cd $BASE/apps/TGV_mixed/TGsym_HPSP
 mv opensbli_"$mpi"sycl opensbli_mpi_sycl_flat
-
 cd $BASE/apps/ops_so08
 mv wave-propagation_"$mpi"sycl wave-propagation_mpi_sycl_flat
 

@@ -47,6 +47,7 @@ void ops_par_loop_opensbliblock00Kernel087(char const *, ops_block, int , int*,
   ops_arg,
   ops_arg,
   ops_arg,
+  ops_arg,
   ops_arg );
 
 void ops_par_loop_opensbliblock00Kernel081(char const *, ops_block, int , int*,
@@ -654,7 +655,10 @@ int main(int argc, char **argv)
                ops_arg_dat(rhou0_B0, 1, stencil_0_00, "double", OPS_WRITE),
                ops_arg_dat(rho_B0, 1, stencil_0_00, "double", OPS_WRITE),
                ops_arg_dat(rhou1_B0, 1, stencil_0_00, "double", OPS_WRITE),
-               ops_arg_dat(rhou2_B0, 1, stencil_0_00, "double", OPS_WRITE));
+               ops_arg_dat(rhou2_B0, 1, stencil_0_00, "double", OPS_WRITE),
+               ops_arg_idx());
+
+  opensbliblock00->instance->reset_power_counters();
 #ifdef PROFILE_ITT
   __itt_resume();
 #endif
