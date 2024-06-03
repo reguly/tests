@@ -41,7 +41,10 @@ endif
 
 # Optimization Flags
 ifeq ($(OPTIMIZE),yes)
-  CFLAGS += -O3 -march=native -ffast-math -funroll-loops -qopt-zmm-usage=high
+  CFLAGS += -O3 -march=native -ffast-math -funroll-loops
+ifdef TEST_ZMM
+  CFLAGS += -qopt-zmm-usage=high
+endif
 endif
 
 ifeq ($(DEVICE),gpu)
