@@ -22,6 +22,11 @@ export OMPI_CC=$I_MPI_CC
 export OMPI_CXX=$I_MPI_CXX
 
 export bind_numa="-bind-to numa"
+export bind_core="-bind-to core"
+export bind_hwthread="-bind-to hwthread"
 #this is just for the OpenMPI setup on PPCU local cluster
 # export mpirunflags="-mca io ^ompio"
-# export bind_numa="/home/reguly/numawrap_omp2"
+# export bind_numa="$BASE_DIR/numawrap"
+# export bind_core="$BASE_DIR/numawrap"
+# export bind_hwthread="$BASE_DIR/numawrap"
+

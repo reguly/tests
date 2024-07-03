@@ -1,10 +1,18 @@
 #!/bin/bash
 set -x
 sed -i "s/end_step=.*/end_step=50/g" clover.in
-##OPS_FLAT=1 make cloverleaf_mpi_sycl -B
-#mv cloverleaf_mpi_sycl cloverleaf_mpi_sycl_flat
-#OPS_CPU=1 make cloverleaf_mpi_sycl -B
-#mv cloverleaf_mpi_sycl cloverleaf_mpi_sycl_ndrange
+
+# Check if the CACHE_SIZES environment variable is set
+if [ -z "$CACHE_SIZES_MPI" ]; then
+    export CACHE_SIZES_MPI="0.4,0.7,1,2"
+fi
+if [ -z "$CACHE_SIZES_MPIOMP" ]; then
+    export CACHE_SIZES_MPIOMP="3,4,6,8"
+fi
+IFS=',' read -ra array <<< "$CACHE_SIZES_MPI"
+IFS=',' read -ra array_mpiomp <<< "$CACHE_SIZES_MPIOMP"
+
+
 if [ -n "$GPU" ]; then
         BS_X=64
         BS_Z=1
@@ -20,8 +28,8 @@ if [ -n "$GPU" ]; then
         BS_Z=4
         fi
 fi
-array=( 408 )
-for i in "${array[@]}"
+sizes=( 408 )
+for i in "${sizes[@]}"
 do
 	sed -i "s/x_cells=.*/x_cells=$i/g" clover.in
 	sed -i "s/y_cells=.*/y_cells=$i/g" clover.in
@@ -29,22 +37,26 @@ do
 	for j in {1..4}
 	do
 		if [ -n "$CPUTEST" ]; then
-		OMP_NUM_THREADS=1 mpirun  -np $physical_cores -bind-to core ./cloverleaf_mpi -OPS_DIAGS=2 >> c3d_mpi"$physical_cores"_icx_diag2
+		OMP_NUM_THREADS=1 mpirun  -np $physical_cores $bind_core ./cloverleaf_mpi -OPS_DIAGS=2 >> c3d_mpi"$physical_cores"_icx_diag2
   if [ "$logical_cores" -ne "$physical_cores" ]; then
-		OMP_NUM_THREADS=1 mpirun  -np $logical_cores -bind-to hwthread ./cloverleaf_mpi -OPS_DIAGS=2 >> c3d_mpi"$logical_cores"_icx_diag2
+		OMP_NUM_THREADS=1 mpirun  -np $logical_cores $bind_hwthread ./cloverleaf_mpi -OPS_DIAGS=2 >> c3d_mpi"$logical_cores"_icx_diag2
 		OMP_NUM_THREADS=$threads_per_numa OMP_PROC_BIND=TRUE mpirun -np $numa_domains  $bind_numa ./cloverleaf_mpi -OPS_DIAGS=2 >> c3d_mpi"$numa_domains"omp"$threads_per_numa"_icx_diag2
   fi
 		OMP_NUM_THREADS=$physical_cores_per_numa OMP_PROC_BIND=spread mpirun -np $numa_domains  $bind_numa ./cloverleaf_mpi -OPS_DIAGS=2 >> c3d_mpi"$numa_domains"omp"$physical_cores_per_numa"_icx_diag2
 		fi
 		if [ -n "$TILING" ]; then
-		array=( 1 2 3 4 6 8 )
 		for i in "${array[@]}"
 		do
-		OMP_NUM_THREADS=1 mpirun -np $physical_cores -bind-to core ./cloverleaf_mpi_tiled -OPS_DIAGS=2 OPS_TILING_MAXDEPTH=6 OPS_CACHE_SIZE=$i >> c3d_mpi"$physical_cores"_tiled_"$i"MB_icc_diag2
-		size_per_numa=$(($i * $physical_cores_per_numa))
+		OMP_NUM_THREADS=1 mpirun -np $physical_cores $bind_core ./cloverleaf_mpi_tiled -OPS_DIAGS=2 OPS_TILING_MAXDEPTH=6 OPS_CACHE_SIZE=$i >> c3d_mpi"$physical_cores"_tiled_"$i"MB_icc_diag2
+		if [ "$logical_cores" -ne "$physical_cores" ]; then
+		OMP_NUM_THREADS=1 mpirun -np $logical_cores $bind_hwthread ./cloverleaf_mpi_tiled -OPS_DIAGS=2 OPS_TILING_MAXDEPTH=6 OPS_CACHE_SIZE=$i >> c3d_mpi"$logical_cores"_tiled_"$i"MB_icc_diag2
+		fi
+		done
+		for i in "${array_mpiomp[@]}"
+		do
+		size_per_numa=$(echo "$i * $physical_cores_per_numa" | bc)
 		OMP_PROC_BIND=spread OMP_NUM_THREADS=$physical_cores_per_numa mpirun -np $numa_domains $bind_numa ./cloverleaf_mpi_tiled -OPS_DIAGS=2 OPS_TILING_MAXDEPTH=6 OPS_CACHE_SIZE=$size_per_numa >> c3d_mpi"$numa_domains"omp"$physical_cores_per_numa"_tiled_"$size_per_numa"MB_icc_diag2
 		if [ "$logical_cores" -ne "$physical_cores" ]; then
-		OMP_NUM_THREADS=1 mpirun -np $logical_cores -bind-to hwthread ./cloverleaf_mpi_tiled -OPS_DIAGS=2 OPS_TILING_MAXDEPTH=6 OPS_CACHE_SIZE=$i >> c3d_mpi"$logical_cores"_tiled_"$i"MB_icc_diag2
 		OMP_NUM_THREADS=$threads_per_numa mpirun -np $numa_domains $bind_numa ./cloverleaf_mpi_tiled -OPS_DIAGS=2 OPS_TILING_MAXDEPTH=6 OPS_CACHE_SIZE=$size_per_numa >> c3d_mpi"$numa_domains"omp"$threads_per_numa"_tiled_"$size_per_numa"MB_icc_diag2
 		fi
 		done

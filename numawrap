@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Check if PMI_SIZE and PMI_RANK are set
+if [ -z "$PMI_SIZE" ] || [ -z "$PMI_RANK" ]; then
+  echo "PMI_SIZE and PMI_RANK must be set"
+  exit 1
+fi
+
+# Determine the binding strategy based on PMI_SIZE
+if [ "$PMI_SIZE" -eq 2 ]; then
+  # Use numactl to bind to a socket based on PMI_RANK
+  SOCKET=$((PMI_RANK % 2))
+  CMD="numactl --cpunodebind=$SOCKET --membind=$SOCKET $@"
+else
+  # Use taskset to bind to the core corresponding to PMI_RANK
+  CMD="taskset -c $PMI_RANK $@"
+fi
+
+# Run the command
+#echo "Running command: $CMD"
+exec $CMD

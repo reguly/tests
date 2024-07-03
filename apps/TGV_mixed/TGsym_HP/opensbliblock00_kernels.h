@@ -3,27 +3,27 @@
  void opensbliblock00Kernel087(ACC<half> &rhoE_B0, ACC<half> &rho_B0, ACC<half> &rhou0_B0, ACC<half> &rhou1_B0,
 ACC<half> &rhou2_B0, const int *idx)
 {
-   half p = 0.0;
-   half r = 0.0;
-   half u0 = 0.0;
-   half u1 = 0.0;
-   half u2 = 0.0;
-   half x0 = 0.0;
-   half x1 = 0.0;
-   half x2 = 0.0;
+   float p = 0.0;
+   float r = 0.0;
+   float u0 = 0.0;
+   float u1 = 0.0;
+   float u2 = 0.0;
+   float x0 = 0.0;
+   float x1 = 0.0;
+   float x2 = 0.0;
    x0 = Delta0block0*idx[0];
 
    x1 = Delta1block0*idx[1];
 
    x2 = Delta2block0*idx[2];
 
-   u0 = cos(float(x1))*cos(float(x2))*sin(float(x0));
+   u0 = cosf(x1)*cosf(x2)*sinf(x0);
 
-   u1 = -cos(float(x0))*cos(float(x2))*sin(float(x1));
+   u1 = -cosf(x0)*cosf(x2)*sinf(x1);
 
    u2 = 0.0;
 
-   p = (2.0 + cos(2.0*x2))*(0.0625*cos(2.0*x0) + 0.0625*cos(2.0*x1)) + 1.0/((Minf*Minf)*gama);
+   p = (2.0 + cosf(2.0*x2))*(0.0625f*cosf(2.0*x0) + 0.0625f*cosf(2.0*x1)) + 1.0/((Minf*Minf)*gama);
 
    r = gama*p*(Minf*Minf);
 
@@ -35,8 +35,7 @@ ACC<half> &rhou2_B0, const int *idx)
 
    rhou2_B0(0,0,0) = r*u2;
 
-   rhoE_B0(0,0,0) = p/(-1 + gama) + 0.5*r*((u0*u0) + (u1*u1) + (u2*u2));
-
+   rhoE_B0(0,0,0) = p/(-1 + gama) + 0.5f*r*((u0*u0) + (u1*u1) + (u2*u2));
 }
 
  void opensbliblock00Kernel081(ACC<half> &rhoE_B0, ACC<half> &rho_B0, ACC<half> &rhou0_B0, ACC<half> &rhou1_B0,

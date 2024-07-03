@@ -68,7 +68,7 @@ mv opensbli_"$mpi"sycl opensbli_mpi_sycl_flat
 cd $BASE/apps/ops_so08
 mv wave-propagation_"$mpi"sycl wave-propagation_mpi_sycl_flat
 
-
+#OPS_CPU set above
 cd $BASE/OPS/apps/c/CloverLeaf
 make cloverleaf_"$mpi"sycl -B &
 cd $BASE/OPS/apps/c/CloverLeaf_3D

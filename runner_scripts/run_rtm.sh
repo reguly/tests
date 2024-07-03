@@ -20,9 +20,9 @@ export OMP_PROC_BIND=TRUE
 for j in {1..4}
 do
 	if [ -n "$CPUTEST" ]; then
-	OMP_NUM_THREADS=1 mpirun -np $logical_cores -bind-to hwthread ./rtm_mpi -sizex=320 -sizey=320 -sizez=320 -iters=20 -OPS_DIAGS=2>> rtm_soa_mpi"$logical_cores"_diag2
+	OMP_NUM_THREADS=1 mpirun -np $logical_cores $bind_hwthread ./rtm_mpi -sizex=320 -sizey=320 -sizez=320 -iters=20 -OPS_DIAGS=2>> rtm_soa_mpi"$logical_cores"_diag2
   if [ "$logical_cores" -ne "$physical_cores" ]; then
-	OMP_NUM_THREADS=1 mpirun -np $physical_cores -bind-to core ./rtm_mpi -sizex=320 -sizey=320 -sizez=320 -iters=20 -OPS_DIAGS=2>> rtm_soa_mpi"$physical_cores"_diag2
+	OMP_NUM_THREADS=1 mpirun -np $physical_cores $bind_core ./rtm_mpi -sizex=320 -sizey=320 -sizez=320 -iters=20 -OPS_DIAGS=2>> rtm_soa_mpi"$physical_cores"_diag2
 	OMP_PROC_BIND=TRUE OMP_NUM_THREADS=$threads_per_numa mpirun -np $numa_domains $bind_numa ./rtm_mpi -sizex=320 -sizey=320 -sizez=320 -iters=20 -OPS_DIAGS=2 >> rtm_soa_mpi"$numa_domains"omp"$threads_per_numa"_diag2
   fi	
 	OMP_PROC_BIND=spread OMP_NUM_THREADS=$physical_cores_per_numa mpirun -np $numa_domains $bind_numa ./rtm_mpi -sizex=320 -sizey=320 -sizez=320 -iters=20 -OPS_DIAGS=2 >> rtm_soa_mpi"$numa_domains"omp"$physical_cores_per_numa"_diag2

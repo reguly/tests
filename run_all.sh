@@ -13,7 +13,8 @@ export SYCL_DEVICE=1
 #export GPU=1
 export CPUTEST=1
 export TILING=1
-# export RAPL_PATH="/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/energy_uj;/sys/devices/virtual/powercap/intel-rapl/intel-rapl:2/energy_uj"
+#export RAPL_PATH="/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/energy_uj;/sys/devices/virtual/powercap/intel-rapl/intel-rapl:2/energy_uj"
+#export RAPL_PATH="/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/intel-rapl:0:0/energy_uj;/sys/devices/virtual/powercap/intel-rapl/intel-rapl:1/intel-rapl:1:0/energy_uj"
 
 export BS_X=128
 export BS_Y=1
