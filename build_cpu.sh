@@ -9,7 +9,7 @@ fi
 
 if [ "$1" == "all" ] || [ "$1" == "ops" ]; then
 cd $BASE/OPS/ops/c
-make mpi -j8 -B
+make mpi hdf5_mpi -j8 -B
 cd $BASE/OPS/apps/c/CloverLeaf
 make cloverleaf_mpi cloverleaf_mpi_tiled -B &
 cd $BASE/OPS/apps/c/CloverLeaf_3D

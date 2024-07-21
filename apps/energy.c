@@ -13,17 +13,33 @@ int energy_paths_count = 0;
 
 void initialize_rapl() {
 //Initialize RAPL counters
-	char default_paths[128];
+	char default_paths[1024];
 	strcpy(&default_paths[0],"/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/energy_uj;/sys/devices/virtual/powercap/intel-rapl/intel-rapl:1/energy_uj");
+	char default_dram_paths[1024];
+	strcpy(&default_dram_paths[0],"/sys/devices/virtual/powercap/intel-rapl/intel-rapl:0/intel-rapl:0:0/energy_uj;/sys/devices/virtual/powercap/intel-rapl/intel-rapl:1/intel-rapl:1:0/energy_uj");
 	char* env_paths = getenv("RAPL_PATH");
 	if (!env_paths) {
 		env_paths = default_paths;
 	}
+	char* env_dram_paths = getenv("RAPL_DRAM_PATH");
+	if (!env_dram_paths) {
+		env_dram_paths = default_dram_paths;
+	}
+
+  	//concatenate the paths
+	char* paths = (char*)malloc(sizeof(char)*(strlen(env_paths)+strlen(env_dram_paths)+2));
+	char* paths2 = (char*)malloc(sizeof(char)*(strlen(env_paths)+strlen(env_dram_paths)+2));
+	strcpy(paths, env_paths);
+	strcat(paths, ";");
+	strcat(paths, env_dram_paths);
+	strcpy(paths2, paths);
+
+
 	energy_paths_count = 0;
-	if (env_paths) {
+	if (paths) {
 		// Count the number of paths
 		int num_paths = 0;
-		char* path = strtok(env_paths, ";");
+		char* path = strtok(paths, ";");
 		while (path != NULL) {
 			num_paths++;
 			path = strtok(NULL, ";");
@@ -35,7 +51,7 @@ void initialize_rapl() {
 		energy_counters = (long long*)malloc(sizeof(long long)*num_paths);
 
 		num_paths = 0;
-		path = strtok(env_paths, ";");
+		path = strtok(paths2, ";");
 		while (path != NULL) {
 			energy_paths[num_paths] = strdup(path); // Duplicate the string for safekeeping
 			//check if path exists
@@ -62,6 +78,7 @@ void initialize_rapl() {
 
 void report_rapl() {
 long long aggregate_energy = 0;
+long long aggregate_energy_dram = 0;
 long long max_energy = 262143328850LL;
   for (int i = 0; i < energy_paths_count; i++) {
     if (energy_paths[i] != NULL) {
@@ -84,15 +101,24 @@ long long max_energy = 262143328850LL;
 				fscanf(max_energy_file, "%lld", &max_energy);
 				fclose(max_energy_file);
 			}
-			aggregate_energy += (max_energy - energy_counters[i] + energy);
-		} else
-        	aggregate_energy += (energy - energy_counters[i]);
+			if (i < energy_paths_count/2)
+				aggregate_energy += (max_energy - energy_counters[i] + energy);
+			else
+				aggregate_energy_dram += (max_energy - energy_counters[i] + energy);
+		} else {
+			if (i < energy_paths_count/2)
+        		aggregate_energy += (energy - energy_counters[i]);
+			else
+				aggregate_energy_dram += (energy - energy_counters[i]);
+		}
         fclose(file);
       }
     }
   }
   if (aggregate_energy > 0) {
     double aggregate_energy_d = (double)aggregate_energy/1000000.0;
-    printf("Total CPU energy consumed (REPL): %g J\n", aggregate_energy_d);
+	double aggregate_energy_dram_d = (double)aggregate_energy_dram/1000000.0;
+	printf("Total CPU energy consumed (RAPL): %g J, of which DRAM energy: %g\n", aggregate_energy_d, aggregate_energy_dram_d);
+    // printf("Total CPU energy consumed (RAPL): %g J\n", aggregate_energy_d);
   }
 }
